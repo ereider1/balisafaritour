@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { clerkMiddleware } from "@clerk/nextjs/server";
 import { siteForHost } from "@/lib/domains";
 
-export const proxy = clerkMiddleware((_, request: NextRequest) => {
+const proxyHandler = clerkMiddleware((_auth, request: NextRequest) => {
   if (request.nextUrl.pathname !== "/") return NextResponse.next();
 
   const site = siteForHost(request.headers.get("host"));
@@ -12,6 +12,9 @@ export const proxy = clerkMiddleware((_, request: NextRequest) => {
   url.pathname = site.path;
   return NextResponse.rewrite(url);
 });
+
+export { proxyHandler as proxy };
+export default proxyHandler;
 
 export const config = {
   matcher: [
