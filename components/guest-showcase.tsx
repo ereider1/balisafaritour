@@ -22,7 +22,7 @@ export default function GuestShowcase() {
   }, []);
 
   return (
-    <section id="content" className="py-24 lg:py-32">
+    <section id="gallery" className="scroll-mt-24 py-24 lg:py-32">
       <div className="container-max container-padding">
         <div className="mb-14 grid gap-8 lg:grid-cols-[.8fr_1.2fr] lg:items-end">
           <div><p className="script text-4xl">The view from the back seat</p><h2 className="mt-1 font-[family-name:var(--font-display)] text-5xl font-black uppercase leading-[.92] tracking-tight sm:text-6xl">Real guests.<br />Real Bali.</h2></div>

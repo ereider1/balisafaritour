@@ -41,7 +41,7 @@ export const metadata: Metadata = {
 export default function VwBaliPage() {
   return (
     <main className="min-h-screen bg-[#fbfaf6]">
-      <DomainHero brand="Bali VW Tours" tagline="Stories from the road" eyebrow="Guest journals · Bali, Indonesia" title="Bali through" script="their eyes" description="No staged shots and no stock travel moments. Just the island as our guests lived it—from the back seat of a classic Volkswagen." image="/gallerypics/bali_vw_01.jpg" video="/bobby-vw-hero.mp4" ctaLabel="Meet our guests" navItems={[{ label: "Guest stories", href: "#content" }, { label: "Plan your day", href: "#contact" }]} />
+      <DomainHero brand="Bali VW Tours" tagline="Stories from the road" eyebrow="Guest journals · Bali, Indonesia" title="Bali through" script="their eyes" description="No staged shots and no stock travel moments. Just the island as our guests lived it—from the back seat of a classic Volkswagen." image="/gallerypics/bali_vw_01.jpg" video="/bobby-vw-hero.mp4" ctaLabel="Meet our guests" navItems={[{ label: "Guest stories", href: "#gallery" }, { label: "Plan your day", href: "#contact" }]} />
       <PhotoGallery />
       <BaliVideoStories />
       <FullDayTours />
