@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Header from "@/components/header";
 import FullDayTours from "@/components/full-day-tours";
-import PhotoGallery from "@/components/photo-gallery";
+import GuestShowcase from "@/components/guest-showcase";
 import { listPublishedReviews, type PublishedReview } from "@/lib/reviews";
 
 const featuredReviews: PublishedReview[] = [
@@ -110,7 +110,7 @@ export default async function MainHome() {
 
 
 
-      <PhotoGallery />
+      <GuestShowcase />
 
       <section id="reviews" className="relative overflow-hidden bg-[#f0eee5] py-24">
         <div className="container-max container-padding">
