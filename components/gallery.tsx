@@ -5,54 +5,26 @@ import { useEffect, useState } from "react";
 import "glightbox/dist/css/glightbox.min.css";
 import { SITES } from "@/lib/domains";
 
-const galleryImages = [
-  {
-    id: 1,
-    src: "/gallerypics/bali_vw_01.jpg",
-    alt: "Temple visit",
-    category: "Cultural",
-  },
-  {
-    id: 2,
-    src: "/gallerypics/bali_vw_02.jpg",
-    alt: "Mountain views",
-    category: "Adventure",
-  },
-  {
-    id: 3,
-    src: "/gallerypics/bali_vw_03.jpg",
-    alt: "Beach sunset",
-    category: "Beach",
-  },
-  {
-    id: 4,
-    src: "/gallerypics/bali_vw_04.jpg",
-    alt: "Rice terraces",
-    category: "Landscape",
-  },
-  {
-    id: 5,
-    src: "/gallerypics/bali_vw_05.jpg",
-    alt: "Local market",
-    category: "Cultural",
-  },
-  {
-    id: 6,
-    src: "/gallerypics/bali_vw_06.jpg",
-    alt: "Waterfall",
-    category: "Adventure",
-  },
-];
+interface GalleryPhoto {
+  id: string;
+  src: string;
+  alt: string;
+}
 
 export default function Gallery() {
-  const [selectedCategory, setSelectedCategory] = useState("All");
-
-  const categories = ["All", "Cultural", "Adventure", "Beach", "Landscape"];
-
-  const filteredImages =
-    selectedCategory === "All" ? galleryImages : galleryImages.filter((img) => img.category === selectedCategory);
+  const [photos, setPhotos] = useState<GalleryPhoto[]>([]);
 
   useEffect(() => {
+    fetch("/api/gallery")
+      .then((response) => (response.ok ? response.json() : { photos: [] }))
+      .then((data: { photos?: GalleryPhoto[] }) => setPhotos(data.photos ?? []))
+      .catch(() => setPhotos([]));
+  }, []);
+
+  const displayedImages = photos.slice(0, 6);
+
+  useEffect(() => {
+    if (displayedImages.length === 0) return;
     let lightbox: { destroy: () => void } | undefined;
 
     import("glightbox").then(({ default: GLightbox }) => {
@@ -65,7 +37,7 @@ export default function Gallery() {
     });
 
     return () => lightbox?.destroy();
-  }, [filteredImages]);
+  }, [displayedImages]);
 
   return (
     <section id="gallery" className="py-20 lg:py-32">
@@ -77,44 +49,34 @@ export default function Gallery() {
           <p className="section-subtitle">Explore our collection of unforgettable moments from Bali tours.</p>
         </div>
 
-        {/* Filter Buttons */}
-        <div className="mb-12 flex flex-wrap gap-3">
-          {categories.map((category) => (
-            <button
-              key={category}
-              onClick={() => setSelectedCategory(category)}
-              className={`rounded-full px-6 py-2 font-medium transition-all ${
-                selectedCategory === category
-                  ? "bg-primary-600 text-white"
-                  : "border border-gray-300 bg-white text-gray-700 hover:border-primary-600"
-              }`}
-            >
-              {category}
-            </button>
-          ))}
-        </div>
-
         {/* Gallery Grid */}
         <div className="grid gap-4 md:grid-cols-3">
-          {filteredImages.map((image) => (
+          {displayedImages.map((image) => (
             <a
               key={image.id}
               href={image.src}
               className="glightbox group relative block h-64 overflow-hidden rounded-lg md:h-80"
               data-gallery="bali-gallery"
-              data-glightbox={`title: ${image.alt}; description: ${image.category}`}
+              data-glightbox={`title: ${image.alt}`}
             >
-              <Image
-                src={image.src}
-                alt={image.alt}
-                fill
-                sizes="(max-width: 768px) 100vw, 33vw"
-                className="object-cover transition-transform duration-300 group-hover:scale-110"
-              />
+              {image.src.startsWith("https://") ? (
+                <img
+                  src={image.src}
+                  alt={image.alt}
+                  className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
+                />
+              ) : (
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  className="object-cover transition-transform duration-300 group-hover:scale-110"
+                />
+              )}
               <div className="absolute inset-0 flex items-end bg-linear-to-t from-black/60 to-transparent p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                 <div>
                   <p className="text-sm font-semibold text-white">{image.alt}</p>
-                  <p className="text-xs text-gray-200">{image.category}</p>
                 </div>
               </div>
             </a>

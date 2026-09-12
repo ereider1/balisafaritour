@@ -15,7 +15,7 @@ export default function GuestShowcase() {
   const [guestPhotos, setGuestPhotos] = useState<GuestPhoto[]>([]);
 
   useEffect(() => {
-    fetch("/api/review-photos")
+    fetch("/api/gallery")
       .then((response) => (response.ok ? response.json() : { photos: [] }))
       .then((data: { photos?: GuestPhoto[] }) => setGuestPhotos(data.photos ?? []))
       .catch(() => setGuestPhotos([]));

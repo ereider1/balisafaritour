@@ -89,19 +89,6 @@ export async function addUploadedPhoto(file: File) {
   return photo;
 }
 
-export async function registerUploadedPhoto(blob: { url: string; pathname: string }) {
-  const photos = await listGalleryPhotos(true);
-  const photo: GalleryPhoto = {
-    id: crypto.randomUUID(),
-    src: blob.url,
-    blobPath: blob.pathname,
-    alt: "Guest photo from a Bali Volkswagen tour",
-    sortOrder: photos.length,
-    isPublished: false,
-  };
-  await updateGalleryPhotos([...photos, photo]);
-}
-
 export async function removeGalleryPhoto(id: string) {
   const photos = await listGalleryPhotos(true);
   const photo = photos.find((item) => item.id === id);
