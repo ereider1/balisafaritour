@@ -38,14 +38,14 @@ const tours = [
     name: "Tabanan Tour",
     duration: "Full day · Scenic",
     summary: "Experience incredible views of Bali, local villages, and the Ubud Market.",
-    stops: ["Tanah Lot Temple, Coffee Plantation, Jatiluwih Rice Terrace"],
+    stops: ["Tanah Lot Temple", "Coffee Plantation", "Jatiluwih Rice Terrace"],
   },
 
   {
     name: "Instagram Tour",
     duration: "Full day · Photo route",
     summary: "A camera-ready loop through Bali's best-known temples, volcano, terrace and swing viewpoints.",
-    stops: ["Custom Route, Bali Swing, Waterfalls, Temples, Rice Terraces"],
+    stops: ["Custom Route", "Bali Swing", "Waterfalls", "Temples", "Rice Terraces"],
   },
 
 ];
