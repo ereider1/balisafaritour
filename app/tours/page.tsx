@@ -7,59 +7,45 @@ import { SITES } from "@/lib/domains";
 const tours = [
 
   {
-    name: "Bali Temples Tour",
-    duration: "Full day · Culture",
-    summary: "Trace Bali's spiritual landscape through mountain sanctuaries, holy springs and ancient stone shrines.",
-    stops: ["Kehen Temple", "Besakih Temple", "Tirta Empul", "Gunung Kawi", "Goa Gajah"],
+    name: "Bali Ubud Waterfall",
+    duration: "Full day · Nature",
+    summary: "Go deeper into Bali's green interior on a circuit of four very different jungle waterfalls.",
+    stops: ["Monkey Forest", "Gunung Kawi Sebatu", "Ulu Petanu Waterfall"],
   },
 
   {
-    name: "Bali Waterfall Tour",
-    duration: "Full day · Nature",
-    summary: "Go deeper into Bali's green interior on a circuit of four very different jungle waterfalls.",
-    stops: ["Tukad Cepung", "Tibumana", "Kanto Lampo", "Tegenungan"],
+    name: "Bali Ubud Tour",
+    duration: "Full day · Culture",
+    summary: "Trace Bali's spiritual landscape through mountain sanctuaries and ancient stone shrines.",
+    stops: ["Barong Dance", "Ubud Art Market", "Silver Jewelry / Paintings", "Tegalalang Rice Terrace"],
   },
 
   {
     name: "Kintamani Volcano Tour",
     duration: "Full day · Highlands",
     summary: "Culture, craft villages and rice terraces on the road to Mount Batur and its crater lake.",
-    stops: ["Barong Dance", "Tegalalang Rice Terrace", "Mount Batur View", "Tirta Empul"],
+    stops: ["Tegalalang Rice Terrace", "Coffee Plantation", "Mount Batur View"],
   },
   
   {
     name: "Uluwatu Sunset Tour",
-    duration: "Half day · Sunset",
+    duration: "Full day · Sunset",
     summary: "Clifftop temple views, the rhythmic Kecak fire dance and an easy evening on the coast.",
-    stops: ["Uluwatu Temple", "Kecak Fire Dance", "Jimbaran Bay"],
+    stops: ["Pandawa Beach", "Uluwatu Temple", "Kecak Fire Dance", "Jimbaran Bay"],
   },
   
   {
-    name: "Bali Swing and Ubud Tour",
+    name: "Tabanan Tour",
     duration: "Full day · Scenic",
     summary: "Experience incredible views of Bali, local villages, and the Ubud Market.",
-    stops: ["Bali Swing, Ubud Monkey Forest, Ubud Royal Palace, Ubud Art Market, Tegalalang Rice Terrace"],
-  },
-
-  {
-    name: "Jatiluwih & Tanah Lot Tour",
-    duration: "Full day · Scenic",
-    summary: "Bali's grandest rice terraces, highland temples and an unforgettable sea-temple finale.",
-    stops: ["Taman Ayun Temple", "Ulun Danu Beratan", "Jatiluwih Rice Terraces", "Tanah Lot"],
-  },
-
-  {
-    name: "Gates of Heaven Tour",
-    duration: "Full day · East Bali",
-    summary: "An early journey east for mountain-framed temple gates, water palaces and traditional villages.",
-    stops: ["Lempuyang Temple", "Tirta Gangga", "Taman Ujung", "Virgin Beach", "Tenganan Village"],
+    stops: ["Tanah Lot Temple, Coffee Plantation, Jatiluwih Rice Terrace"],
   },
 
   {
     name: "Instagram Tour",
     duration: "Full day · Photo route",
-    summary: "A camera-ready loop through Bali's best-known temple, volcano, terrace and swing viewpoints.",
-    stops: ["Lempuyang Temple", "Tirta Gangga", "Kintamani Viewpoint", "Tegalalang", "Bali Swing"],
+    summary: "A camera-ready loop through Bali's best-known temples, volcano, terrace and swing viewpoints.",
+    stops: ["Custom Route, Bali Swing, Waterfalls, Temples, Rice Terraces"],
   },
 
 ];
