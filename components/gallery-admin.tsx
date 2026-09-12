@@ -8,7 +8,8 @@ export default function GalleryAdmin() {
   const [draggedId, setDraggedId] = useState<string | null>(null);
   const [message, setMessage] = useState("");
 
-  const [isDraggingFile, setIsDraggingFile] = useState(false);
+  const [dragCounter, setDragCounter] = useState(0);
+  const isDraggingFile = dragCounter > 0;
 
   useEffect(() => {
     fetch("/api/admin/gallery").then((response) => response.json()).then((data: { photos?: GalleryPhoto[] }) => setPhotos(data.photos ?? []));
@@ -79,20 +80,31 @@ export default function GalleryAdmin() {
     event.target.value = "";
   }
 
-  function handleDragOver(event: React.DragEvent) {
+  function handleDragEnter(event: React.DragEvent) {
     event.preventDefault();
+    if (draggedId) return;
     if (event.dataTransfer.types.includes("Files")) {
-      setIsDraggingFile(true);
+      setDragCounter((prev) => prev + 1);
     }
   }
 
-  function handleDragLeave() {
-    setIsDraggingFile(false);
+  function handleDragOver(event: React.DragEvent) {
+    event.preventDefault();
+  }
+
+  function handleDragLeave(event: React.DragEvent) {
+    event.preventDefault();
+    if (draggedId) return;
+    if (event.dataTransfer.types.includes("Files")) {
+      setDragCounter((prev) => Math.max(0, prev - 1));
+    }
   }
 
   async function handleDrop(event: React.DragEvent) {
     event.preventDefault();
-    setIsDraggingFile(false);
+    setDragCounter(0);
+
+    if (draggedId) return;
 
     if (event.dataTransfer.files && event.dataTransfer.files.length > 0) {
       const filesArray = Array.from(event.dataTransfer.files);
@@ -112,7 +124,7 @@ export default function GalleryAdmin() {
     setMessage(response.ok ? "Photo removed" : "Could not remove photo");
   }
 
-  return <main onDragOver={handleDragOver} onDragLeave={handleDragLeave} onDrop={handleDrop} className="min-h-screen bg-[#fbfaf6] px-5 py-10 text-[#20241f] sm:px-10">
+  return <main onDragEnter={handleDragEnter} onDragOver={handleDragOver} onDragLeave={handleDragLeave} onDrop={handleDrop} className="min-h-screen bg-[#fbfaf6] px-5 py-10 text-[#20241f] sm:px-10">
     {isDraggingFile && (
       <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#263b27]/90 text-white backdrop-blur-xs">
         <div className="pointer-events-none rounded-2xl border-4 border-dashed border-white/50 p-12 text-center">
@@ -129,7 +141,7 @@ export default function GalleryAdmin() {
       </div>
       <p className="h-10 pt-4 text-sm text-[#425f32]">{message}</p>
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
-        {photos.map((photo) => <article key={photo.id} draggable onDragStart={() => setDraggedId(photo.id)} onDragOver={(event) => event.preventDefault()} onDrop={() => movePhoto(photo.id)} className={`group bg-white p-2 shadow-sm ${photo.isPublished ? "" : "opacity-50"}`}>
+        {photos.map((photo) => <article key={photo.id} draggable onDragStart={() => setDraggedId(photo.id)} onDragEnd={() => setDraggedId(null)} onDragOver={(event) => event.preventDefault()} onDrop={() => movePhoto(photo.id)} className={`group bg-white p-2 shadow-sm ${photo.isPublished ? "" : "opacity-50"}`}>
           <div className="relative aspect-square overflow-hidden bg-[#263b27]"><img src={photo.src} alt={photo.alt} className="h-full w-full object-cover" /><span className="absolute left-2 top-2 bg-[#20241f]/75 px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-white">{photo.isPublished ? "Live" : "Hidden"}</span></div>
           <div className="flex items-center justify-between gap-2 p-2"><span className="truncate text-xs text-black/55">{photo.id}</span><div className="flex gap-2"><button type="button" onClick={() => void toggle(photo)} className="text-xs font-bold text-[#425f32]">{photo.isPublished ? "Hide" : "Show"}</button><button type="button" onClick={() => void remove(photo)} className="text-xs font-bold text-red-700">Delete</button></div></div>
         </article>)}
