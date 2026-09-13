@@ -1,4 +1,4 @@
-import { del, get, put } from "@vercel/blob";
+import { del, put, list } from "@vercel/blob";
 
 export type GalleryPhoto = {
   id: string;
@@ -33,11 +33,16 @@ async function readManifest(): Promise<GalleryPhoto[]> {
   if (!hasBlobStorage()) return basePhotos;
 
   try {
-    const result = await get(MANIFEST_PATH, { access: "public", useCache: false });
-    if (!result || result.statusCode !== 200) return basePhotos;
-    const value = (await new Response(result.stream).json()) as StoredManifest;
+    const { blobs } = await list({ prefix: MANIFEST_PATH });
+    const manifestBlob = blobs.find((b) => b.pathname === MANIFEST_PATH);
+    if (!manifestBlob) return basePhotos;
+
+    const response = await fetch(manifestBlob.url, { cache: "no-store" });
+    if (!response.ok) return basePhotos;
+    const value = (await response.json()) as StoredManifest;
     return Array.isArray(value.photos) ? value.photos : basePhotos;
-  } catch {
+  } catch (error) {
+    console.error("Failed to read gallery manifest from blob storage:", error);
     return basePhotos;
   }
 }

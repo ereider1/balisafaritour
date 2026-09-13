@@ -148,7 +148,7 @@ export async function listPublishedReviews(): Promise<PublishedReview[]> {
       blobs
         .filter((blob) => blob.pathname.endsWith(".json"))
         .map(async (blob) => {
-          const result = await get(blob.pathname, { access: "public", useCache: false });
+          const result = await get(blob.url, { access: "public", useCache: false });
           if (!result || result.statusCode !== 200) return null;
 
           const value = (await new Response(result.stream).json()) as StoredReview;
