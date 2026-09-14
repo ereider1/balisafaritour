@@ -197,7 +197,7 @@ export default function InteractiveMap({
       const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       map.setView(activeStop.position, Math.max(map.getZoom(), 11), {
         animate: !reduceMotion,
-        duration: 1.25, // Slowed down from 0.45s to 1.25s for a smoother transition
+        duration: 0.45,
       });
     }
   }, [hoveredStop, stops]);

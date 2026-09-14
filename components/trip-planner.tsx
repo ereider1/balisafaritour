@@ -97,34 +97,6 @@ const stops: MapStop[] = [
   },
 ];
 
-const itineraries = [
-  {
-    days: "Half Day",
-    title: "South Bali Highlights",
-    route: ["Uluwatu Temple", "Beaches", "Sunset dinner"],
-    summary:
-      "A compact loop through South Bali's most iconic coastal sights, ending with Sunset Dinner on the coast.",
-  },
-  {
-    days: "Full Day",
-    title: "Temples, Terraces & Culture",
-    route: ["Sacred Monkey Forest", "Ubud Art Market", "Gunung Kawi", "Jatiluwih Rice Terraces", "Tanah Lot"],
-    summary:
-      "Combine Ubud's culture with the rice terrace landscapes further north, finishing on the coast.",
-  },
-  {
-    days: "Full Day",
-    title: "Instagram Tour",
-    route: [
-      "Tanah Lot",
-      "Jatiluwih Rice Terraces",
-      "Tabanan Countryside",
-    ],
-    summary:
-      "The complete route from the beautiful rice terraces to the volcanic highlands, covering every stop for the perfect photo.",
-  },
-];
-
 const FAVORITES_STORAGE_KEY = "bali-safari-tour-favorites";
 const WHATSAPP_NUMBER = "6281237812783";
 
@@ -274,30 +246,6 @@ export default function TripPlanner() {
 
 
 
-
-        <div id="itineraries" className="mt-28 scroll-mt-24">
-          <div className="mb-10 text-center"><p className="script text-4xl">How much Bali fits?</p><h2 className="font-[family-name:var(--font-display)] text-4xl font-black uppercase tracking-tight sm:text-5xl">Plan by trip length</h2></div>
-          <div className="grid gap-5 lg:grid-cols-3">
-            {itineraries.map((plan) => (
-              <article key={plan.days} className="group bg-white p-7 shadow-[0_16px_45px_rgb(30_42_25/0.08)] transition duration-500 hover:-translate-y-2 hover:bg-[#425f32] hover:text-white">
-                <span className="text-[10px] font-bold uppercase tracking-[.2em] text-[#79924f]">{plan.days}</span>
-                <h3 className="mb-3 mt-4 font-[family-name:var(--font-display)] text-2xl font-black uppercase leading-none">{plan.title}</h3>
-                <p className="mb-5 text-sm leading-6 text-black/50 group-hover:text-white/60">{plan.summary}</p>
-                <ol className="space-y-2 border-t border-black/10 pt-5 group-hover:border-white/15">
-                  {plan.route.map((stop, i) => (
-                    <li key={stop} className="flex gap-2 text-xs text-black/65 group-hover:text-white/75">
-                      <span className="font-bold text-[#79924f]">{String(i + 1).padStart(2, "0")}</span>
-                      {stop}
-                    </li>
-                  ))}
-                </ol>
-              </article>
-            ))}
-          </div>
-        </div>
-
-
-        
 
         <div className="mt-20 border-t border-black/10 pt-8 text-center">
           <p className="text-xs leading-6 text-black/45">
