@@ -78,6 +78,10 @@ export default function GalleryAdmin() {
   const [dragCounter, setDragCounter] = useState(0);
   const isDraggingFile = dragCounter > 0;
 
+  const [showVideoLimitModal, setShowVideoLimitModal] = useState(false);
+  const [oversizedVideoName, setOversizedVideoName] = useState("");
+  const [oversizedVideoSize, setOversizedVideoSize] = useState("");
+
   useEffect(() => {
     fetch("/api/admin/gallery")
       .then((response) => response.json())
@@ -157,6 +161,11 @@ export default function GalleryAdmin() {
         continue;
       }
       if (fileToUpload.size > 15 * 1024 * 1024) {
+        if (fileToUpload.type.startsWith("video/")) {
+          setOversizedVideoName(fileToUpload.name);
+          setOversizedVideoSize((fileToUpload.size / 1024 / 1024).toFixed(1) + " MB");
+          setShowVideoLimitModal(true);
+        }
         setMessage(`Skipped "${fileToUpload.name}": File size exceeds 15 MB.`);
         continue;
       }
@@ -398,6 +407,106 @@ export default function GalleryAdmin() {
           ))}
         </div>
       </div>
+
+      {showVideoLimitModal && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-4 sm:p-6 backdrop-blur-xs animate-fade-in"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Video too large"
+        >
+          <div
+            className="relative w-full max-w-lg bg-white p-6 shadow-2xl text-[#20241f] rounded-lg"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              type="button"
+              onClick={() => setShowVideoLimitModal(false)}
+              className="absolute right-4 top-4 grid h-8 w-8 place-items-center text-2xl text-black/40 hover:text-black cursor-pointer"
+              aria-label="Close modal"
+            >
+              ×
+            </button>
+            <div className="mb-4">
+              <span className="text-3xl" role="img" aria-label="Alert">
+                ⚠️
+              </span>
+              <h2 className="mt-2 font-[family-name:var(--font-display)] text-2xl font-black uppercase tracking-tight text-red-800">
+                Video exceeds 15MB limit
+              </h2>
+              <p className="mt-1 text-xs text-black/45 truncate">
+                File: {oversizedVideoName} ({oversizedVideoSize})
+              </p>
+            </div>
+
+            <p className="text-sm leading-6 text-black/75">
+              To keep uploads blazing fast and fit within secure host transfer limits, guest videos
+              must be <strong>15 MB or less</strong>. High-quality mobile camera clips are usually
+              larger, but you can compress or trim them in seconds!
+            </p>
+
+            <div className="mt-6 space-y-4 text-xs">
+              <div className="border-l-2 border-[#79924f] pl-3">
+                <b className="block text-xs uppercase tracking-wide text-[#425f32]">
+                  📱 On iPhone / iOS
+                </b>
+                <p className="mt-1 leading-relaxed text-black/60">
+                  Open your <strong>Photos App</strong>, select the video, tap <strong>Edit</strong>{" "}
+                  in the top right, and drag the yellow slider anchors at the bottom to crop it to
+                  the best 5-10 seconds of the drive. Click <strong>Done</strong> to save as a
+                  fresh, lightweight clip!
+                </p>
+              </div>
+
+              <div className="border-l-2 border-[#79924f] pl-3">
+                <b className="block text-xs uppercase tracking-wide text-[#425f32]">
+                  🤖 On Android
+                </b>
+                <p className="mt-1 leading-relaxed text-black/60">
+                  Open <strong>Google Photos</strong>, select the video, tap <strong>Edit</strong>{" "}
+                  at the bottom, and trim the start/end timelines to shorten it. Tap{" "}
+                  <strong>Save copy</strong> to create an optimized, fast-uploading file.
+                </p>
+              </div>
+
+              <div className="border-l-2 border-[#79924f] pl-3">
+                <b className="block text-xs uppercase tracking-wide text-[#425f32]">
+                  💻 On Desktop / Web
+                </b>
+                <p className="mt-1 leading-relaxed text-black/60">
+                  Drop it into free online compressors like{" "}
+                  <a
+                    href="https://www.videocompressor.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-bold text-[#425f32] underline hover:text-[#79924f]"
+                  >
+                    VideoCompressor.com
+                  </a>{" "}
+                  or{" "}
+                  <a
+                    href="https://www.freeconvert.com/video-compressor"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-bold text-[#425f32] underline hover:text-[#79924f]"
+                  >
+                    FreeConvert.com
+                  </a>{" "}
+                  to shrink it down in 5 seconds without losing detail!
+                </p>
+              </div>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => setShowVideoLimitModal(false)}
+              className="mt-8 w-full bg-[#263b27] py-3 text-xs font-bold uppercase tracking-wider text-white hover:bg-[#425f32] transition rounded-sm cursor-pointer"
+            >
+              Got it, let me trim it!
+            </button>
+          </div>
+        </div>
+      )}
     </main>
   );
 }
