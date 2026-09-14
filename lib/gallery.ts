@@ -53,6 +53,7 @@ async function writeManifest(photos: GalleryPhoto[]) {
   await put(MANIFEST_PATH, JSON.stringify({ photos }), {
     access: "public",
     addRandomSuffix: false,
+    allowOverwrite: true,
     contentType: "application/json",
   });
 }
@@ -79,6 +80,7 @@ export async function addUploadedPhoto(file: File) {
   const blob = await put(blobPath, file, {
     access: "public",
     addRandomSuffix: false,
+    allowOverwrite: true,
     contentType: file.type,
   });
   const photos = await listGalleryPhotos(true);
@@ -101,11 +103,14 @@ export async function removeGalleryPhoto(id: string) {
 
   if (photo.blobPath) await del(photo.blobPath);
   await updateGalleryPhotos(
-    photos.map((item) => (item.id === id ? { ...item, isPublished: false } : item)),
+    photos.map((item) => (item.id === id ? { ...item, isPublished: false } : item))
   );
 }
 
-export async function updateGalleryPhoto(id: string, changes: Partial<Pick<GalleryPhoto, "alt" | "isPublished">>) {
+export async function updateGalleryPhoto(
+  id: string,
+  changes: Partial<Pick<GalleryPhoto, "alt" | "isPublished">>
+) {
   const photos = await listGalleryPhotos(true);
   if (!photos.some((photo) => photo.id === id)) throw new Error("Photo not found.");
   return updateGalleryPhotos(
@@ -116,6 +121,6 @@ export async function updateGalleryPhoto(id: string, changes: Partial<Pick<Galle
         ...(changes.alt !== undefined ? { alt: changes.alt } : {}),
         ...(changes.isPublished !== undefined ? { isPublished: changes.isPublished } : {}),
       };
-    }),
+    })
   );
 }
