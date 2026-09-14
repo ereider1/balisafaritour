@@ -124,7 +124,7 @@ export default function GalleryAdmin() {
   }
 
   async function uploadFiles(files: File[]) {
-    setMessage(`Preparing ${files.length} photo(s)...`);
+    setMessage(`Preparing ${files.length} file(s)...`);
     let successCount = 0;
 
     for (const file of files) {
@@ -145,8 +145,15 @@ export default function GalleryAdmin() {
         }
       }
 
-      if (!["image/jpeg", "image/png", "image/webp"].includes(fileToUpload.type)) {
-        setMessage(`Skipped "${fileToUpload.name}": Only JPG, PNG, and WebP are allowed.`);
+      const isAcceptedImage = ["image/jpeg", "image/png", "image/webp"].includes(fileToUpload.type);
+      const isAcceptedVideo = ["video/mp4", "video/quicktime", "video/webm"].includes(
+        fileToUpload.type
+      );
+
+      if (!isAcceptedImage && !isAcceptedVideo) {
+        setMessage(
+          `Skipped "${fileToUpload.name}": Only JPG, PNG, WebP, MP4, MOV, and WebM are allowed.`
+        );
         continue;
       }
       if (fileToUpload.size > 15 * 1024 * 1024) {
@@ -167,7 +174,7 @@ export default function GalleryAdmin() {
         if (response.ok && data.photo) {
           setPhotos((current) => [...current, data.photo as GalleryPhoto]);
           successCount++;
-          setMessage(`Uploaded ${successCount}/${files.length} photo(s)`);
+          setMessage(`Uploaded ${successCount}/${files.length} file(s)`);
         } else {
           setMessage(data.error ?? `Upload failed for ${file.name}`);
         }
@@ -177,7 +184,7 @@ export default function GalleryAdmin() {
     }
 
     if (successCount === files.length) {
-      setMessage(`Successfully uploaded ${successCount} photo(s)`);
+      setMessage(`Successfully uploaded ${successCount} file(s)`);
     }
   }
 
@@ -264,9 +271,11 @@ export default function GalleryAdmin() {
           <div className="pointer-events-none rounded-2xl border-4 border-dashed border-white/50 p-12 text-center">
             <span className="text-6xl">＋</span>
             <p className="mt-4 text-lg font-bold uppercase tracking-wider">
-              Drop your photos here to upload
+              Drop your media here to upload
             </p>
-            <p className="mt-2 text-sm text-white/60">Supports JPG, PNG, WebP up to 8MB each</p>
+            <p className="mt-2 text-sm text-white/60">
+              Supports JPG, PNG, WebP, MP4, MOV, WebM up to 15MB each
+            </p>
           </div>
         </div>
       )}
@@ -280,7 +289,7 @@ export default function GalleryAdmin() {
               Guest gallery
             </h1>
             <p className="mt-3 text-sm text-black/55">
-              Drag photos or use the arrows to change their order on the live page.
+              Drag photos/videos or use the arrows to change their order on the live page.
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-3">
@@ -294,10 +303,10 @@ export default function GalleryAdmin() {
               </button>
             )}
             <label className="cursor-pointer bg-[#263b27] px-5 py-3 text-xs font-bold uppercase tracking-[.15em] text-white hover:bg-[#425f32]">
-              Add photo
+              Add photo / video
               <input
                 type="file"
-                accept="image/jpeg,image/png,image/webp"
+                accept="image/jpeg,image/png,image/webp,video/mp4,video/quicktime,video/webm"
                 className="sr-only"
                 onChange={upload}
                 multiple
@@ -318,10 +327,29 @@ export default function GalleryAdmin() {
               className={`group bg-white p-2 shadow-sm ${photo.isPublished ? "" : "opacity-50"}`}
             >
               <div className="relative aspect-square overflow-hidden bg-[#263b27]">
-                <img src={photo.src} alt={photo.alt} className="h-full w-full object-cover" />
-                <span className="absolute left-2 top-2 bg-[#20241f]/75 px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-white">
+                {photo.type === "video" ? (
+                  <video
+                    src={photo.src}
+                    className="h-full w-full object-cover"
+                    muted
+                    playsInline
+                    autoPlay
+                    loop
+                  />
+                ) : (
+                  <img src={photo.src} alt={photo.alt} className="h-full w-full object-cover" />
+                )}
+                <span className="absolute left-2 top-2 bg-[#20241f]/75 px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-white animate-fade-in">
                   {photo.isPublished ? "Live" : "Hidden"}
                 </span>
+                {photo.type === "video" && (
+                  <span
+                    className="absolute right-2 top-2 bg-black/60 rounded-full p-1 text-white text-[10px] uppercase font-bold tracking-wider px-2"
+                    aria-hidden
+                  >
+                    ▶ Video
+                  </span>
+                )}
               </div>
               <div className="flex items-center justify-between gap-2 p-2">
                 <span className="truncate text-xs text-black/55">{photo.id.slice(0, 8)}...</span>

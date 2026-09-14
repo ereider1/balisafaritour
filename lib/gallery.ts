@@ -7,6 +7,7 @@ export type GalleryPhoto = {
   sortOrder: number;
   isPublished: boolean;
   blobPath?: string;
+  type?: "image" | "video";
 };
 
 const MANIFEST_PATH = "gallery/gallery-manifest.json";
@@ -20,6 +21,7 @@ const basePhotos: GalleryPhoto[] = Array.from({ length: 26 }, (_, index) => {
     alt: `Guests on a VW Bali safari tour 2026, photo ${number}`,
     sortOrder: index,
     isPublished: true,
+    type: "image" as const,
   };
 });
 
@@ -84,13 +86,15 @@ export async function addUploadedPhoto(file: File) {
     contentType: file.type,
   });
   const photos = await listGalleryPhotos(true);
+  const isVideo = file.type.startsWith("video/");
   const photo: GalleryPhoto = {
     id,
     src: blob.url,
     blobPath,
-    alt: "Guest photo from a Bali Volkswagen tour",
+    alt: isVideo ? "Guest video from a Bali Volkswagen tour" : "Guest photo from a Bali Volkswagen tour",
     sortOrder: photos.length,
     isPublished: true,
+    type: isVideo ? "video" : "image",
   };
   await updateGalleryPhotos([...photos, photo]);
   return photo;
