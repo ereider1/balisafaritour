@@ -3,6 +3,72 @@
 import { useEffect, useState } from "react";
 import type { GalleryPhoto } from "@/lib/gallery";
 
+function compressImage(
+  file: File,
+  maxWidth = 1920,
+  maxHeight = 1920,
+  quality = 0.85
+): Promise<File> {
+  return new Promise((resolve) => {
+    if (!file.type.startsWith("image/")) {
+      resolve(file);
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      const img = new window.Image();
+      img.onload = () => {
+        let width = img.width;
+        let height = img.height;
+
+        if (width > maxWidth || height > maxHeight) {
+          if (width > height) {
+            height = Math.round((height * maxWidth) / width);
+            width = maxWidth;
+          } else {
+            width = Math.round((width * maxHeight) / height);
+            height = maxHeight;
+          }
+        }
+
+        const canvas = document.createElement("canvas");
+        canvas.width = width;
+        canvas.height = height;
+
+        const ctx = canvas.getContext("2d");
+        if (!ctx) {
+          resolve(file);
+          return;
+        }
+
+        ctx.drawImage(img, 0, 0, width, height);
+
+        canvas.toBlob(
+          (blob) => {
+            if (!blob) {
+              resolve(file);
+              return;
+            }
+            const name = file.name.replace(/\.[^/.]+$/, "") + ".jpg";
+            const compressedFile = new File([blob], name, {
+              type: "image/jpeg",
+              lastModified: Date.now(),
+            });
+            resolve(compressedFile);
+          },
+          "image/jpeg",
+          quality
+        );
+      };
+      img.onerror = () => resolve(file);
+      img.src = event.target?.result as string;
+    };
+    reader.onerror = () => resolve(file);
+    reader.readAsDataURL(file);
+  });
+}
+
 export default function GalleryAdmin() {
   const [photos, setPhotos] = useState<GalleryPhoto[]>([]);
   const [draggedId, setDraggedId] = useState<string | null>(null);
@@ -58,24 +124,45 @@ export default function GalleryAdmin() {
   }
 
   async function uploadFiles(files: File[]) {
-    setMessage(`Uploading ${files.length} photo(s)...`);
+    setMessage(`Preparing ${files.length} photo(s)...`);
     let successCount = 0;
 
     for (const file of files) {
-      if (!["image/jpeg", "image/png", "image/webp"].includes(file.type)) {
-        setMessage(`Skipped "${file.name}": Only JPG, PNG, and WebP are allowed.`);
+      let fileToUpload = file;
+
+      if (file.type.startsWith("image/")) {
+        try {
+          setMessage(`Optimizing "${file.name}" for mobile upload...`);
+          fileToUpload = await compressImage(file, 1920, 1920, 0.85);
+          console.log(
+            `[Gallery Admin] Original size: ${(file.size / 1024 / 1024).toFixed(2)}MB, Optimized size: ${(fileToUpload.size / 1024 / 1024).toFixed(2)}MB`
+          );
+        } catch (error) {
+          console.warn(
+            "[Gallery Admin] Client-side compression failed, using original file:",
+            error
+          );
+        }
+      }
+
+      if (!["image/jpeg", "image/png", "image/webp"].includes(fileToUpload.type)) {
+        setMessage(`Skipped "${fileToUpload.name}": Only JPG, PNG, and WebP are allowed.`);
         continue;
       }
-      if (file.size > 8 * 1024 * 1024) {
-        setMessage(`Skipped "${file.name}": File size exceeds 8 MB.`);
+      if (fileToUpload.size > 15 * 1024 * 1024) {
+        setMessage(`Skipped "${fileToUpload.name}": File size exceeds 15 MB.`);
         continue;
       }
 
       const formData = new FormData();
-      formData.set("file", file);
+      formData.set("file", fileToUpload);
 
       try {
-        const response = await fetch("/api/admin/gallery/upload", { method: "POST", body: formData });
+        setMessage(`Uploading "${fileToUpload.name}"...`);
+        const response = await fetch("/api/admin/gallery/upload", {
+          method: "POST",
+          body: formData,
+        });
         const data = (await response.json()) as { photo?: GalleryPhoto; error?: string };
         if (response.ok && data.photo) {
           setPhotos((current) => [...current, data.photo as GalleryPhoto]);
@@ -141,7 +228,9 @@ export default function GalleryAdmin() {
     });
     if (response.ok) {
       setPhotos((current) =>
-        current.map((item) => (item.id === photo.id ? { ...item, isPublished: !item.isPublished } : item))
+        current.map((item) =>
+          item.id === photo.id ? { ...item, isPublished: !item.isPublished } : item
+        )
       );
       setMessage("Visibility updated");
     }
@@ -174,7 +263,9 @@ export default function GalleryAdmin() {
         <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#263b27]/90 text-white backdrop-blur-xs">
           <div className="pointer-events-none rounded-2xl border-4 border-dashed border-white/50 p-12 text-center">
             <span className="text-6xl">＋</span>
-            <p className="mt-4 text-lg font-bold uppercase tracking-wider">Drop your photos here to upload</p>
+            <p className="mt-4 text-lg font-bold uppercase tracking-wider">
+              Drop your photos here to upload
+            </p>
             <p className="mt-2 text-sm text-white/60">Supports JPG, PNG, WebP up to 8MB each</p>
           </div>
         </div>
@@ -182,7 +273,9 @@ export default function GalleryAdmin() {
       <div className="mx-auto max-w-7xl">
         <div className="flex flex-wrap items-end justify-between gap-5 border-b border-black/10 pb-8">
           <div>
-            <p className="text-xs font-bold uppercase tracking-[.2em] text-[#79924f]">Content studio</p>
+            <p className="text-xs font-bold uppercase tracking-[.2em] text-[#79924f]">
+              Content studio
+            </p>
             <h1 className="mt-3 font-[family-name:var(--font-display)] text-5xl font-black uppercase leading-none">
               Guest gallery
             </h1>
@@ -233,10 +326,18 @@ export default function GalleryAdmin() {
               <div className="flex items-center justify-between gap-2 p-2">
                 <span className="truncate text-xs text-black/55">{photo.id.slice(0, 8)}...</span>
                 <div className="flex gap-2">
-                  <button type="button" onClick={() => void toggle(photo)} className="text-xs font-bold text-[#425f32]">
+                  <button
+                    type="button"
+                    onClick={() => void toggle(photo)}
+                    className="text-xs font-bold text-[#425f32]"
+                  >
                     {photo.isPublished ? "Hide" : "Show"}
                   </button>
-                  <button type="button" onClick={() => void remove(photo)} className="text-xs font-bold text-red-700">
+                  <button
+                    type="button"
+                    onClick={() => void remove(photo)}
+                    className="text-xs font-bold text-red-700"
+                  >
                     Delete
                   </button>
                 </div>
