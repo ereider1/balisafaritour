@@ -139,9 +139,10 @@ export default function GuestShowcase() {
 
         <div className="mt-16 border-t border-black/10 pt-8 text-center">
           <p className="text-xs leading-6 text-black/45">
-            Curious where each photo was taken? See{" "}
+            <a className="btn-primary px-3 py-3 m-2" href="https://www.tiktok.com/@bobbyinyomandinat?_r=1&_t=ZS-99iaiPhhyam" target="_blank">View more photos on TIKTOK</a>
+            <a className="btn-primary px-3 py-3 m-2" href="https://www.instagram.com/balisafaritour?stkn=ZHdjM3Uyc2tuc3hl&utm_source=qr" target="_blank">View more photos on INSTAGRAM</a><br />
             <a href={SITES.gobali.url} className="font-bold text-[#425f32] hover:underline">
-              our full guide to Bali&apos;s attractions
+             View our full guide to Bali&apos;s attractions
             </a>{" "}
             at {SITES.gobali.url.replace("https://", "")}, or plan your own route with{" "}
             <a href={SITES.balisafari.url} className="font-bold text-[#425f32] hover:underline">
