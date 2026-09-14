@@ -51,13 +51,14 @@ export default function VwBaliPage() {
         image="/gallerypics/bali_vw_01.jpg"
         video="/bobby-vw-hero.mp4"
         ctaLabel="Meet our guests"
+        ctaHref="#gallery"
         navItems={[
           { label: "Guest stories", href: "#gallery" },
           { label: "Plan your day", href: "#contact" },
         ]}
       />
-      <GuestShowcase />
       <BaliVideoStories />
+      <GuestShowcase />
       <FullDayTours />
       <DomainBooking
         script="Make your own memories"

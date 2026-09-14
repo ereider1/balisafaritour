@@ -94,7 +94,7 @@ export default function FullDayTours() {
                     <p className="text-right text-[10px] font-bold uppercase tracking-[.14em] text-black/40">
                       Best price!
                       <span className="mt-1 block font-[family-name:var(--font-display)] text-2xl font-black tracking-normal text-[#425f32]">
-                        USD$ {tour.price} <span className="text-sm">/ person</span>
+                        USD$ {tour.price}<span className="text-sm">/person</span>
                       </span>
                     </p>
                   </div>
@@ -104,8 +104,8 @@ export default function FullDayTours() {
           })}
         </div>
 
-        <p className="mx-auto mt-9 max-w-2xl text-center text-xs leading-5 text-black/45">
-          Tour pricing in Rp is 700,000. Small children are free. Hotel/Villa pickup and dropoff included.
+        <p className="mx-auto mt-9 max-w-2xl text-center text-sm leading-5 text-black/45">
+          Hotel/Villa pickup and dropoff is included.
         </p>
       </div>
     </section>
