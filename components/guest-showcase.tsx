@@ -13,6 +13,10 @@ type GuestPhoto = {
 
 export default function GuestShowcase() {
   const [guestPhotos, setGuestPhotos] = useState<GuestPhoto[]>([]);
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  const [touchStartX, setTouchStartX] = useState<number | null>(null);
+
+  const selectedPhoto = selectedIndex !== null ? guestPhotos[selectedIndex] : null;
 
   useEffect(() => {
     fetch("/api/gallery")
@@ -20,6 +24,44 @@ export default function GuestShowcase() {
       .then((data: { photos?: GuestPhoto[] }) => setGuestPhotos(data.photos ?? []))
       .catch(() => setGuestPhotos([]));
   }, []);
+
+  useEffect(() => {
+    if (selectedIndex === null) return;
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setSelectedIndex(null);
+      if (event.key === "ArrowRight") {
+        setSelectedIndex((prev) => (prev !== null ? (prev + 1) % guestPhotos.length : null));
+      }
+      if (event.key === "ArrowLeft") {
+        setSelectedIndex((prev) => (prev !== null ? (prev - 1 + guestPhotos.length) % guestPhotos.length : null));
+      }
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "";
+    };
+  }, [selectedIndex, guestPhotos.length]);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStartX(e.touches[0].clientX);
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX === null) return;
+    const touchEndX = e.changedTouches[0].clientX;
+    const diff = touchStartX - touchEndX;
+
+    if (diff > 50) {
+      // Swiped left, show next
+      setSelectedIndex((prev) => (prev !== null ? (prev + 1) % guestPhotos.length : null));
+    } else if (diff < -50) {
+      // Swiped right, show previous
+      setSelectedIndex((prev) => (prev !== null ? (prev - 1 + guestPhotos.length) % guestPhotos.length : null));
+    }
+    setTouchStartX(null);
+  };
 
   return (
     <section id="gallery" className="scroll-mt-24 py-24 lg:py-32">
@@ -31,9 +73,11 @@ export default function GuestShowcase() {
 
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4 lg:gap-4">
           {guestPhotos.map((photo, index) => (
-            <div
+            <button
               key={photo.src}
-              className={`${index === 0 || index === 9 || index === 18 ? "col-span-2 row-span-2" : ""} group relative aspect-square overflow-hidden bg-[#263b27]`}
+              type="button"
+              onClick={() => setSelectedIndex(index)}
+              className={`${index === 0 || index === 9 || index === 18 ? "col-span-2 row-span-2" : ""} group relative aspect-square overflow-hidden bg-[#263b27] text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#79924f] w-full`}
             >
               {photo.src.startsWith("https://") ? (
                 <img src={photo.src} alt={photo.alt} className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
@@ -42,14 +86,14 @@ export default function GuestShowcase() {
                   src={photo.src}
                   alt={photo.alt}
                   fill
-                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                  sizes={index === 0 || index === 9 || index === 18 ? "(max-width: 640px) 100vw, (max-width: 1024px) 66vw, 50vw" : "(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"}
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
               )}
               <div className="absolute inset-0 flex items-end bg-linear-to-t from-black/75 via-transparent to-transparent p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                 <p className="max-w-sm text-xs leading-5 text-white/85">{photo.alt}</p>
               </div>
-            </div>
+            </button>
           ))}
         </div>
 
@@ -67,6 +111,68 @@ export default function GuestShowcase() {
           </p>
         </div>
       </div>
+
+      {selectedPhoto && selectedIndex !== null ? (
+        <div 
+          className="fixed inset-0 z-50 grid place-items-center bg-[#1d211e]/95 p-5 sm:p-10 select-none" 
+          role="dialog" 
+          aria-modal="true" 
+          aria-label={selectedPhoto.alt} 
+          onClick={() => setSelectedIndex(null)}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+        >
+          {/* Close Button */}
+          <button 
+            type="button" 
+            onClick={() => setSelectedIndex(null)} 
+            className="absolute right-5 top-5 grid h-10 w-10 place-items-center border border-white/40 text-2xl text-white transition hover:bg-white/10 hover:border-white" 
+            aria-label="Close photo viewer"
+          >
+            ×
+          </button>
+
+          {/* Previous Button */}
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              setSelectedIndex((prev) => (prev !== null ? (prev - 1 + guestPhotos.length) % guestPhotos.length : null));
+            }}
+            className="absolute left-2 top-1/2 z-10 -translate-y-1/2 grid h-10 w-10 place-items-center rounded-full border border-white/20 bg-black/30 text-xl text-white transition hover:bg-black/60 hover:scale-105 active:scale-95 sm:left-8 sm:h-12 sm:w-12 sm:text-2xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-white"
+            aria-label="Previous photo"
+          >
+            ‹
+          </button>
+
+          {/* Next Button */}
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              setSelectedIndex((prev) => (prev !== null ? (prev + 1) % guestPhotos.length : null));
+            }}
+            className="absolute right-2 top-1/2 z-10 -translate-y-1/2 grid h-10 w-10 place-items-center rounded-full border border-white/20 bg-black/30 text-xl text-white transition hover:bg-black/60 hover:scale-105 active:scale-95 sm:right-8 sm:h-12 sm:w-12 sm:text-2xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-white"
+            aria-label="Next photo"
+          >
+            ›
+          </button>
+
+          {/* Image Container */}
+          <div className="relative h-[78vh] w-full max-w-5xl" onClick={(event) => event.stopPropagation()}>
+            {selectedPhoto.src.startsWith("https://") ? (
+              <img src={selectedPhoto.src} alt={selectedPhoto.alt} className="h-full w-full object-contain" />
+            ) : (
+              <Image src={selectedPhoto.src} alt={selectedPhoto.alt} fill sizes="100vw" className="object-contain" />
+            )}
+          </div>
+
+          {/* Photo Information & Counter */}
+          <p className="absolute bottom-5 left-5 text-[10px] font-bold uppercase tracking-[.18em] text-white/65 sm:bottom-8 sm:left-10">
+            {selectedPhoto.alt} <span className="ml-2 text-white/40">({selectedIndex + 1} of {guestPhotos.length})</span>
+          </p>
+        </div>
+      ) : null}
     </section>
   );
 }
