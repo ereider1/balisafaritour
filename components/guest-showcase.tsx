@@ -77,7 +77,7 @@ export default function GuestShowcase() {
               key={photo.src}
               type="button"
               onClick={() => setSelectedIndex(index)}
-              className={`${index === 0 || index === 9 || index === 18 ? "col-span-2 row-span-2" : ""} group relative aspect-square overflow-hidden bg-[#263b27] text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#79924f] w-full`}
+              className={`${index === 0 || index === 9 || index === 18 ? "col-span-2 row-span-2" : ""} group relative aspect-square overflow-hidden bg-[#263b27] text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#79924f] w-full cursor-pointer`}
             >
               {photo.src.startsWith("https://") ? (
                 <img src={photo.src} alt={photo.alt} className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
