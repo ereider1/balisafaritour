@@ -9,6 +9,7 @@ import {
 } from "@/lib/gallery";
 
 export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
 
 async function authorized() {
   return requireGalleryAdmin();
