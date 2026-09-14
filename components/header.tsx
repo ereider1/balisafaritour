@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import Image from "next/image";
 import { FaBars, FaTimes } from "react-icons/fa";
 
@@ -34,7 +33,7 @@ export default function Header({
       <nav className="container-max container-padding py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2">
+          <a href="https://balisafaritour.com" className="flex items-center gap-2">
             <div className="flex h-11 w-11 items-center justify-center rounded-full border border-white/30 bg-white/90 p-2">
               <Image
                 src="/vw-logo-black.svg"
@@ -48,7 +47,7 @@ export default function Header({
               <b className="block font-[family-name:var(--font-display)] text-lg uppercase leading-none tracking-tight">{brand}</b>
               <small className="text-[9px] uppercase tracking-[.26em] opacity-70">{tagline}</small>
             </span>
-          </Link>
+          </a>
 
           {/* Desktop Navigation */}
           <div className="hidden items-center gap-8 md:flex">
