@@ -8,8 +8,9 @@ import type { MapStop } from "@/components/interactive-map";
 const InteractiveMap = dynamic(() => import("@/components/interactive-map"), {
   ssr: false,
   loading: () => (
-    <div className="flex h-96 w-full items-center justify-center bg-gray-100 text-sm text-gray-500">
-      Loading map...
+    <div className="flex h-[470px] lg:h-[620px] w-full flex-col items-center justify-center bg-gray-100 p-8 text-center text-sm text-gray-500 gap-3">
+      <div className="font-bold">Loading map...</div>
+      <p className="max-w-md text-xs leading-5 text-black/45">Our drivers will review your choices and map out the best routes to maximize your tour!</p>
     </div>
   ),
 });
@@ -162,7 +163,7 @@ export default function TripPlanner() {
       <div className="container-max container-padding">
         <div className="mb-14 grid gap-8 lg:grid-cols-[.8fr_1.2fr] lg:items-end">
           <div><p className="script text-4xl">Make the island yours</p><h2 className="mt-1 font-[family-name:var(--font-display)] text-5xl font-black uppercase leading-[.92] tracking-tight sm:text-6xl">Plot your<br />perfect route</h2></div>
-          <p className="max-w-xl text-base leading-7 text-black/55 lg:ml-auto">Start with the places that pull you in. Click a map pin to save it, arrange your favorites, then send us your shortlist—we’ll turn it into a day that flows.</p>
+          <p className="max-w-xl text-base leading-7 text-black/55 lg:ml-auto">Choose the spots that interest you!<br />Click a map pin to save it, arrange your favorites, send us your list. Our drivers will review your choices and map out the best routes to make the most out of your day! </p>
         </div>
 
         <div className="grid gap-8 lg:grid-cols-[1.45fr_.55fr]">
