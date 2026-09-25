@@ -75,7 +75,7 @@ export async function generateMetadata(): Promise<Metadata> {
       creator: "@vwtourbali",
       title: site.title,
       description: site.description,
-      images: ["/hero-1.jpg"],
+      images: ["/og-social-share.png"],
     },
     icons: {
       icon: [
@@ -115,7 +115,7 @@ export default async function RootLayout({
     alternateName: "Bali Safari Tour",
     description: site.description,
     url: site.url,
-    image: `${site.url}/hero-1.jpg`,
+    image: `${site.url}/og-social-share.png`,
     logo: `${site.url}/vw-logo-3.svg`,
     telephone: "+62-812-3781-2783",
     priceRange: "$$",
