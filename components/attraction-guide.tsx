@@ -13,6 +13,7 @@ const attractions = [
       "Tanah Lot is a sea temple perched on a rock formation just off Bali's southwest coast, and one of the island's most photographed sights. It's best visited in the late afternoon, when the temple silhouette catches the sunset and the tide recedes enough to walk out along the rocks. Expect crowds near golden hour — arriving an hour earlier gives you space to explore the surrounding cliffside market stalls and viewpoints before the light show starts.",
     tip: "Best time to visit: 4-6pm for sunset views and lower tide.",
   },
+  
   {
     id: "uluwatu",
     name: "Uluwatu Temple",
