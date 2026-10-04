@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { ClerkProvider } from "@clerk/nextjs";
+import Script from "next/script";
 import { Caveat, Geist, Oswald } from "next/font/google";
 import { headers } from "next/headers";
 import { siteForHost } from "@/lib/domains";
@@ -140,7 +141,19 @@ export default async function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="antialiased"><ClerkProvider dynamic>{children}</ClerkProvider></body>
+      <body className="antialiased">
+        <Script id="google-tag" strategy="afterInteractive">
+          {`window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'AW-18361331433');`}
+        </Script>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=AW-18361331433"
+          strategy="afterInteractive"
+        />
+        <ClerkProvider dynamic>{children}</ClerkProvider>
+      </body>
     </html>
   );
 }
