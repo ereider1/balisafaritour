@@ -42,6 +42,14 @@ const tours = [
       "Your driver will take you to the swing, waterfalls, epic lookouts... Your Day. Your Tour!",
     price: 40,
   },
+  {
+    name: "Custom Tours",
+    location: "Anywhere Bali",
+    image: "/tourpics/bali_vw_01.jpg",
+    description:
+      "Experience Bali with your local guide! Ask for special spots: Gardens, Hot Springs, Traditional Ceremonies.",
+    price: 40,
+  },
 
 ] as const;
 
