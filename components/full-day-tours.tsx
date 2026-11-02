@@ -81,7 +81,7 @@ export default function FullDayTours() {
                 key={tour.name}
                 className={`${index === 1 ? "" : ""} group flex flex-col bg-[#fbfaf6] shadow-[0_18px_50px_rgb(30_42_25/0.09)] transition duration-500`}
               >
-                <div href="/tours" className="relative block aspect-[4/3] overflow-hidden bg-[#263b27]">
+                <div className="relative block aspect-[4/3] overflow-hidden bg-[#263b27]">
                   <Image
                     src={tour.image}
                     alt={`${tour.name} by classic Volkswagen`}
