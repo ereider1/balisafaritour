@@ -7,7 +7,13 @@ import { SITES } from "@/lib/domains";
 const tours = [
 
   {
-    name: "Bali Ubud Waterfall",
+    name: "Tabanan Tour",
+    duration: "Full day · Scenic",
+    summary: "Experience incredible views of Tabanan, Jatiluwih, Tanah Lot Temple.",
+    stops: ["Tanah Lot Temple", "Coffee Plantation", "Jatiluwih Rice Terrace"],
+  },
+  {
+    name: "Bali Monkey Forest",
     duration: "Full day · Nature",
     summary: "Go deeper into Bali's green interior on a circuit of four very different jungle waterfalls.",
     stops: ["Monkey Forest", "Gunung Kawi Sebatu", "Ulu Petanu Waterfall"],
@@ -32,13 +38,6 @@ const tours = [
     duration: "Full day · Sunset",
     summary: "Clifftop temple views, the rhythmic Kecak fire dance and an easy evening on the coast.",
     stops: ["Pandawa Beach", "Uluwatu Temple", "Kecak Fire Dance", "Jimbaran Bay"],
-  },
-  
-  {
-    name: "Tabanan Tour",
-    duration: "Full day · Scenic",
-    summary: "Experience incredible views of Bali, local villages, and the Ubud Market.",
-    stops: ["Tanah Lot Temple", "Coffee Plantation", "Jatiluwih Rice Terrace"],
   },
 
   {

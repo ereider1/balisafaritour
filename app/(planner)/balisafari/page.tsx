@@ -38,7 +38,7 @@ export const metadata: Metadata = {
 
 const tours = [
   {
-    name: "Bali Ubud Waterfall",
+    name: "Bali Monkey Forest",
     duration: "Full day · Nature",
     summary: "Go deeper into Bali's green interior on a circuit of four very different jungle waterfalls.",
     stops: ["Monkey Forest", "Gunung Kawi Sebatu", "Ulu Petanu Waterfall"],

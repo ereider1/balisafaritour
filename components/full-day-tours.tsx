@@ -3,6 +3,14 @@ import Link from "next/link";
 
 const tours = [
   {
+    name: "Tabanan & Jatiluwih Tours",
+    location: "Tabanan Bali",
+    image: "/tourpics/tabanan-02.jpg",
+    description:
+      "Explore Jatiluwih and Tabanan rice terraces and Tanah Lot Temple.",
+    price: 40,
+  },
+  {
     name: "Ubud Tours",
     location: "Central Bali",
     image: "/tourpics/ubud-market.jpg",
@@ -26,6 +34,15 @@ const tours = [
       "Follow the coast to Uluwatu Temple for Indian Ocean views, roaming monkeys and a golden-hour drive.",
     price: 40,
   },
+    {
+    name: "Instagram Tours",
+    location: "Custom Bali",
+    image: "/tourpics/bali_vw_02.jpg",
+    description:
+      "Your driver will take you to the swing, waterfalls, epic lookouts... Your Day. Your Tour!",
+    price: 40,
+  },
+
 ] as const;
 
 const whatsappBase = "https://wa.me/6281237812783?text=";
@@ -62,9 +79,9 @@ export default function FullDayTours() {
             return (
               <article
                 key={tour.name}
-                className={`${index === 1 ? "lg:-translate-y-3" : ""} group flex flex-col bg-[#fbfaf6] shadow-[0_18px_50px_rgb(30_42_25/0.09)] transition duration-500 hover:-translate-y-2`}
+                className={`${index === 1 ? "" : ""} group flex flex-col bg-[#fbfaf6] shadow-[0_18px_50px_rgb(30_42_25/0.09)] transition duration-500`}
               >
-                <Link href="/tours" className="relative block aspect-[4/3] overflow-hidden bg-[#263b27]">
+                <div href="/tours" className="relative block aspect-[4/3] overflow-hidden bg-[#263b27]">
                   <Image
                     src={tour.image}
                     alt={`${tour.name} by classic Volkswagen`}
@@ -73,10 +90,8 @@ export default function FullDayTours() {
                     className="object-cover transition duration-700 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent" />
-                  <span className="absolute bottom-0 right-0 bg-[#425f32] px-5 py-3 text-[10px] font-bold uppercase tracking-[.18em] text-white transition group-hover:bg-[#263b27]">
-                    Learn more <span aria-hidden>↗</span>
-                  </span>
-                </Link>
+                  
+                </div>
 
                 <div className="flex flex-1 flex-col p-7 sm:p-8">
                   <p className="text-[9px] font-bold uppercase tracking-[.2em] text-[#79924f]">
