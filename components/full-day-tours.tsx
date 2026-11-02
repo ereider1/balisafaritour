@@ -37,7 +37,7 @@ const tours = [
     {
     name: "Instagram Tours",
     location: "Custom Bali",
-    image: "/tourpics/bali_vw_02.jpg",
+    image: "/tourpics/bali-swing.jpg",
     description:
       "Your driver will take you to the swing, waterfalls, epic lookouts... Your Day. Your Tour!",
     price: 40,
