@@ -120,7 +120,7 @@ export default function FullDayTours() {
         </div>
 
         <p className="mx-auto mt-9 max-w-2xl text-center text-sm leading-5 text-black/45">
-          Hotel/Villa pickup and dropoff is included.
+          We pick you up and drop you off wherever you are in Bali. Included in price. Let's Go!
         </p>
       </div>
     </section>
