@@ -7,12 +7,14 @@ import { SITES } from "@/lib/domains";
 const tours = [
 
   {
+    id: "tabanan-tour",
     name: "Tabanan Tour",
     duration: "Full day · Scenic",
     summary: "Experience incredible views of Tabanan, Jatiluwih, Tanah Lot Temple.",
     stops: ["Tanah Lot Temple", "Coffee Plantation", "Jatiluwih Rice Terrace"],
   },
   {
+    id: "monkey-forest-tour",
     name: "Bali Monkey Forest",
     duration: "Full day · Nature",
     summary: "Go deeper into Bali's green interior on a circuit of four very different jungle waterfalls.",
@@ -20,6 +22,7 @@ const tours = [
   },
 
   {
+    id: "ubud-tour",
     name: "Bali Ubud Tour",
     duration: "Full day · Culture",
     summary: "Trace Bali's spiritual landscape through mountain sanctuaries and ancient stone shrines.",
@@ -27,6 +30,7 @@ const tours = [
   },
 
   {
+    id: "kintamani-volcano-tour",
     name: "Kintamani Volcano Tour",
     duration: "Full day · Highlands",
     summary: "Culture, craft villages and rice terraces on the road to Mount Batur and its crater lake.",
@@ -34,6 +38,7 @@ const tours = [
   },
   
   {
+    id: "uluwatu-sunset-tour",
     name: "Uluwatu Sunset Tour",
     duration: "Full day · Sunset",
     summary: "Clifftop temple views, the rhythmic Kecak fire dance and an easy evening on the coast.",
@@ -41,6 +46,7 @@ const tours = [
   },
 
   {
+    id: "instagram-tour",
     name: "Instagram Tour",
     duration: "Full day · Photo route",
     summary: "A camera-ready loop through Bali's best-known temples, volcano, terrace and swing viewpoints.",
@@ -78,7 +84,7 @@ export default function ToursPage() {
           ]}
         />
         <Image
-          src="/gallerypics/bali_vw_04.jpg"
+          src="/gallerypics/bali_vw_01.jpg"
           alt="Classic Volkswagen on a private Bali tour"
           fill
           priority
@@ -92,7 +98,7 @@ export default function ToursPage() {
             <h1 className="mt-5 font-(family-name:--font-display) text-[clamp(3.4rem,7vw,6.8rem)] font-black uppercase leading-[.82] tracking-[-.05em]">
               Choose your<br /><span className="script inline-block -rotate-2 text-[1.04em] text-[#b6cd72]">Bali road</span>
             </h1>
-            <p className="mt-7 max-w-2xl text-base leading-7 text-white/75 sm:text-lg">
+            <p className="mt-7 mb-8 max-w-2xl text-base leading-7 text-white/75 sm:text-lg">
               Start with one of our most-loved routes. Every tour is private, and the stops can be shaped around your pace, hotel and wish list.
             </p>
           </div>
@@ -119,7 +125,8 @@ export default function ToursPage() {
               return (
                 <article
                   key={tour.name}
-                  className={`${featured ? "bg-[#425f32] text-white" : "bg-white text-[#20241f]"} group flex min-h-[430px] flex-col p-7 shadow-[0_18px_50px_rgb(30_42_25/0.08)] transition duration-500 hover:-translate-y-1 hover:bg-[#425f32] hover:text-white sm:p-9`}
+                  id={tour.id}
+                  className={`${featured ? "bg-[#425f32] text-white" : "bg-white text-[#20241f]"} group flex min-h-[430px] scroll-mt-24 flex-col p-7 shadow-[0_18px_50px_rgb(30_42_25/0.08)] transition duration-500 hover:-translate-y-1 hover:bg-[#425f32] hover:text-white sm:p-9`}
                 >
                   <p className="text-[10px] font-bold uppercase tracking-[.2em] text-[#8ea65d]">{tour.duration}</p>
                   <h3 className="mt-6 font-[family-name:var(--font-display)] text-3xl font-black uppercase leading-[.95] tracking-tight">
@@ -149,7 +156,7 @@ export default function ToursPage() {
         </div>
       </section>
 
-      <section id="build-your-own" className="bg-[#425f32] py-20 text-white lg:py-24">
+      <section id="build-your-own" className="scroll-mt-24 bg-[#425f32] py-20 text-white lg:py-24">
         <div className="container-max container-padding grid gap-8 lg:grid-cols-[1.3fr_.7fr] lg:items-end">
           <div>
             <p className="script text-4xl text-[#b6cd72]">Nothing quite right?</p>

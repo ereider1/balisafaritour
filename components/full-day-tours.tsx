@@ -4,6 +4,7 @@ import Link from "next/link";
 const tours = [
   {
     name: "Tabanan & Jatiluwih Tours",
+    detailAnchor: "tabanan-tour",
     location: "Tabanan Bali",
     image: "/tourpics/tabanan-02.jpg",
     description:
@@ -12,6 +13,7 @@ const tours = [
   },
   {
     name: "Ubud Tours",
+    detailAnchor: "ubud-tour",
     location: "Central Bali",
     image: "/tourpics/ubud-market.jpg",
     description:
@@ -20,6 +22,7 @@ const tours = [
   },
   {
     name: "Kintamani Volcano Tours",
+    detailAnchor: "kintamani-volcano-tour",
     location: "Bali Highlands",
     image: "/tourpics/volcano.jpg",
     description:
@@ -28,14 +31,16 @@ const tours = [
   },
   {
     name: "Uluwatu Tours",
+    detailAnchor: "uluwatu-sunset-tour",
     location: "South Bali",
     image: "/tourpics/uluwatu.jpg",
     description:
       "Follow the coast to Uluwatu Temple for Indian Ocean views, roaming monkeys and a golden-hour drive.",
     price: 40,
   },
-    {
+  {
     name: "Instagram Tours",
+    detailAnchor: "instagram-tour",
     location: "Custom Bali",
     image: "/tourpics/bali-swing.jpg",
     description:
@@ -44,6 +49,7 @@ const tours = [
   },
   {
     name: "Custom Tours",
+    detailAnchor: "build-your-own",
     location: "Anywhere Bali",
     image: "/tourpics/bali_vw_01.jpg",
     description:
@@ -98,7 +104,12 @@ export default function FullDayTours() {
                     className="object-cover transition duration-700 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent" />
-                  
+                  <Link
+                    href={`/tours#${tour.detailAnchor}`}
+                    className="absolute bottom-5 left-5 inline-flex items-center bg-[#fbfaf6] px-4 py-3 text-[10px] font-bold uppercase tracking-[.14em] text-[#425f32] transition hover:bg-[#b6cd72]"
+                  >
+                    More Info <span className="ml-2" aria-hidden>↗</span>
+                  </Link>
                 </div>
 
                 <div className="flex flex-1 flex-col p-7 sm:p-8">
@@ -111,9 +122,11 @@ export default function FullDayTours() {
                   <p className="mt-4 text-sm leading-6 text-black/55">{tour.description}</p>
 
                   <div className="mt-8 flex flex-wrap items-center justify-between gap-4 border-t border-black/10 pt-6">
-                    <a href={`${whatsappBase}${message}`} className="btn-primary px-3 py-3">
-                      Reserve Tour <span aria-hidden>↗</span>
-                    </a>
+                    <div className="flex flex-wrap items-center gap-x-4 gap-y-3">
+                      <a href={`${whatsappBase}${message}`} className="btn-primary px-3 py-3">
+                        Reserve Tour <span aria-hidden>↗</span>
+                      </a>
+                    </div>
                     <p className="text-right text-[10px] font-bold uppercase tracking-[.14em] text-black/40">
                       Best price!
                       <span className="mt-1 block font-[family-name:var(--font-display)] text-2xl font-black tracking-normal text-[#425f32]">
