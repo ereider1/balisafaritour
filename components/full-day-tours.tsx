@@ -71,18 +71,19 @@ export default function FullDayTours() {
                   </h3>
                   <p className="mt-2 text-xs leading-5 text-black/55 sm:mt-4 sm:text-sm sm:leading-6">{tour.description}</p>
 
-                  <div className="mt-4 flex flex-wrap items-center justify-between gap-2 border-t border-black/10 pt-3 sm:mt-8 sm:gap-4 sm:pt-6">
+                  <div className="mt-auto flex flex-wrap items-center justify-between gap-2 border-t border-black/10 pt-3 sm:gap-4 sm:pt-6">
+
+                    <p className="text-right text-[9px] font-bold uppercase tracking-[.1em] text-black/40 sm:text-[10px] sm:tracking-[.14em]">
+                      PRICE
+                      <span className="mt-0 ml-2 font-[family-name:var(--font-display)] text-lg font-black tracking-normal text-[#425f32] sm:text-2xl">
+                        {tour.price}<span className="text-sm">rp</span>
+                      </span>
+                    </p>
                     <div className="flex flex-wrap items-center gap-x-2 gap-y-2 sm:gap-x-4 sm:gap-y-3">
                       <a href={`${whatsappBase}${message}`} className="btn-primary px-3 py-3 text-[10px] sm:px-3 sm:py-3">
                         Reserve Tour <span aria-hidden>↗</span>
                       </a>
                     </div>
-                    <p className="text-right text-[9px] font-bold uppercase tracking-[.1em] text-black/40 sm:text-[10px] sm:tracking-[.14em]">
-                      Best price!
-                      <span className="mt-0 block font-[family-name:var(--font-display)] text-lg font-black tracking-normal text-[#425f32] sm:text-2xl">
-                        {tour.price}<span className="text-sm">rp</span>
-                      </span>
-                    </p>
                   </div>
                 </div>
               </article>
