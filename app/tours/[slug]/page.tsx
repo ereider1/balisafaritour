@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import EditorialFooter from "@/components/editorial-footer";
 import Header from "@/components/header";
+import TourGallery from "@/components/tour-gallery";
 import { SITES } from "@/lib/domains";
 import { getTourBySlug, TOURS } from "@/lib/tours";
 
@@ -92,29 +93,7 @@ export default async function TourDetailPage({ params }: TourPageProps) {
           </p>
         </div>
 
-        <div className="mt-8 grid aspect-[1/1.05] grid-cols-2 grid-rows-2 gap-2 overflow-hidden sm:mt-10 sm:aspect-[2.4/1] sm:grid-cols-4">
-          {tour.gallery.map((image, index) => (
-            <div
-              key={image}
-              className={`relative overflow-hidden bg-[#263b27] ${
-                index === 0 ? "sm:col-span-2 sm:row-span-2" : ""
-              }`}
-            >
-              <Image
-                src={image}
-                alt={`${tour.name} photo ${index + 1}`}
-                fill
-                priority={index === 0}
-                sizes={
-                  index === 0
-                    ? "(min-width: 640px) 50vw, 100vw"
-                    : "(min-width: 640px) 25vw, 50vw"
-                }
-                className="object-cover"
-              />
-            </div>
-          ))}
-        </div>
+        <TourGallery images={tour.gallery} tourName={tour.name} />
       </section>
 
       <section className="container-max container-padding grid gap-8 pb-20 lg:grid-cols-[minmax(0,1.7fr)_minmax(17rem,.75fr)] lg:gap-12 lg:pb-28">

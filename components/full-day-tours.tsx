@@ -76,7 +76,7 @@ export default function FullDayTours() {
                     <p className="text-right text-[9px] font-bold uppercase tracking-[.1em] text-black/40 sm:text-[10px] sm:tracking-[.14em]">
                       PRICE
                       <span className="mt-0 ml-2 font-[family-name:var(--font-display)] text-lg font-black tracking-normal text-[#425f32] sm:text-2xl">
-                        {tour.price}<span className="text-sm">rp</span>
+                        {tour.price}<span className="text-sm"> USD</span>
                       </span>
                     </p>
                     <div className="flex flex-wrap items-center gap-x-2 gap-y-2 sm:gap-x-4 sm:gap-y-3">

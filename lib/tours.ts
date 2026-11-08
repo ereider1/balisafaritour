@@ -21,10 +21,11 @@ export const TOURS: Tour[] = [
     duration: "Full day · Scenic",
     image: "/tourpics/tabanan-02.jpg",
     gallery: [
-      "/tourpics/tabanan-02.jpg",
+      "/tourpics/tanah-lot-002.jpg",
       "/tourpics/jatiluwih3.jpg",
       "/tourpics/tanah-lot.jpg",
-      "/tourpics/bali_vw_01.jpg",
+      "/tourpics/Jatiluwih-001.jpg",
+      "/tourpics/bali_vw_13.jpg",
     ],
     description:
       "Pair the dramatic coast at Tanah Lot with the wide-open green of Jatiluwih. This private drive through Tabanan is a relaxed way to see temple, countryside and rice-terrace scenery in one flexible day.",
@@ -54,7 +55,7 @@ export const TOURS: Tour[] = [
           "Spend time at Jatiluwih, with room in the day for photos and a relaxed return drive.",
       },
     ],
-    price: 700,
+    price: 40,
   },
   {
     slug: "ubud-tour",
@@ -101,7 +102,7 @@ export const TOURS: Tour[] = [
           "Finish with the landscape around Tegalalang before heading back at a comfortable pace.",
       },
     ],
-    price: 700,
+    price: 40,
   },
   {
     slug: "kintamani-volcano-tour",
@@ -147,7 +148,7 @@ export const TOURS: Tour[] = [
           "Spend time at the Mount Batur viewpoint before your return journey.",
       },
     ],
-    price: 700,
+    price: 40,
   },
   {
     slug: "uluwatu-sunset-tour",
@@ -194,7 +195,7 @@ export const TOURS: Tour[] = [
           "If you choose the Kecak performance, the final timing will follow the show schedule; Jimbaran can be added to the plan.",
       },
     ],
-    price: 700,
+    price: 40,
   },
   {
     slug: "instagram-tour",
@@ -236,7 +237,7 @@ export const TOURS: Tour[] = [
           "Leave room for photos and change the plan as you go, subject to timing and access.",
       },
     ],
-    price: 700,
+    price: 40,
   },
   {
     slug: "build-your-own",
@@ -282,7 +283,7 @@ export const TOURS: Tour[] = [
           "Travel with a local driver-guide and keep the plan flexible along the way.",
       },
     ],
-    price: 700,
+    price: 40,
   },
   {
     slug: "monkey-forest-tour",
@@ -324,7 +325,7 @@ export const TOURS: Tour[] = [
           "Finish at Ulu Petanu Waterfall; access and conditions can vary, so confirm details before your tour.",
       },
     ],
-    price: 700,
+    price: 40,
   },
 ];
 
