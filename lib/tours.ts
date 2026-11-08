@@ -67,7 +67,8 @@ export const TOURS: Tour[] = [
       "/tourpics/ubud-market.jpg",
       "/tourpics/monkey-forest-3.jpg",
       "/tourpics/gunung-kawi-01.jpg",
-      "/tourpics/jatiluwih3.jpg",
+      "/tourpics/bali-ubud-rice-terraces.jpg",
+      "/tourpics/ubud-swing.jpg",
     ],
     description:
       "Get to know Ubud through its performance, market and craft traditions, then head into the surrounding landscape. The route brings cultural stops and rice-terrace views together, with time to enjoy each at your own pace.",
@@ -111,10 +112,11 @@ export const TOURS: Tour[] = [
     duration: "Full day · Highlands",
     image: "/tourpics/volcano.jpg",
     gallery: [
-      "/tourpics/volcano.jpg",
+      "/tourpics/kintamani-volcano-002.jpg",
       "/tourpics/jatiluwih3.jpg",
-      "/tourpics/bali_vw_01.jpg",
+      "/tourpics/bali_vw_07.jpg",
       "/tourpics/bali_vw_02.jpg",
+      "/tourpics/bali_vw_18.jpg",
     ],
     description:
       "Trade the coast for cooler highland roads and broad views of Mount Batur. This route pairs the Tegalalang rice terraces and a coffee plantation with a visit to the Kintamani volcano viewpoint.",
@@ -158,9 +160,10 @@ export const TOURS: Tour[] = [
     image: "/tourpics/uluwatu.jpg",
     gallery: [
       "/tourpics/uluwatu.jpg",
-      "/tourpics/tanah-lot.jpg",
+      "/tourpics/bali_vw_18.jpg",
       "/tourpics/bali_vw_01.jpg",
       "/tourpics/bali_vw_02.jpg",
+      "/tourpics/balisafaritour-vw-july.jpg",
     ],
     description:
       "Spend the day on Bali's southern coast, from the beach to the clifftop setting of Uluwatu Temple. If timing and availability allow, finish with the Kecak fire dance and a stop around Jimbaran Bay.",
