@@ -51,7 +51,7 @@ export default async function MainHome() {
             <p className="mt-8 max-w-xl text-base leading-7 text-white/80 sm:text-lg">Leave the tour-bus route behind. Ride through rice fields, temple villages and mountain roads in an original open-top Volkswagen with a local driver-guide.</p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a href="#tours" className="btn-primary bg-[#718b4c]">Popular Tours <ArrowIcon direction="down-right" /></a>
-              <a href="#vwadventure" className="btn-outline">Feeling Adventurous?</a>
+              <a href="#gallery" className="btn-outline">Guest Photos</a>
             </div>
           </div>
         </div>
