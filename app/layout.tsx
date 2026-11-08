@@ -3,6 +3,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import Script from "next/script";
 import { Caveat, Geist, Oswald } from "next/font/google";
 import { headers } from "next/headers";
+import { Analytics } from "@vercel/analytics/next";
 import { siteForHost } from "@/lib/domains";
 import FloatingWhatsApp from "@/components/floating-whatsapp";
 import "./globals.css";
@@ -155,6 +156,7 @@ export default async function RootLayout({
         />
         <ClerkProvider dynamic>{children}</ClerkProvider>
         <FloatingWhatsApp />
+        <Analytics />
       </body>
     </html>
   );
