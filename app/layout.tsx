@@ -4,6 +4,7 @@ import Script from "next/script";
 import { Caveat, Geist, Oswald } from "next/font/google";
 import { headers } from "next/headers";
 import { siteForHost } from "@/lib/domains";
+import FloatingWhatsApp from "@/components/floating-whatsapp";
 import "./globals.css";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-body" });
@@ -153,6 +154,7 @@ export default async function RootLayout({
           strategy="afterInteractive"
         />
         <ClerkProvider dynamic>{children}</ClerkProvider>
+        <FloatingWhatsApp />
       </body>
     </html>
   );
