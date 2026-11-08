@@ -2,6 +2,8 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import { FaInstagram } from "react-icons/fa";
+import { SiTiktok } from "react-icons/si";
 import { SITES } from "@/lib/domains";
 
 type GuestPhoto = {
@@ -181,10 +183,32 @@ export default function GuestShowcase() {
               Real Bali.
             </h2>
           </div>
-          <p className="max-w-xl text-base leading-7 text-black/55 lg:ml-auto">
-            Every trip looks different behind the wheel of a classic Bali VW. These are unscripted
-            moments from real travelers—temple mornings, roadside coconuts and all.
-          </p>
+          <div className="max-w-xl lg:ml-auto">
+            <div className="mb-3 flex flex-wrap gap-3">
+              <a
+                href="https://www.instagram.com/balisafaritour?stkn=ZHdjM3Uyc2tuc3hl&utm_source=qr"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary px-4 py-3"
+              >
+                <FaInstagram aria-hidden="true" size={16} />
+                <span>Instagram</span>
+              </a>
+              <a
+                href="https://www.tiktok.com/@bobbyinyomandinat?_r=1&_t=ZS-99iaiPhhyam"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary px-4 py-3"
+              >
+                <SiTiktok aria-hidden="true" size={16} />
+                <span>TikTok</span>
+              </a>
+            </div>
+            <p className="text-base leading-7 text-black/55">
+              Every trip looks different behind the wheel of a classic Bali VW. These are unscripted
+              moments from real travelers—temple mornings, roadside coconuts and all.
+            </p>
+          </div>
         </div>
 
         {carouselPhoto && (
@@ -227,8 +251,25 @@ export default function GuestShowcase() {
 
         <div className="mt-16 border-t border-black/10 pt-8 text-center">
           <p className="text-xs leading-6 text-black/45">
-            <a className="btn-primary px-3 py-3 m-2" href="https://www.tiktok.com/@bobbyinyomandinat?_r=1&_t=ZS-99iaiPhhyam" target="_blank">View more photos on TIKTOK</a>
-            <a className="btn-primary px-3 py-3 m-2" href="https://www.instagram.com/balisafaritour?stkn=ZHdjM3Uyc2tuc3hl&utm_source=qr" target="_blank">View more photos on INSTAGRAM</a><br />
+            <a
+              className="btn-primary m-2 gap-2 px-3 py-3"
+              href="https://www.tiktok.com/@bobbyinyomandinat?_r=1&_t=ZS-99iaiPhhyam"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <SiTiktok aria-hidden="true" size={16} />
+              View more photos on TIKTOK
+            </a>
+            <a
+              className="btn-primary m-2 gap-2 px-3 py-3"
+              href="https://www.instagram.com/balisafaritour?stkn=ZHdjM3Uyc2tuc3hl&utm_source=qr"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaInstagram aria-hidden="true" size={16} />
+              View more photos on INSTAGRAM
+            </a>
+            <br />
             <a href={SITES.gobali.url} className="font-bold text-[#425f32] hover:underline">
              View our full guide to Bali&apos;s attractions
             </a>{" "}
