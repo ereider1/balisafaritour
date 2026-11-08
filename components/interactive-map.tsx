@@ -70,8 +70,16 @@ export default function InteractiveMap({
     const map = L.map(container, {
       center: [-8.45, 115.15],
       zoom: 10,
+      zoomControl: false,
+      dragging: false,
       scrollWheelZoom: false,
-      zoomAnimation: true,
+      doubleClickZoom: false,
+      touchZoom: false,
+      boxZoom: false,
+      keyboard: false,
+      zoomAnimation: false,
+      fadeAnimation: false,
+      markerZoomAnimation: false,
     });
     mapRef.current = map;
     
@@ -192,18 +200,10 @@ export default function InteractiveMap({
       if (map && name === hoveredStop) tooltip.addTo(map);
       else tooltip.remove();
     });
-    const activeStop = stops.find((stop) => stop.name === hoveredStop);
-    if (map && activeStop) {
-      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      map.setView(activeStop.position, Math.max(map.getZoom(), 11), {
-        animate: !reduceMotion,
-        duration: 0.45,
-      });
-    }
-  }, [hoveredStop, stops]);
+  }, [hoveredStop]);
 
   return (
-    <div className="h-[470px] w-full lg:h-[620px]">
+    <div className="h-[360px] w-full sm:h-[470px] lg:h-[620px]">
       <div ref={containerRef} className="h-full w-full flex items-center justify-center bg-[#eef1e7] p-8 text-center text-sm font-bold text-[#425f32]" aria-label="Interactive map of Bali tour stops">
         Our drivers will review your choices and map out the best routes to maximize your tour!
       </div>

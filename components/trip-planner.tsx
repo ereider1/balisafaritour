@@ -9,7 +9,7 @@ import type { MapStop } from "@/components/interactive-map";
 const InteractiveMap = dynamic(() => import("@/components/interactive-map"), {
   ssr: false,
   loading: () => (
-    <div className="flex h-[470px] lg:h-[620px] w-full flex-col items-center justify-center bg-gray-100 p-8 text-center text-sm text-gray-500 gap-3">
+    <div className="flex h-[360px] w-full flex-col items-center justify-center gap-3 bg-gray-100 p-8 text-center text-sm text-gray-500 sm:h-[470px] lg:h-[620px]">
       <div className="font-bold">Loading map...</div>
       <p className="max-w-md text-xs leading-5 text-black/45">Our drivers will review your choices and map out the best routes to maximize your tour!</p>
     </div>
@@ -171,7 +171,7 @@ export default function TripPlanner() {
           <div className="overflow-hidden bg-white shadow-[0_20px_55px_rgb(30_42_25/0.12)]"><InteractiveMap stops={stops} hoveredStop={hoveredStop} onHoverStop={setHoveredStop} favoriteStops={favoriteStops} onAddFavorite={addFavorite} onToggleFavorite={toggleFavorite} /></div>
           <div>
             <p className="mb-5 text-[10px] font-bold uppercase tracking-[.2em] text-[#425f32]">Route points</p>
-            <div className="grid grid-cols-2 gap-3 lg:grid-cols-1">
+            <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-3 lg:grid-cols-1">
             {stops.map((stop) => (
               <button
                 type="button"
@@ -182,16 +182,16 @@ export default function TripPlanner() {
                 onBlur={() => setHoveredStop(null)}
                 onClick={() => toggleFavorite(stop.name)}
                 aria-pressed={favoriteStops.includes(stop.name)}
-                className={`border-l-2 p-3 text-left transition-all ${
+                className={`grid grid-cols-[minmax(0,1fr)_auto] items-center gap-x-3 gap-y-1 border-l-2 p-2.5 text-left transition-all sm:p-3 ${
                   hoveredStop === stop.name
                     ? "border-[#79924f] bg-[#eef1e7] pl-5"
                     : "border-black/10 bg-white"
                 }`}
               >
                 <p className="text-[9px] font-bold uppercase tracking-[.16em] text-[#79924f]">{stop.region}</p>
-                <p className="mt-1 text-sm font-bold">{stop.name}</p>
-                <p className="mt-1 hidden text-xs leading-5 text-black/50 lg:block">{stop.note}</p>
-                <span className="mt-2 inline-block text-[9px] font-bold uppercase tracking-[.14em] text-[#425f32]">
+                <p className="text-sm font-bold">{stop.name}</p>
+                <p className="col-span-2 hidden text-xs leading-5 text-black/50 lg:block">{stop.note}</p>
+                <span className="col-start-2 row-span-2 row-start-1 whitespace-nowrap text-[9px] font-bold uppercase tracking-[.12em] text-[#425f32]">
                   {favoriteStops.includes(stop.name) ? "✓ Saved" : "+ Add favorite"}
                 </span>
               </button>

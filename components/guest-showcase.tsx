@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { SITES } from "@/lib/domains";
 
 type GuestPhoto = {
@@ -16,8 +16,13 @@ export default function GuestShowcase() {
   const [guestPhotos, setGuestPhotos] = useState<GuestPhoto[]>([]);
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [touchStartX, setTouchStartX] = useState<number | null>(null);
+  const [carouselIndex, setCarouselIndex] = useState(0);
+  const carouselTouchStartX = useRef<number | null>(null);
+  const suppressCarouselClick = useRef(false);
+  const suppressCarouselClickTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const selectedPhoto = selectedIndex !== null ? guestPhotos[selectedIndex] : null;
+  const carouselPhoto = guestPhotos[carouselIndex];
 
   useEffect(() => {
     fetch("/api/gallery")
@@ -68,6 +73,102 @@ export default function GuestShowcase() {
     setTouchStartX(null);
   };
 
+  const handleCarouselTouchStart = (event: React.TouchEvent<HTMLButtonElement>) => {
+    carouselTouchStartX.current = event.touches[0]?.clientX ?? null;
+  };
+
+  const handleCarouselTouchEnd = (event: React.TouchEvent<HTMLButtonElement>) => {
+    const startX = carouselTouchStartX.current;
+    const endX = event.changedTouches[0]?.clientX;
+    carouselTouchStartX.current = null;
+    if (startX === null || endX === undefined) return;
+
+    const diff = startX - endX;
+    if (Math.abs(diff) <= 50 || guestPhotos.length < 2) return;
+
+    suppressCarouselClick.current = true;
+    if (suppressCarouselClickTimeout.current) {
+      clearTimeout(suppressCarouselClickTimeout.current);
+    }
+    suppressCarouselClickTimeout.current = setTimeout(() => {
+      suppressCarouselClick.current = false;
+    }, 400);
+    setCarouselIndex(
+      (index) => (index + (diff > 0 ? 1 : -1) + guestPhotos.length) % guestPhotos.length
+    );
+  };
+
+  const renderPhoto = (photo: GuestPhoto, index: number, isCarousel = false) => (
+    <button
+      key={photo.id || photo.src}
+      type="button"
+      onClick={(event) => {
+        if (isCarousel && suppressCarouselClick.current) {
+          event.preventDefault();
+          suppressCarouselClick.current = false;
+          if (suppressCarouselClickTimeout.current) {
+            clearTimeout(suppressCarouselClickTimeout.current);
+            suppressCarouselClickTimeout.current = null;
+          }
+          return;
+        }
+        setSelectedIndex(index);
+      }}
+      onTouchStart={isCarousel ? handleCarouselTouchStart : undefined}
+      onTouchEnd={isCarousel ? handleCarouselTouchEnd : undefined}
+      aria-label={isCarousel ? `View photo ${index + 1} of ${guestPhotos.length}` : undefined}
+      className={
+        isCarousel
+          ? "group relative aspect-[4/3] w-full touch-pan-y overflow-hidden bg-[#263b27] text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#79924f] animate-fade-in"
+          : `${index === 0 || index === 9 || index === 18 ? "col-span-2 row-span-2" : ""} group relative aspect-square w-full cursor-pointer overflow-hidden bg-[#263b27] text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#79924f]`
+      }
+    >
+      {photo.type === "video" ? (
+        <video
+          src={photo.src}
+          className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+          autoPlay
+          muted
+          loop
+          playsInline
+        />
+      ) : photo.src.startsWith("https://") ? (
+        <img
+          src={photo.src}
+          alt={photo.alt}
+          className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+        />
+      ) : (
+        <Image
+          src={photo.src}
+          alt={photo.alt}
+          fill
+          sizes={
+            isCarousel
+              ? "100vw"
+              : index === 0 || index === 9 || index === 18
+                ? "(max-width: 640px) 100vw, (max-width: 1024px) 66vw, 50vw"
+                : "(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+          }
+          className="object-cover transition-transform duration-700 group-hover:scale-105"
+        />
+      )}
+      {!isCarousel && (
+        <div className="absolute inset-0 flex items-end bg-linear-to-t from-black/75 via-transparent to-transparent p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+          <p className="max-w-sm text-xs leading-5 text-white/85">{photo.alt}</p>
+        </div>
+      )}
+      {photo.type === "video" && (
+        <span
+          className="absolute right-3 top-3 z-10 grid h-8 w-8 place-items-center rounded-full bg-black/60 text-[10px] font-bold uppercase tracking-wider text-white"
+          aria-hidden
+        >
+          ▶
+        </span>
+      )}
+    </button>
+  );
+
   return (
     <section id="gallery" className="scroll-mt-24 py-24 lg:py-32">
       <div className="container-max container-padding">
@@ -86,55 +187,42 @@ export default function GuestShowcase() {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4 lg:gap-4">
-          {guestPhotos.map((photo, index) => (
-            <button
-              key={photo.src}
-              type="button"
-              onClick={() => setSelectedIndex(index)}
-              className={`${index === 0 || index === 9 || index === 18 ? "col-span-2 row-span-2" : ""} group relative aspect-square overflow-hidden bg-[#263b27] text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#79924f] w-full cursor-pointer`}
-            >
-              {photo.type === "video" ? (
-                <video
-                  src={photo.src}
-                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                />
-              ) : photo.src.startsWith("https://") ? (
-                <img
-                  src={photo.src}
-                  alt={photo.alt}
-                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-              ) : (
-                <Image
-                  src={photo.src}
-                  alt={photo.alt}
-                  fill
-                  sizes={
-                    index === 0 || index === 9 || index === 18
-                      ? "(max-width: 640px) 100vw, (max-width: 1024px) 66vw, 50vw"
-                      : "(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                  }
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-              )}
-              <div className="absolute inset-0 flex items-end bg-linear-to-t from-black/75 via-transparent to-transparent p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                <p className="max-w-sm text-xs leading-5 text-white/85">{photo.alt}</p>
-              </div>
-              {photo.type === "video" && (
-                <span
-                  className="absolute right-3 top-3 z-10 grid h-8 w-8 place-items-center rounded-full bg-black/60 text-white text-[10px] uppercase font-bold tracking-wider"
-                  aria-hidden
-                >
-                  ▶
-                </span>
-              )}
-            </button>
-          ))}
+        {carouselPhoto && (
+          <div
+            className="mb-3 lg:hidden"
+            role="region"
+            aria-roledescription="carousel"
+            aria-label="Guest photos"
+          >
+            {renderPhoto(carouselPhoto, carouselIndex, true)}
+            <div className="mt-3 flex items-center justify-between">
+              <button
+                type="button"
+                onClick={() =>
+                  setCarouselIndex((index) => (index - 1 + guestPhotos.length) % guestPhotos.length)
+                }
+                className="grid h-10 w-10 place-items-center rounded-full border border-black/15 text-2xl text-[#263b27] transition hover:bg-black/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#79924f]"
+                aria-label="Previous photo"
+              >
+                ‹
+              </button>
+              <p className="text-xs font-medium tabular-nums text-black/50" aria-live="polite">
+                {carouselIndex + 1} / {guestPhotos.length}
+              </p>
+              <button
+                type="button"
+                onClick={() => setCarouselIndex((index) => (index + 1) % guestPhotos.length)}
+                className="grid h-10 w-10 place-items-center rounded-full border border-black/15 text-2xl text-[#263b27] transition hover:bg-black/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#79924f]"
+                aria-label="Next photo"
+              >
+                ›
+              </button>
+            </div>
+          </div>
+        )}
+
+        <div className="hidden grid-cols-2 gap-3 sm:grid-cols-3 lg:grid lg:grid-cols-4 lg:gap-4">
+          {guestPhotos.map((photo, index) => renderPhoto(photo, index))}
         </div>
 
         <div className="mt-16 border-t border-black/10 pt-8 text-center">
@@ -144,11 +232,10 @@ export default function GuestShowcase() {
             <a href={SITES.gobali.url} className="font-bold text-[#425f32] hover:underline">
              View our full guide to Bali&apos;s attractions
             </a>{" "}
-            at {SITES.gobali.url.replace("https://", "")}, or plan your own route with{" "}
-            <a href={SITES.balisafari.url} className="font-bold text-[#425f32] hover:underline">
-              our trip planner
-            </a>{" "}
-            at {SITES.balisafari.url.replace("https://", "")}.
+            at {SITES.gobali.url.replace("https://", "")}, or explore private tour options{" "}
+            <a href={`${SITES.main.url}/tours`} className="font-bold text-[#425f32] hover:underline">
+              on our tours page
+            </a>.
           </p>
         </div>
       </div>

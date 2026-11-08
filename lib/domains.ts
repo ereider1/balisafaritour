@@ -1,4 +1,4 @@
-export type SiteKey = "main" | "vwbali" | "gobali" | "balisafari";
+export type SiteKey = "main" | "vwbali" | "gobali";
 
 export interface SiteConfig {
   key: SiteKey;
@@ -33,14 +33,6 @@ export const SITES: Record<SiteKey, SiteConfig> = {
     description:
       "A comprehensive guide to Bali's must-see tourist attractions - temples, rice terraces, markets, and viewpoints - with tips for visiting each one on a guided VW safari tour.",
   },
-  balisafari: {
-    key: "balisafari",
-    url: "https://balisafari.tours",
-    path: "/balisafari",
-    title: "Interactive Map & Trip Planner | Bali Safari Tours",
-    description:
-      "Plan your Bali VW safari route with an interactive map and day-by-day itinerary guide covering the island's top attractions.",
-  },
 };
 
 const HOST_TO_SITE: Record<string, SiteKey> = {
@@ -48,8 +40,6 @@ const HOST_TO_SITE: Record<string, SiteKey> = {
   "www.balivw.tours": "vwbali",
   "gobali.tours": "gobali",
   "www.gobali.tours": "gobali",
-  "balisafari.tours": "balisafari",
-  "www.balisafari.tours": "balisafari",
   "balisafaritour.com": "main",
   "www.balisafaritour.com": "main",
 };
