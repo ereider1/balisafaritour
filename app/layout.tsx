@@ -5,6 +5,7 @@ import { Caveat, Geist, Oswald } from "next/font/google";
 import { headers } from "next/headers";
 import { siteForHost } from "@/lib/domains";
 import FloatingWhatsApp from "@/components/floating-whatsapp";
+import GoogleAdsTracking from "@/components/google-ads-tracking";
 import "./globals.css";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-body" });
@@ -155,6 +156,7 @@ export default async function RootLayout({
         />
         <ClerkProvider dynamic>{children}</ClerkProvider>
         <FloatingWhatsApp />
+        <GoogleAdsTracking />
       </body>
     </html>
   );
