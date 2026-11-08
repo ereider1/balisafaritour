@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import ArrowIcon from "@/components/arrow-icon";
 import TripPlanner from "@/components/trip-planner";
 import DomainHero from "@/components/domain-hero";
 import DomainBooking from "@/components/domain-booking";
@@ -139,7 +140,7 @@ export default function BaliSafariPage() {
                     href={`${whatsappBase}${message}`}
                     className={`${featured ? "border-white/25 text-white" : "border-black/15 text-[#425f32]"} mt-auto inline-flex items-center justify-between border-t pt-6 text-[10px] font-bold uppercase tracking-[.18em] group-hover:border-white/25 group-hover:text-white`}
                   >
-                    Ask about this tour <span aria-hidden>↗</span>
+                    Ask about this tour <ArrowIcon />
                   </a>
                 </article>
               );

@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import dynamic from "next/dynamic";
+import ArrowIcon from "@/components/arrow-icon";
 import { SITES } from "@/lib/domains";
 import type { MapStop } from "@/components/interactive-map";
 
@@ -239,7 +240,7 @@ export default function TripPlanner() {
               </ol>
               <div className="flex flex-col gap-4 border-t border-[#425f32]/15 pt-6 sm:flex-row sm:items-center sm:justify-between">
                 <p className="max-w-md text-xs leading-5 text-black/45">Put the places in your preferred order, then send the list to Bobby. We’ll check timing, driving distances and the best route for your day.</p>
-                <a href={`https://wa.me/${WHATSAPP_NUMBER}?text=${whatsappMessage}`} target="_blank" rel="noopener noreferrer" className="btn-primary bg-[#79924f] px-6 py-4 text-center">Send favorites on WhatsApp <span aria-hidden>↗</span></a>
+                <a href={`https://wa.me/${WHATSAPP_NUMBER}?text=${whatsappMessage}`} target="_blank" rel="noopener noreferrer" className="btn-primary bg-[#79924f] px-6 py-4 text-center">Send favorites on WhatsApp <ArrowIcon /></a>
               </div>
             </>
           )}

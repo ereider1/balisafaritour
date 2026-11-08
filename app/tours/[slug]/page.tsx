@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import ArrowIcon from "@/components/arrow-icon";
 import EditorialFooter from "@/components/editorial-footer";
 import Header from "@/components/header";
 import TourGallery from "@/components/tour-gallery";
@@ -228,7 +229,7 @@ export default async function TourDetailPage({ params }: TourPageProps) {
                 rel="noreferrer"
                 className="btn-primary mt-6 flex w-full justify-center bg-[#79924f] text-center"
               >
-                Book on WhatsApp <span className="ml-2" aria-hidden>↗</span>
+                Book on WhatsApp <ArrowIcon className="ml-2 size-3.5 shrink-0" />
               </a>
               <a
                 href="tel:+6281237812783"
@@ -252,7 +253,7 @@ export default async function TourDetailPage({ params }: TourPageProps) {
                 href="/tours/build-your-own"
                 className="mt-4 inline-flex text-[10px] font-bold uppercase tracking-[.16em] text-[#425f32]"
               >
-                Build your own tour <span className="ml-2" aria-hidden>↗</span>
+                Build your own tour <ArrowIcon className="ml-2 size-3.5 shrink-0" />
               </Link>
             </div>
           </div>

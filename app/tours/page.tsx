@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import ArrowIcon from "@/components/arrow-icon";
 import Header from "@/components/header";
 import EditorialFooter from "@/components/editorial-footer";
 import { SITES } from "@/lib/domains";
@@ -104,7 +105,7 @@ export default function ToursPage() {
                         ))}
                       </ol>
                       <span className={`${featured ? "border-white/25 text-white" : "border-black/15 text-[#425f32]"} mt-6 inline-flex items-center justify-between border-t pt-5 text-[10px] font-bold uppercase tracking-[.18em] group-hover:border-white/25 group-hover:text-white`}>
-                        Explore this tour <span aria-hidden>↗</span>
+                        Explore this tour <ArrowIcon />
                       </span>
                     </div>
                   </Link>
@@ -123,7 +124,7 @@ export default function ToursPage() {
             <p className="mt-6 max-w-xl text-sm leading-7 text-white/65">Tell us what you want to see, where you are staying and how active you want the day to feel. We&apos;ll connect the stops into a realistic private route.</p>
           </div>
           <div className="lg:text-right">
-            <Link href="/tours/build-your-own" className="btn-primary bg-[#79924f] px-8 py-4">Build my route <span aria-hidden>↗</span></Link>
+            <Link href="/tours/build-your-own" className="btn-primary bg-[#79924f] px-8 py-4">Build my route <ArrowIcon /></Link>
           </div>
         </div>
       </section>

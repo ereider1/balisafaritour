@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import ArrowIcon from "@/components/arrow-icon";
 
 const whatsappNumber = "6281237812783";
 
@@ -115,7 +116,7 @@ export default function ReviewForm() {
         <p className="mt-10 text-[10px] font-bold uppercase tracking-[.2em] text-[#b6cd72]">Thank you for taking the time</p>
         <h3 className="mt-4 max-w-lg font-[family-name:var(--font-display)] text-5xl font-black uppercase leading-[.88] tracking-tight sm:text-6xl">Your story is on its way</h3>
         <p className="mt-7 max-w-lg text-sm leading-7 text-white/65">{published ? "Your review is now in Stories Brought Home, and " : ""}WhatsApp should have opened with your review ready to send.</p>
-        <a href={whatsappUrl} target="_blank" rel="noreferrer" className="btn-primary mt-9 bg-[#79924f]">Open WhatsApp again <span aria-hidden>↗</span></a>
+        <a href={whatsappUrl} target="_blank" rel="noreferrer" className="btn-primary mt-9 bg-[#79924f]">Open WhatsApp again <ArrowIcon /></a>
         <a href="/" className="ml-5 inline-flex text-[10px] font-bold uppercase tracking-[.18em] text-white/60 transition hover:text-white">Back to the road</a>
       </div>
     );
@@ -157,7 +158,7 @@ export default function ReviewForm() {
       <label className="mt-8 flex cursor-pointer items-start gap-3 text-xs leading-5 text-black/55"><input className="mt-0.5 h-4 w-4 accent-[#425f32]" type="checkbox" name="permission" /> <span>It&apos;s okay to share my review on the website or social media.</span></label>
       {submissionError ? <p className="mt-4 text-xs leading-5 text-[#a04832]">{submissionError}</p> : null}
       <p className="mt-5 text-[11px] leading-5 text-black/35">Your review will open in WhatsApp so you can check it before sending.</p>
-      <button type="submit" className="btn-primary mt-8 w-full bg-[#425f32] py-4 sm:w-auto">Send my review <span aria-hidden>↗</span></button>
+      <button type="submit" className="btn-primary mt-8 w-full bg-[#425f32] py-4 sm:w-auto">Send my review <ArrowIcon /></button>
     </form>
   );
 }

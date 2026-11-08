@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import ArrowIcon from "@/components/arrow-icon";
 
 const photos = [
   {
@@ -146,7 +147,7 @@ export default function PhotoGallery() {
                 className="absolute right-3 top-3 grid h-8 w-8 place-items-center border border-white/50 text-sm text-white opacity-0 transition group-hover:opacity-100"
                 aria-hidden
               >
-                ↗
+                <ArrowIcon />
               </span>
             </button>
           ))}

@@ -1,4 +1,4 @@
-import { get, list, put } from "@vercel/blob";
+import { list, put } from "@vercel/blob";
 
 export interface PublishedReview {
   id: string;
@@ -148,10 +148,14 @@ export async function listPublishedReviews(): Promise<PublishedReview[]> {
       blobs
         .filter((blob) => blob.pathname.endsWith(".json"))
         .map(async (blob) => {
-          const result = await get(blob.url, { access: "public", useCache: false });
-          if (!result || result.statusCode !== 200) return null;
+          const response = await fetch(blob.url, { cache: "no-store" });
+          if (!response.ok) {
+            throw new Error(
+              `Failed to fetch published review ${blob.pathname}: ${response.status} ${response.statusText}`,
+            );
+          }
 
-          const value = (await new Response(result.stream).json()) as StoredReview;
+          const value = (await response.json()) as StoredReview;
           return toPublishedReview(blob.pathname.slice(REVIEW_PREFIX.length, -5), value);
         }),
     );

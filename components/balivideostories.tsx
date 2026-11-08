@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import ArrowIcon from "@/components/arrow-icon";
 import styles from "./balivideostories.module.css";
 
 type Story = {
@@ -175,7 +176,7 @@ export default function BaliVideoStories() {
 
         <div className={styles.footerLine}>
           <span>Private tours. Open roads. Your own story.</span>
-          <a href="#contact">Plan your day <span aria-hidden="true">↗</span></a>
+          <a href="#contact">Plan your day <ArrowIcon /></a>
         </div>
       </div>
     </section>

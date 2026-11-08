@@ -1,6 +1,7 @@
 "use client";
 
 import { FaMapMarkerAlt, FaPhone } from "react-icons/fa";
+import ArrowIcon from "@/components/arrow-icon";
 
 const WHATSAPP_NUMBER = "6281237812783";
 
@@ -96,13 +97,13 @@ export default function Contact() {
               <h4 className="mb-4 font-semibold">Quick Links</h4>
               <div className="space-y-2">
                 <a href="#tours" className="block text-gray-300 hover:text-primary-400">
-                  → Explore Tours
+                  <ArrowIcon direction="right" /> Explore Tours
                 </a>
                 <a href="#gallery" className="block text-gray-300 hover:text-primary-400">
-                  → View Gallery
+                  <ArrowIcon direction="right" /> View Gallery
                 </a>
                 <a href="#why-us" className="block text-gray-300 hover:text-primary-400">
-                  → Why Choose Us
+                  <ArrowIcon direction="right" /> Why Choose Us
                 </a>
               </div>
             </div>

@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import ArrowIcon from "@/components/arrow-icon";
 import { Swiper, SwiperSlide } from "swiper/react";
 import type { Swiper as SwiperInstance } from "swiper";
 import "swiper/css";
@@ -89,10 +90,10 @@ export default function TestimonialCarousel({ reviews }: { reviews: PublishedRev
         </span>
         <div className="flex items-center gap-2">
           <button type="button" onClick={() => swiper?.slidePrev()} aria-label="Previous review" disabled={!canNavigate} className="flex h-11 w-11 items-center justify-center border border-black/15 text-lg text-[#425f32] transition hover:bg-[#425f32] hover:text-white disabled:cursor-default disabled:opacity-35 disabled:hover:bg-transparent disabled:hover:text-[#425f32] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#425f32]">
-            <span aria-hidden="true">←</span>
+            <ArrowIcon direction="left" className="size-5 shrink-0" />
           </button>
           <button type="button" onClick={() => swiper?.slideNext()} aria-label="Next review" disabled={!canNavigate} className="flex h-11 w-11 items-center justify-center border border-black/15 text-lg text-[#425f32] transition hover:bg-[#425f32] hover:text-white disabled:cursor-default disabled:opacity-35 disabled:hover:bg-transparent disabled:hover:text-[#425f32] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#425f32]">
-            <span aria-hidden="true">→</span>
+            <ArrowIcon direction="right" className="size-5 shrink-0" />
           </button>
         </div>
       </div>

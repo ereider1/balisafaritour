@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import ArrowIcon from "@/components/arrow-icon";
 import { HOME_TOURS } from "@/lib/tours";
 
 const whatsappBase = "https://wa.me/6281237812783?text=";
@@ -21,7 +22,7 @@ export default function FullDayTours() {
             className="mt-4 inline-flex items-center gap-2 text-[9px] font-bold uppercase tracking-[.18em] text-[#425f32] sm:mt-6 sm:gap-3 sm:text-[10px]"
           >
             <span className="grid h-6 w-6 place-items-center rounded-full bg-[#79924f] text-white sm:h-7 sm:w-7" aria-hidden>
-              →
+              <ArrowIcon direction="right" className="size-3.5 shrink-0" />
             </span>
             View all destinations
           </Link>
@@ -56,7 +57,7 @@ export default function FullDayTours() {
                     href={`/tours/${tour.slug}`}
                     className="absolute bottom-5 left-5 hidden items-center bg-[#fbfaf6] px-4 py-3 text-[10px] font-bold uppercase tracking-[.14em] text-[#425f32] transition hover:bg-[#b6cd72] md:inline-flex"
                   >
-                    More Info <span className="ml-2" aria-hidden>↗</span>
+                    More Info <ArrowIcon className="ml-2 size-3.5 shrink-0" />
                   </Link>
                 </div>
 
@@ -81,7 +82,7 @@ export default function FullDayTours() {
                     </p>
                     <div className="flex flex-wrap items-center gap-x-2 gap-y-2 sm:gap-x-4 sm:gap-y-3">
                       <a href={`${whatsappBase}${message}`} className="btn-primary px-3 py-3 text-[10px] sm:px-3 sm:py-3">
-                        Reserve Tour <span aria-hidden>↗</span>
+                        Reserve Tour <ArrowIcon />
                       </a>
                     </div>
                   </div>
