@@ -136,10 +136,11 @@ export default function Tours() {
             <a href={SITES.gobali.url} className="text-primary-600 hover:underline">
               our full guide to Bali&apos;s top attractions
             </a>{" "}
-            at {SITES.gobali.url.replace("https://", "")}, or tell us what you have in mind on{" "}
-            <a href="https://wa.me/6281237812783" className="text-primary-600 hover:underline">
-              WhatsApp
-            </a>.
+            at {SITES.gobali.url.replace("https://", "")}, or map out a route with{" "}
+            <a href={SITES.balisafari.url} className="text-primary-600 hover:underline">
+              our interactive trip planner
+            </a>{" "}
+            at {SITES.balisafari.url.replace("https://", "")}.
           </p>
         </div>
       </div>

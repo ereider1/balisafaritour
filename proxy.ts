@@ -1,13 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { clerkMiddleware } from "@clerk/nextjs/server";
-import { SITES, siteForHost } from "@/lib/domains";
+import { siteForHost } from "@/lib/domains";
 
 const proxyHandler = clerkMiddleware((_auth, request: NextRequest) => {
-  const hostname = request.headers.get("host")?.split(":")[0].toLowerCase();
-  if (hostname === "balisafari.tours" || hostname === "www.balisafari.tours") {
-    return NextResponse.redirect(SITES.main.url, 308);
-  }
-
   if (request.nextUrl.pathname !== "/") return NextResponse.next();
 
   const site = siteForHost(request.headers.get("host"));

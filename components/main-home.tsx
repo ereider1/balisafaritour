@@ -130,7 +130,7 @@ export default async function MainHome() {
           <div className="grid gap-10 border-b border-white/10 pb-10 md:grid-cols-[1.2fr_.8fr_.8fr]">
             <div className="max-w-sm"><h3 className="font-[family-name:var(--font-display)] text-2xl font-bold uppercase">Bali Safari Tour</h3><p className="mt-3 text-sm leading-6 text-white/45">Private classic Volkswagen adventures, guided by locals and made one day at a time.</p></div>
             <div><h4 className="text-[10px] font-bold uppercase tracking-[.2em] text-white/50">Explore</h4><nav className="mt-4 grid gap-2 text-sm text-white/70"><a href="#tours">Tours</a><a href="#why-us">Our story</a><a href="#gallery">Moments</a><a href="#reviews">Guest stories</a><a href="/leave-a-review">Leave a review</a></nav></div>
-            <div><h4 className="text-[10px] font-bold uppercase tracking-[.2em] text-white/50">Our Bali network</h4><nav className="mt-4 grid gap-2 text-sm text-white/70"><a href="https://balivw.tours">balivw.tours</a><a href="https://gobali.tours">gobali.tours</a></nav></div>
+            <div><h4 className="text-[10px] font-bold uppercase tracking-[.2em] text-white/50">Our Bali network</h4><nav className="mt-4 grid gap-2 text-sm text-white/70"><a href="https://balivw.tours">balivw.tours</a><a href="https://gobali.tours">gobali.tours</a><a href="https://balisafari.tours">balisafari.tours</a></nav></div>
           </div>
           <div className="flex flex-col gap-2 pt-7 text-[10px] uppercase tracking-[.16em] text-white/35 sm:flex-row sm:justify-between"><p>© 2026 Bali Safari Tour</p><p>Bali, Indonesia · Open every day</p></div>
         </div>

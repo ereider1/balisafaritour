@@ -119,11 +119,11 @@ export default function AttractionGuide() {
 
         <div className="mt-24 border-t border-black/10 pt-8 text-center">
           <p className="text-xs leading-6 text-black/45">
-            Ready to visit? Explore{" "}
-            <a href={`${SITES.main.url}/tours`} className="font-bold text-[#425f32] hover:underline">
-              our private tour options
+            Ready to map out your visit? Use{" "}
+            <a href={SITES.balisafari.url} className="font-bold text-[#425f32] hover:underline">
+              our interactive trip planner
             </a>{" "}
-            or see{" "}
+            at {SITES.balisafari.url.replace("https://", "")}, or see{" "}
             <a href={SITES.vwbali.url} className="font-bold text-[#425f32] hover:underline">
               real guest photos from these spots
             </a>{" "}

@@ -232,10 +232,11 @@ export default function GuestShowcase() {
             <a href={SITES.gobali.url} className="font-bold text-[#425f32] hover:underline">
              View our full guide to Bali&apos;s attractions
             </a>{" "}
-            at {SITES.gobali.url.replace("https://", "")}, or explore private tour options{" "}
-            <a href={`${SITES.main.url}/tours`} className="font-bold text-[#425f32] hover:underline">
-              on our tours page
-            </a>.
+            at {SITES.gobali.url.replace("https://", "")}, or plan your own route with{" "}
+            <a href={SITES.balisafari.url} className="font-bold text-[#425f32] hover:underline">
+              our trip planner
+            </a>{" "}
+            at {SITES.balisafari.url.replace("https://", "")}.
           </p>
         </div>
       </div>
