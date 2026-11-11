@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { headers } from "next/headers";
 import { siteForHost } from "@/lib/domains";
+import { TOURS } from "@/lib/tours";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const headersList = await headers();
@@ -22,6 +23,21 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "monthly",
       priority: 0.9,
     });
+
+    entries.push(
+      ...TOURS.map((tour) => ({
+        url: `${site.url}/tours/${tour.slug}`,
+        lastModified: new Date(),
+        changeFrequency: "monthly" as const,
+        priority: 0.8,
+      })),
+      {
+        url: `${site.url}/leave-a-review`,
+        lastModified: new Date(),
+        changeFrequency: "yearly",
+        priority: 0.4,
+      },
+    );
   }
 
   return entries;
