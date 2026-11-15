@@ -13,9 +13,9 @@ export const SITES: Record<SiteKey, SiteConfig> = {
     key: "main",
     url: "https://balisafaritour.com",
     path: "/",
-    title: "VW Tour Bali - Classic Volkswagen Safari Tours in Bali",
+    title: "Custom VW Safari Bali Tours | Private Volkswagen Adventures",
     description:
-      "Explore Bali in a classic convertible Volkswagen Safari. Island-wide guided tours, professional drivers, and unforgettable open-air adventures through rice terraces, temples, and hidden gems.",
+      "Plan a custom VW Safari Bali Tour in a classic open-top Volkswagen. Enjoy private, flexible routes with local driver-guides through Bali's rice terraces, temples, villages, and hidden gems.",
   },
   vwbali: {
     key: "vwbali",

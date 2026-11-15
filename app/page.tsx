@@ -4,10 +4,10 @@ import MainHome from "@/components/main-home";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Private VW Safari Tours in Bali",
+  title: "Custom VW Safari Bali Tours",
 
   description:
-    "Experience Bali in an original open-top Volkswagen. Enjoy private VW Safari tours with a local driver-guide through Bali's villages, temples and beautiful countryside.",
+    "Create a custom VW Safari Bali Tour in an original open-top Volkswagen. Enjoy a private, flexible route with a local driver-guide through Bali's villages, temples, rice terraces, and beautiful countryside.",
 
   alternates: {
     canonical: "/",

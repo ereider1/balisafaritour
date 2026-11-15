@@ -8,15 +8,15 @@ import { SITES } from "@/lib/domains";
 import { TOURS } from "@/lib/tours";
 
 export const metadata: Metadata = {
-  title: "Custom VW Safari Tours in Bali",
+  title: "Custom VW Safari Bali Tours",
   description:
-    "Choose your private Bali VW Safari tour. Explore temples, rice terraces, traditional villages and beautiful countryside in a classic Volkswagen.",
+    "Choose a custom VW Safari Bali Tour and explore temples, rice terraces, traditional villages, and beautiful countryside in a classic Volkswagen with a private local driver-guide.",
   alternates: { canonical: `${SITES.main.url}/tours` },
   openGraph: {
     type: "website",
     url: `${SITES.main.url}/tours`,
-    title: "Custom VW Safari Tours in Bali",
-    description: "Choose your private Bali VW Safari tour. Explore temples, rice terraces, traditional villages and beautiful countryside in a classic Volkswagen.",
+    title: "Custom VW Safari Bali Tours",
+    description: "Choose a custom VW Safari Bali Tour and explore temples, rice terraces, traditional villages, and beautiful countryside in a classic Volkswagen with a private local driver-guide.",
     images: [{ url: `${SITES.main.url}/gallerypics/bali_vw_04.jpg`, width: 1200, height: 900, alt: "Classic Volkswagen tour through Bali" }],
   },
 };

@@ -2,10 +2,10 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "VW Tour Bali - Classic Volkswagen Safari Tours",
-    short_name: "VW Tour Bali",
+    name: "Custom VW Safari Bali Tours",
+    short_name: "VW Safari Bali",
     description:
-      "Explore Bali in a classic convertible Volkswagen Safari with island-wide guided tours.",
+      "Plan a custom VW Safari Bali Tour in a classic convertible Volkswagen with a private local driver-guide.",
     start_url: "/",
     display: "standalone",
     background_color: "#fbfaf6",

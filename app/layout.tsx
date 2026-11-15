@@ -28,6 +28,10 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     description: site.description,
     keywords: [
+      "Custom VW Safari Bali Tours",
+      "custom VW tours Bali",
+      "private VW Safari Bali tours",
+      "bespoke Bali VW tours",
       "VW tour Bali",
       "Bali Volkswagen safari",
       "classic VW Bali tour",
@@ -37,16 +41,15 @@ export async function generateMetadata(): Promise<Metadata> {
       "Bali island tour",
       "Bali sightseeing tour",
     ],
-    authors: [{ name: "VW Tour Bali" }],
-    creator: "VW Tour Bali",
-    publisher: "VW Tour Bali",
+    authors: [{ name: "Bali Safari Tour" }],
+    creator: "Bali Safari Tour",
+    publisher: "Bali Safari Tour",
     applicationName: site.title,
     category: "Travel",
 
-    /*alternates: {
+    alternates: {
       canonical: site.url,
     },
-    */
 
     robots: {
       index: true,
@@ -71,7 +74,7 @@ export async function generateMetadata(): Promise<Metadata> {
           url: "/hero-1.jpg",
           width: 1200,
           height: 630,
-          alt: "Classic Volkswagen convertible safari tour in Bali",
+          alt: "Custom VW Safari Bali Tour in a classic open-top Volkswagen",
         },
       ],
     },
@@ -117,8 +120,8 @@ export default async function RootLayout({
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "TravelAgency",
-    name: "VW Tour Bali",
-    alternateName: "Bali Safari Tour",
+    name: "Custom VW Safari Bali Tours",
+    alternateName: ["Bali Safari Tour", "VW Tour Bali"],
     description: site.description,
     url: site.url,
     image: `${site.url}/og-social-share.png`,
