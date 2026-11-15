@@ -2,6 +2,8 @@
 
 import { FaMapMarkerAlt, FaPhone } from "react-icons/fa";
 import ArrowIcon from "@/components/arrow-icon";
+import TrackedWhatsAppLink from "@/components/tracked-whatsapp-link";
+import { trackWhatsAppClick } from "@/lib/whatsapp-tracking";
 
 const WHATSAPP_NUMBER = "6281237812783";
 
@@ -22,10 +24,8 @@ export default function Contact() {
       .filter(Boolean)
       .join("\n");
 
-    window.open(
-      `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`,
-      "_blank"
-    );
+    trackWhatsAppClick("contact_form");
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`, "_blank");
   }
 
   return (
@@ -71,9 +71,9 @@ export default function Contact() {
                 <div>
                   <h4 className="mb-1 font-semibold">WhatsApp</h4>
                   <p className="text-gray-300">
-                    <a href="https://wa.me/6281237812783" className="hover:text-primary-400">
+                    <TrackedWhatsAppLink href="https://wa.me/6281237812783" source="contact_info" className="hover:text-primary-400">
                       +62 812 3781 2783
-                    </a>
+                    </TrackedWhatsAppLink>
                   </p>
                   <p className="text-sm text-gray-400">Fastest response</p>
                 </div>

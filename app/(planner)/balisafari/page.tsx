@@ -4,6 +4,7 @@ import TripPlanner from "@/components/trip-planner";
 import DomainHero from "@/components/domain-hero";
 import DomainBooking from "@/components/domain-booking";
 import EditorialFooter from "@/components/editorial-footer";
+import TrackedWhatsAppLink from "@/components/tracked-whatsapp-link";
 import { SITES } from "@/lib/domains";
 
 const site = SITES.balisafari;
@@ -136,12 +137,13 @@ export default function BaliSafariPage() {
                       </li>
                     ))}
                   </ol>
-                  <a
+                  <TrackedWhatsAppLink
                     href={`${whatsappBase}${message}`}
+                    source="planner_tour"
                     className={`${featured ? "border-white/25 text-white" : "border-black/15 text-[#425f32]"} mt-auto inline-flex items-center justify-between border-t pt-6 text-[10px] font-bold uppercase tracking-[.18em] group-hover:border-white/25 group-hover:text-white`}
                   >
                     Ask about this tour <ArrowIcon />
-                  </a>
+                  </TrackedWhatsAppLink>
                 </article>
               );
             })}

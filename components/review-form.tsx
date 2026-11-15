@@ -1,7 +1,10 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import Link from "next/link";
 import ArrowIcon from "@/components/arrow-icon";
+import TrackedWhatsAppLink from "@/components/tracked-whatsapp-link";
+import { trackWhatsAppClick } from "@/lib/whatsapp-tracking";
 
 const whatsappNumber = "6281237812783";
 
@@ -105,6 +108,7 @@ export default function ReviewForm() {
 
     const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
     setWhatsappUrl(url);
+    trackWhatsAppClick("review_form");
     window.open(url, "_blank", "noopener,noreferrer");
     setSubmitted(true);
   }
@@ -116,8 +120,8 @@ export default function ReviewForm() {
         <p className="mt-10 text-[10px] font-bold uppercase tracking-[.2em] text-[#b6cd72]">Thank you for taking the time</p>
         <h3 className="mt-4 max-w-lg font-[family-name:var(--font-display)] text-5xl font-black uppercase leading-[.88] tracking-tight sm:text-6xl">Your story is on its way</h3>
         <p className="mt-7 max-w-lg text-sm leading-7 text-white/65">{published ? "Your review is now in Stories Brought Home, and " : ""}WhatsApp should have opened with your review ready to send.</p>
-        <a href={whatsappUrl} target="_blank" rel="noreferrer" className="btn-primary mt-9 bg-[#79924f]">Open WhatsApp again <ArrowIcon /></a>
-        <a href="/" className="ml-5 inline-flex text-[10px] font-bold uppercase tracking-[.18em] text-white/60 transition hover:text-white">Back to the road</a>
+        <TrackedWhatsAppLink href={whatsappUrl} source="review_form_retry" target="_blank" className="btn-primary mt-9 bg-[#79924f]">Open WhatsApp again <ArrowIcon /></TrackedWhatsAppLink>
+        <Link href="/" className="ml-5 inline-flex text-[10px] font-bold uppercase tracking-[.18em] text-white/60 transition hover:text-white">Back to the road</Link>
       </div>
     );
   }

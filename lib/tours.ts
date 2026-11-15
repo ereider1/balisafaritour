@@ -2,6 +2,7 @@ export type Tour = {
   slug: string;
   name: string;
   location: string;
+  pickupArea: string;
   duration: string;
   image: string;
   gallery: string[];
@@ -11,13 +12,19 @@ export type Tour = {
   highlights: string[];
   itinerary: { title: string; description: string }[];
   price: number;
+  currency: string;
+  priceBasis: string;
 };
+
+export const DEFAULT_PRICE_BASIS = "per person";
+export const DEFAULT_PICKUP_AREA = "All Bali pickup and drop-off locations (included in price)";
 
 export const TOURS: Tour[] = [
   {
     slug: "tabanan-tour",
     name: "Tabanan & Jatiluwih Tours",
     location: "West Bali",
+    pickupArea: DEFAULT_PICKUP_AREA,
     duration: "Full day · Scenic",
     image: "/tourpics/tabanan-02.jpg",
     gallery: [
@@ -56,11 +63,14 @@ export const TOURS: Tour[] = [
       },
     ],
     price: 40,
+    currency: "USD",
+    priceBasis: DEFAULT_PRICE_BASIS,
   },
   {
     slug: "ubud-tour",
     name: "Ubud Tours",
     location: "Central Bali",
+    pickupArea: DEFAULT_PICKUP_AREA,
     duration: "Full day · Culture",
     image: "/tourpics/ubud-market.jpg",
     gallery: [
@@ -104,11 +114,14 @@ export const TOURS: Tour[] = [
       },
     ],
     price: 40,
+    currency: "USD",
+    priceBasis: DEFAULT_PRICE_BASIS,
   },
   {
     slug: "kintamani-volcano-tour",
     name: "Kintamani Volcano Tours",
     location: "Bali Highlands",
+    pickupArea: DEFAULT_PICKUP_AREA,
     duration: "Full day · Highlands",
     image: "/tourpics/volcano.jpg",
     gallery: [
@@ -151,11 +164,14 @@ export const TOURS: Tour[] = [
       },
     ],
     price: 40,
+    currency: "USD",
+    priceBasis: DEFAULT_PRICE_BASIS,
   },
   {
     slug: "uluwatu-sunset-tour",
     name: "Uluwatu Sunset Tours",
     location: "South Bali",
+    pickupArea: DEFAULT_PICKUP_AREA,
     duration: "Full day · Sunset",
     image: "/tourpics/uluwatu.jpg",
     gallery: [
@@ -199,11 +215,14 @@ export const TOURS: Tour[] = [
       },
     ],
     price: 40,
+    currency: "USD",
+    priceBasis: DEFAULT_PRICE_BASIS,
   },
   {
     slug: "instagram-tour",
     name: "Instagram Tours",
     location: "Custom Bali",
+    pickupArea: DEFAULT_PICKUP_AREA,
     duration: "Full day · Photo route",
     image: "/tourpics/bali-swing.jpg",
     gallery: [
@@ -241,11 +260,14 @@ export const TOURS: Tour[] = [
       },
     ],
     price: 40,
+    currency: "USD",
+    priceBasis: DEFAULT_PRICE_BASIS,
   },
   {
     slug: "build-your-own",
     name: "Custom Bali Tours",
     location: "Anywhere in Bali",
+    pickupArea: DEFAULT_PICKUP_AREA,
     duration: "Full day · Your own route",
     image: "/tourpics/bali_vw_01.jpg",
     gallery: [
@@ -287,11 +309,14 @@ export const TOURS: Tour[] = [
       },
     ],
     price: 40,
+    currency: "USD",
+    priceBasis: DEFAULT_PRICE_BASIS,
   },
   {
     slug: "monkey-forest-tour",
     name: "Bali Monkey Forest & Waterfalls",
     location: "Central Bali",
+    pickupArea: DEFAULT_PICKUP_AREA,
     duration: "Full day · Nature",
     image: "/tourpics/monkey-forest-3.jpg",
     gallery: [
@@ -329,6 +354,8 @@ export const TOURS: Tour[] = [
       },
     ],
     price: 40,
+    currency: "USD",
+    priceBasis: DEFAULT_PRICE_BASIS,
   },
 ];
 
@@ -338,4 +365,9 @@ export const HOME_TOURS = TOURS.filter(
 
 export function getTourBySlug(slug: string) {
   return TOURS.find((tour) => tour.slug === slug);
+}
+
+export function formatTourPrice(tour: Pick<Tour, "price" | "currency" | "priceBasis">) {
+  const symbol = tour.currency === "USD" ? "$" : tour.currency === "IDR" ? "Rp " : "";
+  return `${symbol}${tour.price} ${tour.currency} ${tour.priceBasis}`;
 }

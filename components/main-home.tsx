@@ -4,16 +4,17 @@ import Header from "@/components/header";
 import FullDayTours from "@/components/full-day-tours";
 import GuestShowcase from "@/components/guest-showcase";
 import TestimonialCarousel from "@/components/testimonial-carousel";
-import { listPublishedReviews, type PublishedReview } from "@/lib/reviews";
-
-const featuredReviews: PublishedReview[] = [
-  { id: "sarah-j", q: "The most memorable day of our Bali trip. Bobby took us down roads we never would have found, and the car made everyone smile.", n: "Sarah J.", c: "United States", f: "/flags/US.svg", rating: 5, createdAt: "2026-01-01" },
-  { id: "emma-w", q: "It felt personal from the first message. No rushing, no hard sell—just a beautiful day through villages, rice fields and temples.", n: "Emma W.", c: "Australia", f: "/flags/AU.svg", rating: 5, createdAt: "2026-01-01" },
-];
+import TrackedWhatsAppLink from "@/components/tracked-whatsapp-link";
+import { HowItWorks, TourFaq, WhatsIncluded } from "@/components/tour-trust-sections";
+import { featuredReviews } from "@/lib/featured-reviews";
+import { listPublishedReviews } from "@/lib/reviews";
+import { GOOGLE_REVIEW_URL } from "@/lib/tour-trust-content";
 
 export default async function MainHome() {
   const submittedReviews = await listPublishedReviews();
-  const reviews = [...featuredReviews, ...submittedReviews];
+  const reviews = [...featuredReviews, ...submittedReviews].filter(
+    (review, index, allReviews) => allReviews.findIndex((item) => item.id === review.id) === index,
+  );
 
   return (
     <main className="min-h-screen overflow-hidden bg-[#fbfaf6]">
@@ -24,6 +25,7 @@ export default async function MainHome() {
             src="/hero-1.jpg"
             alt="Classic Volkswagen safari through Bali"
             fill
+            sizes="100vw"
             priority
             className="object-cover"
           />
@@ -34,7 +36,7 @@ export default async function MainHome() {
             muted
             loop
             playsInline
-            preload="metadata"
+            preload="none"
             disablePictureInPicture
             aria-hidden="true"
           >
@@ -60,6 +62,10 @@ export default async function MainHome() {
 
       <FullDayTours />
 
+      <WhatsIncluded />
+      <HowItWorks />
+      <TourFaq />
+
 
 
 
@@ -71,7 +77,7 @@ export default async function MainHome() {
             <h2 className="mt-1 font-[family-name:var(--font-display)] text-gray-600 text-5xl font-black uppercase leading-[.9] tracking-tight sm:text-7xl">Rafting. ATV. Zipline. Paragliding. Jet Ski. Buggy... We got you!</h2>
             <p className="mt-7 max-w-xl text-base leading-7 text-gray-500">Contact us for adventure tour availability. We will get you the best price- and we will get you there in style.</p>
             <div className="mt-4">
-<a href="https://wa.me/6281237812783?text=Hi%20Bobby%2C%20I%27d%20like%20to%20plan%20a%20adventure%20VW%20tour%20in%20Bali." className="btn-primary bg-[#79924f] px-8 py-4">Plan on WhatsApp <ArrowIcon /></a>
+<TrackedWhatsAppLink href="https://wa.me/6281237812783?text=Hi%20Bobby%2C%20I%27d%20like%20to%20plan%20a%20adventure%20VW%20tour%20in%20Bali." source="adventure" className="btn-primary bg-[#79924f] px-8 py-4">Plan on WhatsApp <ArrowIcon /></TrackedWhatsAppLink>
 </div>
           </div>
         </div>
@@ -106,6 +112,11 @@ export default async function MainHome() {
         <div className="container-max container-padding">
           <div className="text-center"><p className="script text-4xl">Stories brought home</p><h2 className="font-[family-name:var(--font-display)] text-4xl font-black uppercase tracking-tight">From our guests</h2></div>
           <TestimonialCarousel reviews={reviews} />
+          <p className="mt-8 text-center text-xs text-black/45">
+            <a href={GOOGLE_REVIEW_URL} target="_blank" rel="noopener noreferrer" className="font-semibold text-[#425f32] underline underline-offset-4">
+              Read more reviews on Google
+            </a>
+          </p>
         </div>
       </section>
 
@@ -119,7 +130,7 @@ export default async function MainHome() {
             <p className="mt-7 max-w-xl text-base leading-7 text-white/65">Send Bobby your dates, hotel area and the places you are curious about. We’ll shape a private route and reply with a clear plan.</p>
           </div>
           <div className="lg:text-right">
-            <a href="https://wa.me/6281237812783?text=Hi%20Bobby%2C%20I%27d%20like%20to%20plan%20a%20private%20VW%20tour%20in%20Bali." className="btn-primary bg-[#79924f] px-8 py-4">Plan on WhatsApp <ArrowIcon /></a>
+            <TrackedWhatsAppLink href="https://wa.me/6281237812783?text=Hi%20Bobby%2C%20I%27d%20like%20to%20plan%20a%20private%20VW%20tour%20in%20Bali." source="footer" className="btn-primary bg-[#79924f] px-8 py-4">Plan on WhatsApp <ArrowIcon /></TrackedWhatsAppLink>
             <p className="mt-5 text-xs leading-5 text-white/50">Usually replies within a few hours<br />+62 812 3781 2783</p>
           </div>
         </div>

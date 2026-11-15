@@ -9,28 +9,29 @@ declare global {
   }
 }
 
-const CONVERSION_ID = "AW-18361331433/ZncMCMWZ-Y8dEOndrrNE";
-
 export default function GoogleAdsTracking() {
   useEffect(() => {
-    function handleWhatsAppClick(event: MouseEvent) {
-      const target = event.target;
-      if (!(target instanceof Element)) return;
+    const params = new URLSearchParams(window.location.search);
+    const campaignParams: Record<string, string> = {};
 
-      const link = target.closest<HTMLAnchorElement>(
-        'a[href*="wa.me"], a[href*="wa.link"]',
+    params.forEach((value, key) => {
+      if (key === "gclid" || key.startsWith("utm_")) {
+        campaignParams[key] = value;
+      }
+    });
+
+    if (Object.keys(campaignParams).length === 0) return;
+
+    try {
+      const previous = window.sessionStorage.getItem("bali-safari-campaign-params");
+      const savedParams = previous ? JSON.parse(previous) as Record<string, string> : {};
+      window.sessionStorage.setItem(
+        "bali-safari-campaign-params",
+        JSON.stringify({ ...savedParams, ...campaignParams }),
       );
-      if (!link) return;
-
-      window.gtag?.("event", "conversion", {
-        send_to: CONVERSION_ID,
-        value: 1.0,
-        currency: "IDR",
-      });
+    } catch {
+      // Campaign storage is optional and must not interrupt page navigation.
     }
-
-    document.addEventListener("click", handleWhatsAppClick);
-    return () => document.removeEventListener("click", handleWhatsAppClick);
   }, []);
 
   return null;

@@ -1,5 +1,6 @@
 import { headers } from "next/headers";
 import { SITES, siteForHost } from "@/lib/domains";
+import TrackedWhatsAppLink from "@/components/tracked-whatsapp-link";
 
 export default async function Footer() {
   const headersList = await headers();
@@ -29,7 +30,7 @@ export default async function Footer() {
             <div className="flex space-x-4 text-gray-400">
               <a href="#" className="hover:text-white">Facebook</a>
               <a href="#" className="hover:text-white">Instagram</a>
-              <a href="#" className="hover:text-white">WhatsApp</a>
+              <TrackedWhatsAppLink href="https://wa.link/v1x5pl" source="footer_link" className="hover:text-white">WhatsApp</TrackedWhatsAppLink>
             </div>
           </div>
         </div>

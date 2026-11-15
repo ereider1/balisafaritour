@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { FaBars, FaTimes } from "react-icons/fa";
+import TrackedWhatsAppLink from "@/components/tracked-whatsapp-link";
 
 interface HeaderProps {
   overlay?: boolean;
@@ -64,9 +65,9 @@ export default function Header({
 
           {/* CTA Button & Mobile Menu */}
           <div className="flex items-center gap-4">
-            <a href="https://wa.link/v1x5pl" className={`${overlay ? "border-white/60 text-white hover:bg-white hover:text-[#263b27]" : "border-[#425f32] text-[#425f32]"} hidden border px-5 py-2.5 text-[10px] font-bold uppercase tracking-[.18em] sm:inline-flex`}>
+            <TrackedWhatsAppLink href="https://wa.link/v1x5pl" source="header" className={`${overlay ? "border-white/60 text-white hover:bg-white hover:text-[#263b27]" : "border-[#425f32] text-[#425f32]"} hidden border px-5 py-2.5 text-[10px] font-bold uppercase tracking-[.18em] sm:inline-flex`}>
               BOOK A TOUR
-            </a>
+            </TrackedWhatsAppLink>
 
             {/* Mobile Menu Button */}
             <button

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import ArrowIcon from "@/components/arrow-icon";
+import TrackedWhatsAppLink from "@/components/tracked-whatsapp-link";
 
 interface DomainBookingProps {
   script: string;
@@ -17,7 +18,7 @@ export default function DomainBooking({ script, title, description, image }: Dom
         <div><p className="script text-4xl text-[#b6cd72]">{script}</p><h2 className="mt-2 max-w-4xl font-[family-name:var(--font-display)] text-5xl font-black uppercase leading-[.9] tracking-tight sm:text-7xl">{title}</h2><p className="mt-7 max-w-xl text-base leading-7 text-white/65">{description}</p></div>
         <div className="lg:text-right">
           <a href="https://www.balisafari.tours" className="btn-primary bg-[#79924f] px-8 py-4">Plan Your Tour <ArrowIcon /></a>
-          <a href="https://wa.me/6281237812783" className="btn-primary bg-[#79924f] px-8 py-4 mt-5">Contact via WhatsApp <ArrowIcon /></a>
+          <TrackedWhatsAppLink href="https://wa.me/6281237812783" source="domain_booking" className="btn-primary bg-[#79924f] px-8 py-4 mt-5">Contact via WhatsApp <ArrowIcon /></TrackedWhatsAppLink>
         <p className="mt-2 text-xs leading-5 text-white/50">Usually replies within a few hours<br />+62 812 3781 2783</p>
         </div>
       

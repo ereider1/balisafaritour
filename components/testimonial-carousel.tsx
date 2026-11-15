@@ -44,16 +44,19 @@ function formatReviewDate(value: string) {
 export default function TestimonialCarousel({ reviews }: { reviews: PublishedReview[] }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [visibleCount, setVisibleCount] = useState(1);
+  const [isLargeScreen, setIsLargeScreen] = useState(false);
   const [swiper, setSwiper] = useState<SwiperInstance | null>(null);
 
   useEffect(() => {
     function updateVisibleCount() {
-      const nextVisibleCount = window.matchMedia("(min-width: 1024px)").matches
+      const isLarge = window.matchMedia("(min-width: 1024px)").matches;
+      const nextVisibleCount = isLarge
         ? 3
         : window.matchMedia("(min-width: 768px)").matches
           ? 2
           : 1;
 
+      setIsLargeScreen(isLarge);
       setVisibleCount(nextVisibleCount);
       setActiveIndex((index) => Math.min(index, Math.max(0, reviews.length - nextVisibleCount)));
     }
@@ -69,7 +72,7 @@ export default function TestimonialCarousel({ reviews }: { reviews: PublishedRev
 
   return (
     <div className="mx-auto mt-12 max-w-7xl">
-      <div className="hidden columns-3 gap-6 lg:block">
+      <div className="hidden columns-3 gap-6 lg:block" aria-hidden={!isLargeScreen || undefined}>
         {reviews.map((review, index) => (
           <div key={review.id} className="mb-6 break-inside-avoid">
             <ReviewCard review={review} index={index} total={reviews.length} />
@@ -77,7 +80,7 @@ export default function TestimonialCarousel({ reviews }: { reviews: PublishedRev
         ))}
       </div>
 
-      <div className="lg:hidden" aria-roledescription="carousel" aria-label="Guest reviews">
+      <div className="lg:hidden" aria-hidden={isLargeScreen || undefined} aria-roledescription="carousel" aria-label="Guest reviews">
         <Swiper
           key={visibleCount}
           modules={[Autoplay]}
@@ -91,7 +94,7 @@ export default function TestimonialCarousel({ reviews }: { reviews: PublishedRev
           slidesPerView={1}
           slidesPerGroup={1}
           spaceBetween={16}
-          loop={canNavigate}
+          rewind={canNavigate}
           breakpoints={{
             768: { slidesPerView: 2, spaceBetween: 20 },
           }}
@@ -110,7 +113,7 @@ export default function TestimonialCarousel({ reviews }: { reviews: PublishedRev
             <button
               key={review.id}
               type="button"
-              onClick={() => swiper?.slideToLoop(index)}
+              onClick={() => swiper?.slideTo(index)}
               aria-label={`Go to review ${index + 1}`}
               aria-current={activeIndex === index ? "true" : undefined}
               className={`h-2.5 rounded-full transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#425f32] ${activeIndex === index ? "w-6 bg-[#425f32]" : "w-2.5 bg-[#425f32]/25 hover:bg-[#425f32]/50"}`}

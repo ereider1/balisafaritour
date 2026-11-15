@@ -31,7 +31,7 @@ export default function DomainHero({
   return (
     <section className="relative min-h-[78vh] overflow-hidden bg-[#263b27] text-white">
       <Header overlay brand={brand} tagline={tagline} navItems={navItems} />
-      {video ? <video className="absolute inset-0 h-full w-full object-cover" src={video} poster={image} autoPlay muted loop playsInline /> : <Image src={image} alt="" fill priority className="object-cover" />}
+      {video ? <video className="absolute inset-0 h-full w-full object-cover" src={video} poster={image} autoPlay muted loop playsInline preload="none" /> : <Image src={image} alt="" fill priority sizes="100vw" className="object-cover" />}
       <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(21,37,25,.91),rgba(21,37,25,.35)_66%,rgba(21,37,25,.14))]" />
       <div className="container-max container-padding relative z-10 flex min-h-[78vh] items-end pb-20 pt-44 lg:items-center lg:pb-0">
         <div className="max-w-3xl animate-rise">

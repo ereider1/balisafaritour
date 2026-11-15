@@ -1,9 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import ArrowIcon from "@/components/arrow-icon";
-import { HOME_TOURS } from "@/lib/tours";
-
-const whatsappBase = "https://wa.me/6281237812783?text=";
+import TrackedWhatsAppLink from "@/components/tracked-whatsapp-link";
+import { formatTourPrice, HOME_TOURS } from "@/lib/tours";
+import { getTourWhatsAppHref } from "@/lib/whatsapp";
 
 export default function FullDayTours() {
   return (
@@ -30,10 +30,6 @@ export default function FullDayTours() {
 
         <div className="grid grid-cols-2 gap-3 sm:gap-6 lg:grid-cols-3">
           {HOME_TOURS.map((tour, index) => {
-            const message = encodeURIComponent(
-              `Hi Bobby, I'm interested in the ${tour.name} at Rp ${tour.price} per person. Could you help me plan it?`,
-            );
-
             return (
               <article
                 key={tour.name}
@@ -63,27 +59,24 @@ export default function FullDayTours() {
 
                 <div className="flex flex-1 flex-col p-3 sm:p-6 lg:p-8">
                   <p className="text-[9px] font-bold uppercase tracking-[.2em] text-[#79924f]">
-                    {tour.location} · Full day
+                    {tour.location} · {tour.duration}
                   </p>
                   <h3 className="mt-2 font-[family-name:var(--font-display)] text-lg font-black uppercase leading-[.95] tracking-tight text-[#20241f] sm:mt-3 sm:text-2xl lg:text-3xl">
                     <Link href={`/tours/${tour.slug}`} className="hover:text-[#425f32]">
                       {tour.name}
                     </Link>
                   </h3>
-                  <p className="mt-2 text-xs leading-5 text-black/55 sm:mt-4 sm:text-sm sm:leading-6">{tour.description}</p>
+                  <p className="mt-2 text-xs leading-4 text-black/55 sm:mt-4 sm:text-sm sm:leading-6">{tour.description}</p>
 
                   <div className="mt-auto flex flex-wrap items-center justify-between gap-2 border-t border-black/10 pt-3 sm:gap-4 sm:pt-6">
 
-                    <p className="text-right text-[9px] font-bold uppercase tracking-[.1em] text-black/40 sm:text-[10px] sm:tracking-[.14em]">
-                      PRICE
-                      <span className="mt-0 ml-2 font-[family-name:var(--font-display)] text-lg font-black tracking-normal text-[#425f32] sm:text-2xl">
-                        {tour.price}<span className="text-sm"> USD</span>
-                      </span>
+                    <p className="font-[family-name:var(--font-display)] text-base font-black tracking-tight text-[#425f32] sm:text-xl">
+                      {formatTourPrice(tour)}
                     </p>
                     <div className="flex flex-wrap items-center gap-x-2 gap-y-2 sm:gap-x-4 sm:gap-y-3">
-                      <a href={`${whatsappBase}${message}`} className="btn-primary px-3 py-3 text-[10px] sm:px-3 sm:py-3">
+                      <TrackedWhatsAppLink href={getTourWhatsAppHref(tour)} source={`tour_card_${tour.slug}`} className="btn-primary px-3 py-3 text-[10px] sm:px-3 sm:py-3">
                         Reserve Tour <ArrowIcon />
-                      </a>
+                      </TrackedWhatsAppLink>
                     </div>
                   </div>
                 </div>
@@ -93,7 +86,7 @@ export default function FullDayTours() {
         </div>
 
         <p className="mx-auto mt-5 max-w-2xl text-center text-xs leading-5 text-black/45 sm:mt-9 sm:text-sm">
-          We pick you up and drop you off wherever you are in Bali. Included in price. Let&apos;s Go!
+          Pickup and drop-off at all Bali locations are included in the price.
         </p>
       </div>
     </section>

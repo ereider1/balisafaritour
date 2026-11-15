@@ -5,7 +5,7 @@ import ArrowIcon from "@/components/arrow-icon";
 import Header from "@/components/header";
 import EditorialFooter from "@/components/editorial-footer";
 import { SITES } from "@/lib/domains";
-import { TOURS } from "@/lib/tours";
+import { formatTourPrice, TOURS } from "@/lib/tours";
 
 export const metadata: Metadata = {
   title: "Custom VW Safari Bali Tours",
@@ -93,6 +93,9 @@ export default function ToursPage() {
                       <h3 className="mt-5 font-[family-name:var(--font-display)] text-3xl font-black uppercase leading-[.95] tracking-tight">
                         {tour.name}
                       </h3>
+                      <p className="mt-3 font-[family-name:var(--font-display)] text-lg font-black">
+                        {formatTourPrice(tour)}
+                      </p>
                       <p className={`${featured ? "text-white/65" : "text-black/55"} mt-4 text-sm leading-6 group-hover:text-white/65`}>
                         {tour.summary}
                       </p>

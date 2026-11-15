@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import herobg from '../public/hero-1.png';
+import TrackedWhatsAppLink from "@/components/tracked-whatsapp-link";
 
 export default function Hero() {
   return (
@@ -12,6 +13,7 @@ export default function Hero() {
           src={herobg}
           alt="Bali Landscape"
           fill
+          sizes="100vw"
           priority
           className="object-cover opacity-20"
         />
@@ -38,9 +40,9 @@ export default function Hero() {
             <a href="#tours" className="btn-primary">
               Explore Tours
             </a>
-            <a href="https://wa.me/6281237812783" className="btn-secondary">
+            <TrackedWhatsAppLink href="https://wa.me/6281237812783" source="hero" className="btn-secondary">
               WhatsApp Us
-            </a>
+            </TrackedWhatsAppLink>
           </div>
 
           {/* Stats */}

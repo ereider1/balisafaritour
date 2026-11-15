@@ -4,11 +4,13 @@ import { notFound } from "next/navigation";
 import ArrowIcon from "@/components/arrow-icon";
 import EditorialFooter from "@/components/editorial-footer";
 import Header from "@/components/header";
+import TrackedWhatsAppLink from "@/components/tracked-whatsapp-link";
 import TourGallery from "@/components/tour-gallery";
+import { WhatsIncluded } from "@/components/tour-trust-sections";
 import { SITES } from "@/lib/domains";
-import { getTourBySlug, TOURS } from "@/lib/tours";
+import { formatTourPrice, getTourBySlug, TOURS } from "@/lib/tours";
+import { getTourWhatsAppHref } from "@/lib/whatsapp";
 
-const whatsappBase = "https://wa.me/6281237812783?text=";
 const phone = "+62 812 3781 2783";
 
 type TourPageProps = {
@@ -29,15 +31,18 @@ export async function generateMetadata({
     return { title: "Bali Tour" };
   }
 
+  const title = `${tour.name.replace(/ Tours?$/, " Tour")} by Classic VW | Private Day Tour, Bali`;
+  const description = `${tour.summary} Private classic Volkswagen day tour in ${tour.location}, Bali.`;
+
   return {
-    title: tour.name,
-    description: tour.summary,
+    title,
+    description,
     alternates: { canonical: `${SITES.main.url}/tours/${tour.slug}` },
     openGraph: {
       type: "website",
       url: `${SITES.main.url}/tours/${tour.slug}`,
-      title: tour.name,
-      description: tour.summary,
+      title,
+      description,
       images: [
         {
           url: `${SITES.main.url}${tour.image}`,
@@ -56,9 +61,6 @@ export default async function TourDetailPage({ params }: TourPageProps) {
 
   if (!tour) notFound();
 
-  const message = encodeURIComponent(
-    `Hi Bali Safari Tour, I'm interested in the ${tour.name}. Could you help me plan the route and confirm availability?`,
-  );
   const relatedTours = TOURS.filter((item) => item.slug !== tour.slug).slice(0, 3);
 
   return (
@@ -87,13 +89,57 @@ export default async function TourDetailPage({ params }: TourPageProps) {
             <h1 className="mt-3 font-[family-name:var(--font-display)] text-4xl font-black uppercase leading-[.9] tracking-tight sm:text-6xl">
               {tour.name}
             </h1>
+            <p className="mt-5 font-[family-name:var(--font-display)] text-xl font-black text-[#425f32] sm:text-2xl">
+              {formatTourPrice(tour)}
+            </p>
           </div>
           <p className="max-w-xl text-sm leading-6 text-black/55 sm:text-base sm:leading-7">
             {tour.summary}
           </p>
         </div>
 
+        <dl className="mt-7 grid gap-4 border-y border-black/10 py-5 text-sm sm:grid-cols-2">
+          <div>
+            <dt className="text-[10px] font-bold uppercase tracking-[.16em] text-black/40">Duration</dt>
+            <dd className="mt-1 text-black/70">{tour.duration}</dd>
+          </div>
+          <div>
+            <dt className="text-[10px] font-bold uppercase tracking-[.16em] text-black/40">Pickup area</dt>
+            <dd className="mt-1 text-black/70">{tour.pickupArea}</dd>
+          </div>
+        </dl>
+        <TrackedWhatsAppLink
+          href={getTourWhatsAppHref(tour)}
+          source={`tour_detail_${tour.slug}`}
+          target="_blank"
+          className="btn-primary mt-5 bg-[#79924f]"
+        >
+          Book on WhatsApp <ArrowIcon className="size-3.5 shrink-0" />
+        </TrackedWhatsAppLink>
+
         <TourGallery images={tour.gallery} tourName={tour.name} />
+
+        <div className="mt-10 grid gap-8 border-t border-black/10 pt-8 lg:grid-cols-[1.2fr_.8fr]">
+          <section>
+            <h2 className="font-[family-name:var(--font-display)] text-2xl font-black uppercase tracking-tight">
+              Sample itinerary
+            </h2>
+            <ol className="mt-5 space-y-4">
+              {tour.itinerary.map((stop, index) => (
+                <li key={stop.title} className="flex gap-4">
+                  <span className="text-xs font-bold text-[#718b4c]">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <div>
+                    <h3 className="font-bold">{stop.title}</h3>
+                    <p className="mt-1 text-sm leading-6 text-black/55">{stop.description}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </section>
+          <WhatsIncluded compact />
+        </div>
       </section>
 
       <section className="container-max container-padding grid gap-8 pb-20 lg:grid-cols-[minmax(0,1.7fr)_minmax(17rem,.75fr)] lg:gap-12 lg:pb-28">
@@ -132,27 +178,6 @@ export default async function TourDetailPage({ params }: TourPageProps) {
             </ol>
           </section>
 
-          <section className="border-b border-black/10 py-8">
-            <h2 className="font-[family-name:var(--font-display)] text-2xl font-black uppercase tracking-tight">
-              A day on the road
-            </h2>
-            <div className="mt-5 space-y-5">
-              {tour.itinerary.map((stop, index) => (
-                <div key={stop.title} className="flex gap-4">
-                  <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-[#e7e9dc] text-xs font-bold text-[#425f32]">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <div>
-                    <h3 className="font-bold">{stop.title}</h3>
-                    <p className="mt-1 text-sm leading-6 text-black/55">
-                      {stop.description}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
-
           <section id="tour-info" className="scroll-mt-28 border-b border-black/10 py-8">
             <h2 className="font-[family-name:var(--font-display)] text-2xl font-black uppercase tracking-tight">
               Tour information
@@ -160,9 +185,9 @@ export default async function TourDetailPage({ params }: TourPageProps) {
             <dl className="mt-5 grid gap-4 sm:grid-cols-2">
               {[
                 ["Duration", tour.duration],
-                ["Tour type", "Private classic Volkswagen"],
-                ["Pickup", "Pickup and drop-off anywhere in Bali"],
-                ["Your guide", "Local driver-guide"],
+                ["Tour type", "Private classic VW and driver-guide"],
+                ["Pickup", tour.pickupArea],
+                ["Your guide", "Driver-guide included"],
               ].map(([label, value]) => (
                 <div key={label} className="border-l-2 border-[#b6cd72] pl-4">
                   <dt className="text-[10px] font-bold uppercase tracking-[.16em] text-black/40">
@@ -172,29 +197,6 @@ export default async function TourDetailPage({ params }: TourPageProps) {
                 </div>
               ))}
             </dl>
-          </section>
-
-          <section className="border-b border-black/10 py-8">
-            <h2 className="font-[family-name:var(--font-display)] text-2xl font-black uppercase tracking-tight">
-              Included in your day
-            </h2>
-            <ul className="mt-5 grid gap-3 text-sm leading-6 text-black/65 sm:grid-cols-2">
-              {[
-                "Private classic Volkswagen and local driver-guide",
-                "Pickup and drop-off wherever you are in Bali",
-                "Flexible stops and time for photos",
-                "Help planning a route around your interests",
-              ].map((item) => (
-                <li key={item} className="flex gap-3">
-                  <span className="text-[#718b4c]" aria-hidden>✓</span>
-                  {item}
-                </li>
-              ))}
-            </ul>
-            <p className="mt-5 text-xs leading-5 text-black/45">
-              Attraction entry, meal and optional activity arrangements depend on
-              your chosen stops. Please confirm these with us when planning.
-            </p>
           </section>
 
           <section className="py-8">
@@ -222,14 +224,14 @@ export default async function TourDetailPage({ params }: TourPageProps) {
                 Ask about availability, the route and the current price. We&apos;ll
                 help you plan directly with our team.
               </p>
-              <a
-                href={`${whatsappBase}${message}`}
+              <TrackedWhatsAppLink
+                href={getTourWhatsAppHref(tour)}
+                source={`tour_detail_${tour.slug}`}
                 target="_blank"
-                rel="noreferrer"
                 className="btn-primary mt-6 flex w-full justify-center bg-[#79924f] text-center"
               >
                 Book on WhatsApp <ArrowIcon className="ml-2 size-3.5 shrink-0" />
-              </a>
+              </TrackedWhatsAppLink>
               <a
                 href="tel:+6281237812783"
                 className="mt-4 flex items-center justify-between border-t border-black/10 pt-4 text-sm font-semibold text-[#425f32]"
@@ -238,7 +240,7 @@ export default async function TourDetailPage({ params }: TourPageProps) {
               </a>
               <div className="mt-5 space-y-2 border-t border-black/10 pt-5 text-xs text-black/55">
                 <p>Private tour · Flexible route</p>
-                <p>Pickup and drop-off across Bali</p>
+                <p>{tour.pickupArea}</p>
               </div>
             </div>
             <div className="bg-[#e7e9dc] p-6">

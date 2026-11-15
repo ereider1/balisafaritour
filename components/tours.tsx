@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { FaClock, FaDollarSign, FaMap, FaUsers } from "react-icons/fa";
 import { SITES } from "@/lib/domains";
+import TrackedWhatsAppLink from "@/components/tracked-whatsapp-link";
 
 const tours = [
   {
@@ -114,9 +115,9 @@ export default function Tours() {
               </div>
 
               {/* CTA */}
-              <a href={`https://wa.me/6281237812783?text=I'm interested in the ${tour.name} tour`} className="btn-primary w-full text-center">
+              <TrackedWhatsAppLink href={`https://wa.me/6281237812783?text=I'm interested in the ${tour.name} tour`} source={`tour_card_${tour.id}`} className="btn-primary w-full text-center">
                 Book This Tour
-              </a>
+              </TrackedWhatsAppLink>
             </div>
           ))}
         </div>
@@ -124,9 +125,9 @@ export default function Tours() {
         {/* All Tours CTA */}
         <div className="mt-16 text-center">
           <p className="mb-4 text-gray-600">Interested in a custom tour?</p>
-          <a href="https://wa.me/6281237812783" className="btn-secondary">
+          <TrackedWhatsAppLink href="https://wa.me/6281237812783" source="custom_tour_cta" className="btn-secondary">
             Create Your Own Adventure
-          </a>
+          </TrackedWhatsAppLink>
         </div>
 
         {/* Cross-site links */}

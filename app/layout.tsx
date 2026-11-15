@@ -116,6 +116,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const site = await getSite();
+  const gadsId = process.env.NEXT_PUBLIC_GADS_ID;
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -152,16 +153,20 @@ export default async function RootLayout({
         />
       </head>
       <body className="antialiased">
-        <Script id="google-tag" strategy="afterInteractive">
-          {`window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'AW-18361331433');`}
-        </Script>
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=AW-18361331433"
-          strategy="afterInteractive"
-        />
+        {gadsId ? (
+          <>
+            <Script id="google-tag" strategy="afterInteractive">
+              {`window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', ${JSON.stringify(gadsId)});`}
+            </Script>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(gadsId)}`}
+              strategy="afterInteractive"
+            />
+          </>
+        ) : null}
         <ClerkProvider dynamic>{children}</ClerkProvider>
         <FloatingWhatsApp />
         <GoogleAdsTracking />

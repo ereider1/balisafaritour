@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import "glightbox/dist/css/glightbox.min.css";
 import { SITES } from "@/lib/domains";
+import TrackedWhatsAppLink from "@/components/tracked-whatsapp-link";
 
 interface GalleryPhoto {
   id: string;
@@ -86,9 +87,9 @@ export default function Gallery() {
         {/* CTA */}
         <div className="mt-16 text-center">
           <p className="mb-4 text-gray-600">Create your own unforgettable moments</p>
-          <a href="https://wa.me/6281237812783" className="btn-primary">
+          <TrackedWhatsAppLink href="https://wa.me/6281237812783" source="gallery" className="btn-primary">
             Book Your Tour Today
-          </a>
+          </TrackedWhatsAppLink>
           <p className="mt-6 text-sm text-gray-500">
             See hundreds more real guest photos and videos at{" "}
             <a href={SITES.vwbali.url} className="text-primary-600 hover:underline">
