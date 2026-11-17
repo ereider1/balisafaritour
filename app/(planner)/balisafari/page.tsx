@@ -1,10 +1,12 @@
+// BALI INTERACTIVE MAP PAGE
+
 import type { Metadata } from "next";
-import ArrowIcon from "@/components/arrow-icon";
 import TripPlanner from "@/components/trip-planner";
 import DomainHero from "@/components/domain-hero";
-import DomainBooking from "@/components/domain-booking";
-import EditorialFooter from "@/components/editorial-footer";
-import TrackedWhatsAppLink from "@/components/tracked-whatsapp-link";
+// import ArrowIcon from "@/components/arrow-icon";
+// import DomainBooking from "@/components/domain-booking";
+// import EditorialFooter from "@/components/editorial-footer";
+// import TrackedWhatsAppLink from "@/components/tracked-whatsapp-link";
 import { SITES } from "@/lib/domains";
 
 const site = SITES.balisafari;
@@ -100,7 +102,7 @@ export default function BaliSafariPage() {
       <TripPlanner />
 
       {/* Popular Tours Grid Section from add-this.png */}
-      <section id="popular-tours" className="scroll-mt-24 bg-[#f4f3ee] py-24 lg:py-32">
+      {/* <section id="popular-tours" className="scroll-mt-24 bg-[#f4f3ee] py-24 lg:py-32">
         <div className="container-max container-padding">
           <div className="mb-14 text-center">
             <p className="script text-4xl text-[#718b4c]">What kind of day fits?</p>
@@ -111,6 +113,8 @@ export default function BaliSafariPage() {
               A shorter edit of Bali&apos;s best coast, culture, waterfall and highland routes—enough detail to compare without planning every minute.
             </p>
           </div>
+
+
 
           <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
             {tours.map((tour, index) => {
@@ -149,10 +153,12 @@ export default function BaliSafariPage() {
             })}
           </div>
         </div>
-      </section>
+      </section> */}
 
-      <DomainBooking script="Ready to make it real?" title="Let a local connect the dots" description="Share your saved places, dates and hotel area. We’ll turn them into a smooth private route and handle the driving while you enjoy the island." image="/tourpics/jatiluwih3.jpg" />
-      <EditorialFooter current="balisafari" />
+
+      {/* <DomainBooking script="Ready to make it real?" title="Let a local connect the dots" description="Share your saved places, dates and hotel area. We’ll turn them into a smooth private route and handle the driving while you enjoy the island." image="/tourpics/jatiluwih3.jpg" />
+      <EditorialFooter current="balisafari" /> */}
+
     </main>
   );
 }

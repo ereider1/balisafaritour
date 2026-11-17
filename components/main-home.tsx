@@ -72,8 +72,7 @@ export default async function MainHome() {
 
 
 
-      <section id="vwadventure" className="relative min-h-[400px] overflow-hidden bg-[#fcfcfc] text-white">
-        
+      {/* <section id="vwadventure" className="relative min-h-[400px] overflow-hidden bg-[#fcfcfc] text-white">
         <div className="container-max container-padding relative z-10 flex min-h-[400px] items-center py-28">
           <div className="max-w-3xl">
             <p className="script text-4xl text-[#b6cd72]">Want a full-on Bali Adventure?</p>
@@ -84,7 +83,7 @@ export default async function MainHome() {
 </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
 
 

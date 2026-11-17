@@ -274,13 +274,21 @@ export default async function TourDetailPage({ params }: TourPageProps) {
               ["Private", "A day planned for your group, not a bus schedule."],
               ["Local", "See the island with a driver-guide who knows the roads."],
               ["Flexible", "Shape the stops and pace around your interests."],
-              ["Classic", "Take in Bali from an open-top Volkswagen."],
+              ["Fun!", "Check out our photos and reviews. We have the BEST drivers!"],
             ].map(([title, description]) => (
               <div key={title} className="bg-[#f4f3ee] p-5">
                 <h3 className="font-[family-name:var(--font-display)] text-xl font-black uppercase text-[#425f32]">
                   {title}
                 </h3>
-                <p className="mt-2 text-sm leading-6 text-black/55">{description}</p>
+                <p className="mt-2 text-sm leading-6 text-black/55">
+                  {title === "Fun!" ? (
+                    <>
+                      Check out our <Link href="/#gallery" className="underline underline-offset-2">photos</Link> and <Link href="/#reviews" className="underline underline-offset-2">reviews</Link>. We have the BEST drivers!
+                    </>
+                  ) : (
+                    description
+                  )}
+                </p>
               </div>
             ))}
           </div>
