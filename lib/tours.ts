@@ -16,7 +16,7 @@ export type Tour = {
   priceBasis: string;
 };
 
-export const DEFAULT_PRICE_BASIS = "per person";
+export const DEFAULT_PRICE_BASIS = "/person";
 export const DEFAULT_PICKUP_AREA = "All Bali pickup and drop-off locations (included in price)";
 
 export const TOURS: Tour[] = [

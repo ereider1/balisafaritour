@@ -67,8 +67,8 @@ export default function FullDayTours() {
                       {formatTourPrice(tour)}
                     </p>
                     <div className="flex flex-wrap items-center gap-x-2 gap-y-2 sm:gap-x-4 sm:gap-y-3">
-                      <TrackedWhatsAppLink href={getTourWhatsAppHref(tour)} source={`tour_card_${tour.slug}`} className="btn-primary px-3 py-3 text-[10px] sm:px-3 sm:py-3">
-                        Reserve Tour <ArrowIcon />
+                      <TrackedWhatsAppLink href={getTourWhatsAppHref(tour)} source={`tour_card_${tour.slug}`} className="btn-primary px-3 py-3 text-[10px] sm:px-2 sm:py-2">
+                        WhatsApp<ArrowIcon />
                       </TrackedWhatsAppLink>
                     </div>
                   </div>
