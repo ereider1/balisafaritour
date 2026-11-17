@@ -29,7 +29,7 @@ export default function ToursPage() {
           overlay
           navItems={[
             { label: "Tour options", href: "#tour-options" },
-            { label: "Build your own", href: "#build-your-own" },
+            { label: "Build your own", href: SITES.balisafari.url },
             { label: "Back home", href: "/" },
           ]}
         />
@@ -76,7 +76,7 @@ export default function ToursPage() {
                   key={tour.slug}
                   className={`${featured ? "bg-[#425f32] text-white" : "bg-white text-[#20241f]"} group overflow-hidden shadow-[0_18px_50px_rgb(30_42_25/0.08)] transition duration-500 hover:-translate-y-1 hover:bg-[#425f32] hover:text-white`}
                 >
-                  <Link href={`/tours/${tour.slug}`} className="flex h-full flex-col">
+                  <Link href={tour.slug === "build-your-own" ? SITES.balisafari.url : `/tours/${tour.slug}`} className="flex h-full flex-col">
                     <div className="relative aspect-[4/3] overflow-hidden bg-[#263b27]">
                       <Image
                         src={tour.image}
@@ -127,7 +127,7 @@ export default function ToursPage() {
             <p className="mt-6 max-w-xl text-sm leading-7 text-white/65">Tell us what you want to see, where you are staying and how active you want the day to feel. We&apos;ll connect the stops into a realistic private route.</p>
           </div>
           <div className="lg:text-right">
-            <Link href="/tours/build-your-own" className="btn-primary bg-[#79924f] px-8 py-4">Build my route <ArrowIcon /></Link>
+            <Link href={SITES.balisafari.url} className="btn-primary bg-[#79924f] px-8 py-4">Build my route <ArrowIcon /></Link>
           </div>
         </div>
       </section>

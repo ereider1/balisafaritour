@@ -248,10 +248,10 @@ export default async function TourDetailPage({ params }: TourPageProps) {
                 Need a different route?
               </p>
               <p className="mt-2 text-sm leading-6 text-black/65">
-                Combine favorite stops or ask for a custom day around your hotel.
+                Combine favorite stops or ask simply ask for a driver for half day or full day. Our drivers will take you anywhere! It is more fun in a convertible VW!
               </p>
               <Link
-                href="/tours/build-your-own"
+                href={SITES.balisafari.url}
                 className="mt-4 inline-flex text-[10px] font-bold uppercase tracking-[.16em] text-[#425f32]"
               >
                 Build your own tour <ArrowIcon className="ml-2 size-3.5 shrink-0" />

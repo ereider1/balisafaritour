@@ -46,9 +46,9 @@ export default async function MainHome() {
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(21,37,25,.9),rgba(21,37,25,.28)_68%,rgba(21,37,25,.1))]" />
         <div className="container-max container-padding relative z-10 flex min-h-[92vh] items-end pb-24 pt-44 lg:items-center lg:pb-0">
           <div className="max-w-3xl animate-rise">
-            <p className="mb-5 text-[11px] font-bold uppercase tracking-[.28em] text-white/75">Bali, Indonesia · Private guided tours</p>
+            <p className="mb-5 whitespace-nowrap text-[clamp(9px,2.5vw,11px)] font-bold uppercase tracking-[clamp(.12em,.4vw,.28em)] text-white/75">Bali, Indonesia · Private guided tours</p>
             <h1 className="font-[family-name:var(--font-display)] text-[clamp(3.7rem,8vw,7.3rem)] font-black uppercase leading-[.79] tracking-[-.055em]">
-              See Bali<br /><span className="script inline-block -rotate-2 text-[1.05em] leading-[.85] text-[#b6cd72]">with the top down</span>
+              See Bali<br /><span className="script inline-block whitespace-nowrap -rotate-2 text-[clamp(.75em,9vw,1.05em)] leading-[.85] text-[#b6cd72]">with the top down</span>
             </h1>
             <p className="mt-8 max-w-xl text-base leading-7 text-white/80 sm:text-lg">Leave the tour-bus route behind. Ride through rice fields, temple villages and mountain roads in an original open-top Volkswagen with a local driver-guide.</p>
             <div className="mt-8 flex flex-wrap gap-3">
