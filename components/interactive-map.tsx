@@ -72,29 +72,19 @@ export default function InteractiveMap({
 
     const map = L.map(container, {
       center: [-8.45, 115.15],
-      zoom: isMobile ? 8 : 10,
-      zoomControl: false,
-      dragging: false,
-      scrollWheelZoom: false,
-      doubleClickZoom: false,
-      touchZoom: false,
-      boxZoom: false,
-      keyboard: false,
+      zoom: isMobile ? 9 : 10,
+      zoomControl: !isMobile,
+      dragging: !isMobile,
+      scrollWheelZoom: !isMobile,
+      doubleClickZoom: !isMobile,
+      touchZoom: !isMobile,
+      boxZoom: !isMobile,
+      keyboard: !isMobile,
       zoomAnimation: false,
       fadeAnimation: false,
       markerZoomAnimation: false,
     });
     mapRef.current = map;
-
-    if (isMobile) {
-      map.fitBounds(
-        [
-          [-8.9, 114.4],
-          [-8.05, 115.75],
-        ],
-        { padding: [12, 12], maxZoom: 8 },
-      );
-    }
     
     // Standard OpenStreetMap tiles
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
