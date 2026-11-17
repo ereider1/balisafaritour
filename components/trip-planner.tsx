@@ -185,7 +185,9 @@ export default function TripPlanner() {
                 className={`grid grid-cols-[minmax(0,1fr)_auto] items-center gap-x-3 gap-y-1 border-l-2 p-2.5 text-left transition-all sm:p-3 ${
                   hoveredStop === stop.name
                     ? "border-[#79924f] bg-[#eef1e7] pl-5"
-                    : "border-black/10 bg-white"
+                    : favoriteStops.includes(stop.name)
+                      ? "border-[#79924f] bg-[#eef1e7]"
+                      : "border-black/10 bg-white"
                 }`}
               >
                 <p className="text-[9px] font-bold uppercase tracking-[.16em] text-[#79924f]">{stop.region}</p>
