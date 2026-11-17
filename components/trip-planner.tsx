@@ -10,7 +10,7 @@ import type { MapStop } from "@/components/interactive-map";
 const InteractiveMap = dynamic(() => import("@/components/interactive-map"), {
   ssr: false,
   loading: () => (
-    <div className="flex h-[360px] w-full flex-col items-center justify-center gap-3 bg-gray-100 p-8 text-center text-sm text-gray-500 sm:h-[470px] lg:h-[620px]">
+    <div className="flex aspect-[7/5] min-h-[220px] w-full flex-col items-center justify-center gap-3 bg-gray-100 p-3 text-center text-sm text-gray-500 sm:aspect-auto sm:min-h-0 sm:h-[470px] sm:p-8 lg:h-[620px]">
       <div className="font-bold">Loading map...</div>
       <p className="max-w-md text-xs leading-5 text-black/45">Our drivers will review your choices and map out the best routes to maximize your tour!</p>
     </div>

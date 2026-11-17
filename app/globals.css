@@ -148,14 +148,27 @@ button, input, select, textarea { font: inherit; }
 
 @media (max-width: 767px) {
   .map-stop-tooltip.leaflet-tooltip {
-    top: 12px !important;
-    left: 50% !important;
-    margin: 0;
-    transform: translateX(-50%) !important;
+    display: none !important;
   }
 
   .map-stop-tooltip.leaflet-tooltip-top::before {
     display: none;
+  }
+}
+
+.map-stop-card.map-stop-mobile-card {
+  display: none;
+  grid-template-columns: 76px minmax(0, 1fr);
+  margin: 12px;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 8px 24px rgb(30 42 25 / .12);
+}
+
+@media (max-width: 767px) {
+  .map-stop-card.map-stop-mobile-card {
+    display: grid;
   }
 }
 

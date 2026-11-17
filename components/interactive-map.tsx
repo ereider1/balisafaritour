@@ -1,6 +1,7 @@
 "use client";
 
 import "leaflet/dist/leaflet.css";
+import Image from "next/image";
 import { useEffect, useRef } from "react";
 import L, {
   type Map as LeafletMap,
@@ -57,6 +58,7 @@ export default function InteractiveMap({
   const mapRef = useRef<LeafletMap | null>(null);
   const tooltipRefs = useRef<Record<string, LeafletTooltip>>({});
   const favoriteButtonRefs = useRef<Record<string, HTMLButtonElement>>({});
+  const activeStop = stops.find((stop) => stop.name === hoveredStop);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -165,7 +167,7 @@ export default function InteractiveMap({
         .setLatLng(stop.position)
         .setContent(tooltip);
 
-      L.marker(stop.position, {
+      const marker = L.marker(stop.position, {
         alt: `${stop.name} map stop`,
         icon: createIcon(stop.category),
         title: stop.name,
@@ -176,9 +178,9 @@ export default function InteractiveMap({
         })
         .on("click", () => {
           onAddFavorite(stop.name);
-        })
-        .on("mouseout blur", closeTooltip)
-        .addTo(map);
+        });
+      if (!isMobile) marker.on("mouseout blur", closeTooltip);
+      marker.addTo(map);
       tooltipRefs.current[stop.name] = mapTooltip;
     });
 
@@ -214,10 +216,40 @@ export default function InteractiveMap({
   }, [hoveredStop]);
 
   return (
-    <div className="h-[360px] w-full sm:h-[470px] lg:h-[620px]">
-      <div ref={containerRef} className="h-full w-full flex items-center justify-center bg-[#eef1e7] p-8 text-center text-sm font-bold text-[#425f32]" aria-label="Interactive map of Bali tour stops">
+    <div className="w-full">
+      <div ref={containerRef} className="flex aspect-[7/5] min-h-[220px] w-full items-center justify-center bg-[#eef1e7] p-3 text-center text-sm font-bold text-[#425f32] sm:aspect-auto sm:min-h-0 sm:h-[470px] sm:p-8 lg:h-[620px]" aria-label="Interactive map of Bali tour stops">
         Our drivers will review your choices and map out the best routes to maximize your tour!
       </div>
+      {activeStop && (
+        <div className="map-stop-card map-stop-mobile-card">
+          <Image
+            src={activeStop.image}
+            alt=""
+            width={92}
+            height={150}
+            sizes="76px"
+            className="map-stop-card__image"
+          />
+          <div className="map-stop-card__content">
+            <span className="map-stop-card__meta">
+              {activeStop.region} · {CATEGORY_META[activeStop.category].label}
+            </span>
+            <strong className="map-stop-card__title">{activeStop.name}</strong>
+            <p className="map-stop-card__note">{activeStop.note}</p>
+            <p className="map-stop-card__detail">{activeStop.detail}</p>
+            <button
+              type="button"
+              className={`map-stop-card__favorite ${favoriteStops.includes(activeStop.name) ? "is-favorite" : ""}`}
+              onClick={() => onToggleFavorite(activeStop.name)}
+            >
+              {favoriteStops.includes(activeStop.name) ? "✓ Added to favorites" : "+ Add to favorites"}
+            </button>
+            <a className="map-stop-card__link" href={activeStop.learnMoreHref} target="_blank" rel="noopener noreferrer">
+              learn more →
+            </a>
+          </div>
+        </div>
+      )}
       <div className="mt-4 flex flex-wrap p-4 gap-4 text-sm text-black/55">
         {(Object.keys(CATEGORY_META) as MapCategory[]).map((key) => (
           <span key={key} className="flex items-center gap-2"><span className="inline-block h-3 w-3 rounded-full" style={{ backgroundColor: CATEGORY_META[key].color }} />{CATEGORY_META[key].label}</span>
