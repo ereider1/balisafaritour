@@ -66,10 +66,11 @@ export default function InteractiveMap({
     const taggedContainer = container as HTMLDivElement & { _leaflet_id?: number };
     if (taggedContainer._leaflet_id) delete taggedContainer._leaflet_id;
     const cancelTooltipClosures: Array<() => void> = [];
+    const isMobile = window.matchMedia("(max-width: 767px)").matches;
 
     const map = L.map(container, {
       center: [-8.45, 115.15],
-      zoom: 10,
+      zoom: isMobile ? 8 : 10,
       zoomControl: false,
       dragging: false,
       scrollWheelZoom: false,
@@ -82,6 +83,16 @@ export default function InteractiveMap({
       markerZoomAnimation: false,
     });
     mapRef.current = map;
+
+    if (isMobile) {
+      map.fitBounds(
+        [
+          [-8.9, 114.4],
+          [-8.05, 115.75],
+        ],
+        { padding: [12, 12], maxZoom: 8 },
+      );
+    }
     
     // Standard OpenStreetMap tiles
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {

@@ -53,7 +53,10 @@ export default async function MainHome() {
             <p className="mt-8 max-w-xl text-base leading-7 text-white/80 sm:text-md">Leave the tour-bus route behind. Ride through rice fields, temple villages and mountain roads in an original open-top Volkswagen with a local driver-guide.</p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a href="#tours" className="btn-primary bg-[#718b4c]">Popular Tours <ArrowIcon direction="down-right" /></a>
-              <a href="#gallery" className="btn-outline">Guest Photos</a>
+              <div className="flex flex-col items-start gap-3">
+                <a href="#gallery" className="btn-outline">Guest Photos</a>
+                <a href="https://balisafari.tours" className="btn-outline">BUILD YOUR ROUTE</a>
+              </div>
             </div>
           </div>
         </div>

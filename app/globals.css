@@ -146,6 +146,19 @@ button, input, select, textarea { font: inherit; }
   border-top-color: #fff;
 }
 
+@media (max-width: 767px) {
+  .map-stop-tooltip.leaflet-tooltip {
+    top: 12px !important;
+    left: 50% !important;
+    margin: 0;
+    transform: translateX(-50%) !important;
+  }
+
+  .map-stop-tooltip.leaflet-tooltip-top::before {
+    display: none;
+  }
+}
+
 .map-stop-card {
   display: grid;
   grid-template-columns: 92px 1fr;

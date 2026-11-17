@@ -165,7 +165,7 @@ export default function TripPlanner() {
       <div className="container-max container-padding">
         <div className="mb-14 grid gap-8 lg:grid-cols-[.8fr_1.2fr] lg:items-end">
           <div><p className="script text-4xl">Make the island yours</p><h2 className="mt-1 font-[family-name:var(--font-display)] text-5xl font-black uppercase leading-[.92] tracking-tight sm:text-6xl">Plot your<br />perfect route</h2></div>
-          <p className="max-w-xl text-base leading-7 text-black/55 lg:ml-auto">Choose the spots that interest you!<br />Click a map pin to save it, arrange your favorites, send us your list. Our drivers will review your choices and map out the best routes to make the most out of your day! </p>
+          <p className="max-w-xl text-base leading-7 text-black/55 lg:ml-auto">Choose the spots that interest you!<br />Click a map pin to save it, arrange your favorites, send us your list. Our drivers will help map out the best routes to make the most out of your day! Add any custom notes in the message. Your Day! Your Tour!</p>
         </div>
 
         <div className="grid gap-8 lg:grid-cols-[1.45fr_.55fr]">
@@ -201,11 +201,11 @@ export default function TripPlanner() {
           </div>
         </div>
 
-        <section aria-labelledby="favorites-title" className="mt-8 bg-[#eef1e7] p-6 sm:p-8 lg:p-10">
+        <section aria-labelledby="favorites-title" className="mt-8 bg-[#eef1e7] p-4 sm:p-8 lg:p-10">
           <div className="flex flex-col gap-4 border-b border-[#425f32]/15 pb-6 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <p className="text-[10px] font-bold uppercase tracking-[.2em] text-[#79924f]">Your shortlist · {favoriteStops.length} saved</p>
-              <h3 id="favorites-title" className="mt-2 font-[family-name:var(--font-display)] text-3xl font-black uppercase leading-none text-[#1e2a19] sm:text-4xl">My tour favorites</h3>
+              <h3 id="favorites-title" className="mt-2 font-[family-name:var(--font-display)] text-2xl font-black uppercase leading-none text-[#1e2a19] sm:text-4xl">My tour favorites</h3>
             </div>
             {favoriteStops.length > 0 && (
               <button type="button" onClick={() => setFavoriteStops([])} className="self-start text-[10px] font-bold uppercase tracking-[.16em] text-black/45 underline decoration-black/20 underline-offset-4 hover:text-black sm:self-auto">Clear all</button>
@@ -213,7 +213,7 @@ export default function TripPlanner() {
           </div>
 
           {favoriteStops.length === 0 ? (
-            <div className="py-10 text-center">
+            <div className="py-8 text-center sm:py-10">
               <p className="font-[family-name:var(--font-display)] text-xl font-bold uppercase text-[#425f32]">No favorites yet</p>
               <p className="mx-auto mt-2 max-w-md text-sm leading-6 text-black/50">Click any pin on the map or choose “Add favorite” from the route points. Your list will stay saved on this device.</p>
             </div>
@@ -224,13 +224,13 @@ export default function TripPlanner() {
                   const stop = stops.find((item) => item.name === name);
                   if (!stop) return null;
                   return (
-                    <li key={name} className="flex items-center gap-3 py-4 sm:gap-5">
+                    <li key={name} className="grid grid-cols-[1.75rem_minmax(0,1fr)] items-center gap-x-3 gap-y-2 py-4 sm:flex sm:gap-5">
                       <span className="w-7 shrink-0 font-[family-name:var(--font-display)] text-xl font-black text-[#79924f]">{String(index + 1).padStart(2, "0")}</span>
-                      <div className="min-w-0 flex-1">
+                      <div className="min-w-0 sm:flex-1">
                         <p className="font-bold text-[#1e2a19]">{name}</p>
                         <p className="mt-0.5 text-xs text-black/45">{stop.region} · {stop.note}</p>
                       </div>
-                      <div className="flex shrink-0 items-center gap-1" aria-label={`Edit ${name}`}>
+                      <div className="col-span-2 flex shrink-0 items-center justify-end gap-1 sm:ml-auto" aria-label={`Edit ${name}`}>
                         <button type="button" onClick={() => moveFavorite(index, -1)} disabled={index === 0} aria-label={`Move ${name} up`} className="flex h-9 w-9 items-center justify-center border border-[#425f32]/15 text-sm text-[#425f32] transition hover:bg-white disabled:cursor-not-allowed disabled:opacity-25">↑</button>
                         <button type="button" onClick={() => moveFavorite(index, 1)} disabled={index === favoriteStops.length - 1} aria-label={`Move ${name} down`} className="flex h-9 w-9 items-center justify-center border border-[#425f32]/15 text-sm text-[#425f32] transition hover:bg-white disabled:cursor-not-allowed disabled:opacity-25">↓</button>
                         <button type="button" onClick={() => toggleFavorite(name)} aria-label={`Remove ${name} from favorites`} className="ml-1 px-2 py-2 text-[10px] font-bold uppercase tracking-[.12em] text-black/45 hover:text-[#8b3f32]">Remove</button>
@@ -241,7 +241,7 @@ export default function TripPlanner() {
               </ol>
               <div className="flex flex-col gap-4 border-t border-[#425f32]/15 pt-6 sm:flex-row sm:items-center sm:justify-between">
                 <p className="max-w-md text-xs leading-5 text-black/45">Put the places in your preferred order, then send the list to Bobby. We’ll check timing, driving distances and the best route for your day.</p>
-                <TrackedWhatsAppLink href={`https://wa.me/${WHATSAPP_NUMBER}?text=${whatsappMessage}`} source="trip_planner" target="_blank" className="btn-primary bg-[#79924f] px-6 py-4 text-center">Send favorites on WhatsApp <ArrowIcon /></TrackedWhatsAppLink>
+                <TrackedWhatsAppLink href={`https://wa.me/${WHATSAPP_NUMBER}?text=${whatsappMessage}`} source="trip_planner" target="_blank" className="btn-primary w-full justify-center whitespace-normal bg-[#79924f] px-4 py-4 text-center sm:w-auto sm:whitespace-nowrap sm:px-6">Send favorites on WhatsApp <ArrowIcon /></TrackedWhatsAppLink>
               </div>
             </>
           )}
