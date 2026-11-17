@@ -44,7 +44,7 @@ export default function FullDayTours() {
                   />
                   <Link
                     href={`/tours/${tour.slug}`}
-                    className="absolute bottom-5 left-5 z-20 inline-flex items-center bg-[#fbfaf6] px-4 py-3 text-[10px] font-bold uppercase tracking-[.14em] text-[#425f32] transition hover:bg-[#b6cd72]"
+                    className="absolute bottom-5 left-5 z-20 hidden items-center bg-[#fbfaf6] px-4 py-3 text-[10px] font-bold uppercase tracking-[.14em] text-[#425f32] transition hover:bg-[#b6cd72] md:inline-flex"
                   >
                     Learn More <ArrowIcon className="ml-2 size-3.5 shrink-0" />
                   </Link>

@@ -93,7 +93,7 @@ export default async function TourDetailPage({ params }: TourPageProps) {
               {formatTourPrice(tour)}
             </p>
           </div>
-          <p className="max-w-xl text-sm leading-6 text-black/55 sm:text-base sm:leading-7">
+          <p className="text-sm leading-6 text-black/55 sm:text-base sm:leading-7">
             {tour.summary}
           </p>
         </div>
@@ -114,7 +114,7 @@ export default async function TourDetailPage({ params }: TourPageProps) {
           target="_blank"
           className="btn-primary mt-5 bg-[#79924f]"
         >
-          Book on WhatsApp <ArrowIcon className="size-3.5 shrink-0" />
+          WhatsApp Info or Booking <ArrowIcon className="size-3.5 shrink-0" />
         </TrackedWhatsAppLink>
 
         <TourGallery images={tour.gallery} tourName={tour.name} />
