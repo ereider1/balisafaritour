@@ -1,6 +1,6 @@
-import Image from "next/image";
 import Link from "next/link";
 import ArrowIcon from "@/components/arrow-icon";
+import TourCardSlider from "@/components/tour-card-slider";
 import TrackedWhatsAppLink from "@/components/tracked-whatsapp-link";
 import { formatTourPrice, HOME_TOURS } from "@/lib/tours";
 import { getTourWhatsAppHref } from "@/lib/whatsapp";
@@ -36,22 +36,15 @@ export default function FullDayTours() {
                 className={`${index === 1 ? "" : ""} group flex flex-col bg-[#fbfaf6] shadow-[0_18px_50px_rgb(30_42_25/0.09)] transition duration-500`}
               >
                 <div className="relative aspect-[4/3] overflow-hidden bg-[#263b27]">
+                  <TourCardSlider
+                    image={tour.image}
+                    gallery={tour.gallery}
+                    alt={`${tour.name} by classic Volkswagen`}
+                    href={`/tours/${tour.slug}`}
+                  />
                   <Link
                     href={`/tours/${tour.slug}`}
-                    aria-label={`View ${tour.name} details`}
-                    className="absolute inset-0"
-                  >
-                    <Image
-                      src={tour.image}
-                      alt={`${tour.name} by classic Volkswagen`}
-                      fill
-                      sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-                      className="object-cover transition duration-700 group-hover:scale-105"
-                    />
-                  </Link>
-                  <Link
-                    href={`/tours/${tour.slug}`}
-                    className="absolute bottom-5 left-5 hidden items-center bg-[#fbfaf6] px-4 py-3 text-[10px] font-bold uppercase tracking-[.14em] text-[#425f32] transition hover:bg-[#b6cd72] md:inline-flex"
+                    className="absolute left-5 top-5 hidden items-center bg-[#fbfaf6] px-4 py-3 text-[10px] font-bold uppercase tracking-[.14em] text-[#425f32] transition hover:bg-[#b6cd72] md:inline-flex"
                   >
                     More Info <ArrowIcon className="ml-2 size-3.5 shrink-0" />
                   </Link>

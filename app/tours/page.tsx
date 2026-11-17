@@ -4,6 +4,7 @@ import Link from "next/link";
 import ArrowIcon from "@/components/arrow-icon";
 import Header from "@/components/header";
 import EditorialFooter from "@/components/editorial-footer";
+import TourCardSlider from "@/components/tour-card-slider";
 import { SITES } from "@/lib/domains";
 import { formatTourPrice, TOURS } from "@/lib/tours";
 
@@ -74,43 +75,43 @@ export default function ToursPage() {
               return (
                 <article
                   key={tour.slug}
-                  className={`${featured ? "bg-[#425f32] text-white" : "bg-white text-[#20241f]"} group overflow-hidden shadow-[0_18px_50px_rgb(30_42_25/0.08)] transition duration-500 hover:-translate-y-1 hover:bg-[#425f32] hover:text-white`}
+                  className={`${featured ? "bg-[#425f32] text-white" : "bg-white text-[#20241f]"} group flex h-full flex-col overflow-hidden shadow-[0_18px_50px_rgb(30_42_25/0.08)] transition duration-500 hover:-translate-y-1 hover:bg-[#425f32] hover:text-white`}
                 >
-                  <Link href={tour.slug === "build-your-own" ? SITES.balisafari.url : `/tours/${tour.slug}`} className="flex h-full flex-col">
-                    <div className="relative aspect-[4/3] overflow-hidden bg-[#263b27]">
-                      <Image
-                        src={tour.image}
-                        alt={`${tour.name} in Bali`}
-                        fill
-                        sizes="(min-width: 1280px) 33vw, (min-width: 768px) 50vw, 100vw"
-                        className="object-cover transition duration-700 group-hover:scale-105"
-                      />
-                    </div>
-                    <div className="flex flex-1 flex-col p-7 sm:p-9">
-                      <p className="text-[10px] font-bold uppercase tracking-[.2em] text-[#8ea65d]">
-                        {tour.location} · {tour.duration}
-                      </p>
-                      <h3 className="mt-5 font-[family-name:var(--font-display)] text-3xl font-black uppercase leading-[.95] tracking-tight">
-                        {tour.name}
-                      </h3>
-                      <p className="mt-3 font-[family-name:var(--font-display)] text-lg font-black">
-                        {formatTourPrice(tour)}
-                      </p>
-                      <p className={`${featured ? "text-white/65" : "text-black/55"} mt-4 text-sm leading-6 group-hover:text-white/65`}>
-                        {tour.summary}
-                      </p>
-                      <ol className={`${featured ? "border-white/15" : "border-black/10"} mt-6 space-y-2 border-t pt-5 group-hover:border-white/15`}>
-                        {tour.stops.map((stop, stopIndex) => (
-                          <li key={stop} className={`${featured ? "text-white/72" : "text-black/60"} flex gap-3 text-xs leading-5 group-hover:text-white/72`}>
-                            <span className="font-bold text-[#8ea65d]">{String(stopIndex + 1).padStart(2, "0")}</span>
-                            {stop}
-                          </li>
-                        ))}
-                      </ol>
-                      <span className={`${featured ? "border-white/25 text-white" : "border-black/15 text-[#425f32]"} mt-6 inline-flex items-center justify-between border-t pt-5 text-[10px] font-bold uppercase tracking-[.18em] group-hover:border-white/25 group-hover:text-white`}>
-                        Explore this tour <ArrowIcon />
-                      </span>
-                    </div>
+                  <div className="relative aspect-[4/3] overflow-hidden bg-[#263b27]">
+                    <TourCardSlider
+                      image={tour.image}
+                      gallery={tour.gallery}
+                      alt={`${tour.name} in Bali`}
+                      href={tour.slug === "build-your-own" ? SITES.balisafari.url : `/tours/${tour.slug}`}
+                    />
+                  </div>
+                  <Link
+                    href={tour.slug === "build-your-own" ? SITES.balisafari.url : `/tours/${tour.slug}`}
+                    className="flex flex-1 flex-col p-7 sm:p-9"
+                  >
+                    <p className="text-[10px] font-bold uppercase tracking-[.2em] text-[#8ea65d]">
+                      {tour.location} · {tour.duration}
+                    </p>
+                    <h3 className="mt-5 font-[family-name:var(--font-display)] text-3xl font-black uppercase leading-[.95] tracking-tight">
+                      {tour.name}
+                    </h3>
+                    <p className="mt-3 font-[family-name:var(--font-display)] text-lg font-black">
+                      {formatTourPrice(tour)}
+                    </p>
+                    <p className={`${featured ? "text-white/65" : "text-black/55"} mt-4 text-sm leading-6 group-hover:text-white/65`}>
+                      {tour.summary}
+                    </p>
+                    <ol className={`${featured ? "border-white/15" : "border-black/10"} mt-6 space-y-2 border-t pt-5 group-hover:border-white/15`}>
+                      {tour.stops.map((stop, stopIndex) => (
+                        <li key={stop} className={`${featured ? "text-white/72" : "text-black/60"} flex gap-3 text-xs leading-5 group-hover:text-white/72`}>
+                          <span className="font-bold text-[#8ea65d]">{String(stopIndex + 1).padStart(2, "0")}</span>
+                          {stop}
+                        </li>
+                      ))}
+                    </ol>
+                    <span className={`${featured ? "border-white/25 text-white" : "border-black/15 text-[#425f32]"} mt-6 inline-flex items-center justify-between border-t pt-5 text-[10px] font-bold uppercase tracking-[.18em] group-hover:border-white/25 group-hover:text-white`}>
+                      Explore this tour <ArrowIcon />
+                    </span>
                   </Link>
                 </article>
               );
