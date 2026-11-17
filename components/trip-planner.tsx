@@ -171,7 +171,6 @@ export default function TripPlanner() {
         <div className="grid gap-8 lg:grid-cols-[1.45fr_.55fr]">
           <div className="overflow-hidden bg-white shadow-[0_20px_55px_rgb(30_42_25/0.12)]"><InteractiveMap stops={stops} hoveredStop={hoveredStop} onHoverStop={setHoveredStop} favoriteStops={favoriteStops} onAddFavorite={addFavorite} onToggleFavorite={toggleFavorite} /></div>
           <div>
-            <p className="mb-5 text-[10px] font-bold uppercase tracking-[.2em] text-[#425f32]">Route points</p>
             <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-3 lg:grid-cols-1">
             {stops.map((stop) => (
               <button
