@@ -18,13 +18,9 @@ export default function GuestShowcase() {
   const [guestPhotos, setGuestPhotos] = useState<GuestPhoto[]>([]);
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [touchStartX, setTouchStartX] = useState<number | null>(null);
-  const [carouselIndex, setCarouselIndex] = useState(0);
-  const carouselTouchStartX = useRef<number | null>(null);
-  const suppressCarouselClick = useRef(false);
-  const suppressCarouselClickTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const activeDotRef = useRef<HTMLButtonElement>(null);
 
   const selectedPhoto = selectedIndex !== null ? guestPhotos[selectedIndex] : null;
-  const carouselPhoto = guestPhotos[carouselIndex];
 
   useEffect(() => {
     fetch("/api/gallery")
@@ -32,6 +28,10 @@ export default function GuestShowcase() {
       .then((data: { photos?: GuestPhoto[] }) => setGuestPhotos(data.photos ?? []))
       .catch(() => setGuestPhotos([]));
   }, []);
+
+  useEffect(() => {
+    activeDotRef.current?.scrollIntoView({ block: "nearest", inline: "center" });
+  }, [selectedIndex]);
 
   useEffect(() => {
     if (selectedIndex === null) return;
@@ -75,53 +75,15 @@ export default function GuestShowcase() {
     setTouchStartX(null);
   };
 
-  const handleCarouselTouchStart = (event: React.TouchEvent<HTMLButtonElement>) => {
-    carouselTouchStartX.current = event.touches[0]?.clientX ?? null;
-  };
-
-  const handleCarouselTouchEnd = (event: React.TouchEvent<HTMLButtonElement>) => {
-    const startX = carouselTouchStartX.current;
-    const endX = event.changedTouches[0]?.clientX;
-    carouselTouchStartX.current = null;
-    if (startX === null || endX === undefined) return;
-
-    const diff = startX - endX;
-    if (Math.abs(diff) <= 50 || guestPhotos.length < 2) return;
-
-    suppressCarouselClick.current = true;
-    if (suppressCarouselClickTimeout.current) {
-      clearTimeout(suppressCarouselClickTimeout.current);
-    }
-    suppressCarouselClickTimeout.current = setTimeout(() => {
-      suppressCarouselClick.current = false;
-    }, 400);
-    setCarouselIndex(
-      (index) => (index + (diff > 0 ? 1 : -1) + guestPhotos.length) % guestPhotos.length
-    );
-  };
-
-  const renderPhoto = (photo: GuestPhoto, index: number, isCarousel = false) => (
+  const renderPhoto = (photo: GuestPhoto, index: number, isCompactGrid = false) => (
     <button
       key={photo.id || photo.src}
       type="button"
-      onClick={(event) => {
-        if (isCarousel && suppressCarouselClick.current) {
-          event.preventDefault();
-          suppressCarouselClick.current = false;
-          if (suppressCarouselClickTimeout.current) {
-            clearTimeout(suppressCarouselClickTimeout.current);
-            suppressCarouselClickTimeout.current = null;
-          }
-          return;
-        }
-        setSelectedIndex(index);
-      }}
-      onTouchStart={isCarousel ? handleCarouselTouchStart : undefined}
-      onTouchEnd={isCarousel ? handleCarouselTouchEnd : undefined}
-      aria-label={isCarousel ? `View photo ${index + 1} of ${guestPhotos.length}` : undefined}
+      onClick={() => setSelectedIndex(index)}
+      aria-label={`View photo ${index + 1} of ${guestPhotos.length}`}
       className={
-        isCarousel
-          ? "group relative aspect-[4/3] w-full touch-pan-y overflow-hidden bg-[#263b27] text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#79924f] animate-fade-in"
+        isCompactGrid
+          ? `${index === 0 || index === 3 ? "row-span-2" : ""} group relative h-full min-h-0 w-full overflow-hidden bg-[#263b27] text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#79924f]`
           : `${index === 0 || index === 9 || index === 18 ? "col-span-2 row-span-2" : ""} group relative aspect-square w-full cursor-pointer overflow-hidden bg-[#263b27] text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#79924f]`
       }
     >
@@ -146,8 +108,8 @@ export default function GuestShowcase() {
           alt={photo.alt}
           fill
           sizes={
-            isCarousel
-              ? "100vw"
+            isCompactGrid
+            ? "(max-width: 1024px) 50vw, 25vw"
               : index === 0 || index === 9 || index === 18
                 ? "(max-width: 640px) 100vw, (max-width: 1024px) 66vw, 50vw"
                 : "(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
@@ -155,7 +117,7 @@ export default function GuestShowcase() {
           className="object-cover transition-transform duration-700 group-hover:scale-105"
         />
       )}
-      {!isCarousel && (
+      {!isCompactGrid && (
         <div className="absolute inset-0 flex items-end bg-linear-to-t from-black/75 via-transparent to-transparent p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
           <p className="max-w-sm text-xs leading-5 text-white/85">{photo.alt}</p>
         </div>
@@ -211,37 +173,14 @@ export default function GuestShowcase() {
           </div>
         </div>
 
-        {carouselPhoto && (
+        {guestPhotos.length > 0 && (
           <div
-            className="mb-3 lg:hidden"
+            className="mb-3 grid auto-rows-[5.5rem] grid-cols-2 grid-flow-dense gap-3 lg:hidden"
             role="region"
-            aria-roledescription="carousel"
+            aria-roledescription="gallery"
             aria-label="Guest photos"
           >
-            {renderPhoto(carouselPhoto, carouselIndex, true)}
-            <div className="mt-3 flex items-center justify-between">
-              <button
-                type="button"
-                onClick={() =>
-                  setCarouselIndex((index) => (index - 1 + guestPhotos.length) % guestPhotos.length)
-                }
-                className="grid h-10 w-10 place-items-center rounded-full border border-black/15 text-2xl text-[#263b27] transition hover:bg-black/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#79924f]"
-                aria-label="Previous photo"
-              >
-                ‹
-              </button>
-              <p className="text-xs font-medium tabular-nums text-black/50" aria-live="polite">
-                {carouselIndex + 1} / {guestPhotos.length}
-              </p>
-              <button
-                type="button"
-                onClick={() => setCarouselIndex((index) => (index + 1) % guestPhotos.length)}
-                className="grid h-10 w-10 place-items-center rounded-full border border-black/15 text-2xl text-[#263b27] transition hover:bg-black/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#79924f]"
-                aria-label="Next photo"
-              >
-                ›
-              </button>
-            </div>
+            {guestPhotos.slice(0, 6).map((photo, index) => renderPhoto(photo, index, true))}
           </div>
         )}
 
@@ -332,7 +271,7 @@ export default function GuestShowcase() {
 
           {/* Media Container */}
           <div
-            className="relative h-[78vh] w-full max-w-5xl flex items-center justify-center"
+            className="relative flex h-[70vh] w-full max-w-5xl items-center justify-center sm:h-[78vh]"
             onClick={(event) => event.stopPropagation()}
           >
             {selectedPhoto.type === "video" ? (
@@ -340,14 +279,14 @@ export default function GuestShowcase() {
                 src={selectedPhoto.src}
                 controls
                 autoPlay
-                className="max-h-[78vh] max-w-full rounded-md outline-hidden bg-black/40"
+                className="max-h-[70vh] max-w-full rounded-md outline-hidden bg-black/40 sm:max-h-[78vh]"
                 playsInline
               />
             ) : selectedPhoto.src.startsWith("https://") ? (
               <img
                 src={selectedPhoto.src}
                 alt={selectedPhoto.alt}
-                className="max-h-[78vh] max-w-full object-contain"
+                className="max-h-[70vh] max-w-full object-contain sm:max-h-[78vh]"
               />
             ) : (
               <Image
@@ -361,12 +300,38 @@ export default function GuestShowcase() {
           </div>
 
           {/* Photo Information & Counter */}
-          <p className="absolute bottom-5 left-5 text-[10px] font-bold uppercase tracking-[.18em] text-white/65 sm:bottom-8 sm:left-10">
+          <p className="absolute bottom-14 left-5 right-5 text-[10px] font-bold uppercase tracking-[.18em] text-white/65 sm:bottom-8 sm:left-10 sm:right-auto">
             {selectedPhoto.alt}{" "}
             <span className="ml-2 text-white/40">
               ({selectedIndex + 1} of {guestPhotos.length})
             </span>
           </p>
+
+          <nav
+            className="absolute bottom-3 left-1/2 z-10 flex max-w-[70vw] -translate-x-1/2 gap-1 overflow-x-auto rounded-full bg-black/40 px-2"
+            aria-label="Photo navigation"
+            onClick={(event) => event.stopPropagation()}
+            onTouchStart={(event) => event.stopPropagation()}
+            onTouchEnd={(event) => event.stopPropagation()}
+          >
+            {guestPhotos.map((photo, index) => (
+              <button
+                key={photo.id || photo.src}
+                ref={selectedIndex === index ? activeDotRef : undefined}
+                type="button"
+                onClick={() => setSelectedIndex(index)}
+                className="grid h-8 w-6 shrink-0 place-items-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-white"
+                aria-label={`Go to photo ${index + 1}`}
+                aria-current={selectedIndex === index ? "true" : undefined}
+              >
+                <span
+                  className={`h-2 rounded-full transition-all ${
+                    selectedIndex === index ? "w-4 bg-white" : "w-2 bg-white/45"
+                  }`}
+                />
+              </button>
+            ))}
+          </nav>
         </div>
       ) : null}
     </section>

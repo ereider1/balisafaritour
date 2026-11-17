@@ -50,7 +50,7 @@ export default async function MainHome() {
             <h1 className="font-[family-name:var(--font-display)] text-[clamp(3.7rem,8vw,7.3rem)] font-black uppercase leading-[.79] tracking-[-.055em]">
               See Bali<br /><span className="script inline-block whitespace-nowrap -rotate-2 text-[clamp(.75em,9vw,1.05em)] leading-[.85] text-[#b6cd72]">with the top down</span>
             </h1>
-            <p className="mt-8 max-w-xl text-base leading-7 text-white/80 sm:text-lg">Leave the tour-bus route behind. Ride through rice fields, temple villages and mountain roads in an original open-top Volkswagen with a local driver-guide.</p>
+            <p className="mt-8 max-w-xl text-base leading-7 text-white/80 sm:text-md">Leave the tour-bus route behind. Ride through rice fields, temple villages and mountain roads in an original open-top Volkswagen with a local driver-guide.</p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a href="#tours" className="btn-primary bg-[#718b4c]">Popular Tours <ArrowIcon direction="down-right" /></a>
               <a href="#gallery" className="btn-outline">Guest Photos</a>
