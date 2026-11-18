@@ -16,8 +16,8 @@ export default function Header({
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const navigationItems = [
     { label: "Tours", href: "/tours" },
-    { label: "Map", href: "/map" },
-    { label: "Bali Guide", href: "/bali-guide" },
+    // { label: "Map", href: "/map" },
+    // { label: "Bali Guide", href: "/bali-guide" },
     { label: "Guest Photos", href: "/guest-photos" },
     { label: "Leave a Review", href: "/leave-a-review" },
   ];
@@ -41,7 +41,7 @@ export default function Header({
               />
             </div>
             <span className="hidden sm:block">
-              <b className="block font-[family-name:var(--font-display)] text-lg uppercase leading-none tracking-tight">Bali Safari Tour</b>
+              <b className="block font-(family-name:--font-display) text-lg uppercase leading-none tracking-tight">Bali Safari Tour</b>
               <small className="text-[9px] uppercase tracking-[.26em] opacity-70">Classic VW adventures</small>
             </span>
           </Link>
