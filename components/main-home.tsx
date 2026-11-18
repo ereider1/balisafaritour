@@ -22,7 +22,7 @@ export default async function MainHome() {
         <Header overlay />
         <div className="absolute inset-0">
           <Image
-            src="/hero-1.jpg"
+            src="/new-hero-bg.jpg"
             alt="Classic Volkswagen safari through Bali"
             fill
             sizes="100vw"
@@ -31,7 +31,7 @@ export default async function MainHome() {
           />
           <video
             className="absolute inset-0 h-full w-full object-cover"
-            poster="/hero-1.jpg"
+            poster="/new-hero-bg.jpg"
             autoPlay
             muted
             loop
