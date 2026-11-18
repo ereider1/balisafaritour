@@ -5,7 +5,7 @@ import FullDayTours from "@/components/full-day-tours";
 import GuestShowcase from "@/components/guest-showcase";
 import TestimonialCarousel from "@/components/testimonial-carousel";
 import TrackedWhatsAppLink from "@/components/tracked-whatsapp-link";
-import { HowItWorks, TourFaq, WhatsIncluded } from "@/components/tour-trust-sections";
+import { HowItWorks, TourFaq } from "@/components/tour-trust-sections";
 import { featuredReviews } from "@/lib/featured-reviews";
 import { listPublishedReviews } from "@/lib/reviews";
 import { GOOGLE_REVIEW_URL } from "@/lib/tour-trust-content";
@@ -65,7 +65,7 @@ export default async function MainHome() {
 
       <FullDayTours />
 
-      <WhatsIncluded />
+      {/* <WhatsIncluded /> */}
       <HowItWorks />
       <TourFaq />
 
@@ -97,7 +97,7 @@ export default async function MainHome() {
             <h2 className="mt-1 font-[family-name:var(--font-display)] text-5xl font-black uppercase leading-[.9] tracking-tight sm:text-7xl">Meet the Bali<br />behind the postcard</h2>
             <p className="mt-7 max-w-xl text-base leading-7 text-white/75">Our driver-guides grew up on these roads. They know when the light hits the terraces, which family warung makes the best lunch, and where the quiet road turns into the best part of your day.</p>
             <div className="mt-10 grid max-w-2xl grid-cols-2 gap-x-8 gap-y-7 sm:grid-cols-4">
-              {[['Private','Just your group'],['Flexible','Change as you go'],['Local','Bali-born guides'],['Original','Classic VW fleet']].map(([big, small]) => <div key={big}><b className="block font-[family-name:var(--font-display)] text-2xl uppercase">{big}</b><span className="text-xs text-white/55">{small}</span></div>)}
+              {[['Original','Classic VW fleet'],['Flexible','Change as you go'],['Local','Bali-born guides'],['Always FUN!','Guaranteed Epic Day!']].map(([big, small]) => <div key={big}><b className="block font-[family-name:var(--font-display)] text-2xl uppercase">{big}</b><span className="text-xs text-white/55">{small}</span></div>)}
             </div>
           </div>
         </div>
@@ -105,10 +105,9 @@ export default async function MainHome() {
 
 
 
-
-
-
       <GuestShowcase />
+
+
 
       <section id="reviews" className="relative overflow-hidden bg-[#f0eee5] py-24">
         <div className="container-max container-padding">
@@ -121,6 +120,7 @@ export default async function MainHome() {
           </p>
         </div>
       </section>
+
 
       <section id="contact" className="paper-edge relative overflow-hidden bg-[#263b27] py-28 text-white">
         <Image src="/tourpics/jatiluwih3.jpg" alt="Jatiluwih rice terraces" fill className="object-cover opacity-20" />

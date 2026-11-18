@@ -15,16 +15,16 @@ export default function FullDayTours() {
             Full day tours
           </h2>
           <p className="mx-auto mt-3 max-w-xl text-xs leading-5 text-black/55 sm:mt-5 sm:text-sm sm:leading-7">
-            Six favourite private routes, with your own Volkswagen and local driver-guide for the day.
+            Choose one of our popular tours, or create your own! Group rates available.
           </p>
           <Link
-            href="/tours"
+            href="https://balisafari.tours"
             className="mt-4 inline-flex items-center gap-2 text-[9px] font-bold uppercase tracking-[.18em] text-[#425f32] sm:mt-6 sm:gap-3 sm:text-[10px]"
           >
             <span className="grid h-6 w-6 place-items-center rounded-full bg-[#79924f] text-white sm:h-7 sm:w-7" aria-hidden>
               <ArrowIcon direction="right" className="size-3.5 shrink-0" />
             </span>
-            View all destinations
+            Build a custom tour
           </Link>
         </div>
 
@@ -79,7 +79,7 @@ export default function FullDayTours() {
         </div>
 
         <p className="mx-auto mt-5 max-w-2xl text-center text-xs leading-5 text-black/45 sm:mt-9 sm:text-sm">
-          Pickup and drop-off at all Bali locations are included in the price.
+          Pickup and drop-off anywhere in Bali is included in the price.
         </p>
       </div>
     </section>

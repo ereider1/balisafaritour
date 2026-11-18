@@ -12,8 +12,8 @@ export const GOOGLE_REVIEW_URL = "https://share.google/PIifERzYttfFr24Yd";
 
 export const HOW_IT_WORKS_STEPS = [
   ["Message us on WhatsApp", "Share your dates, pickup area and the kind of day you have in mind."],
-  ["We plan your route", "We will help shape your stops into a route for your day."],
-  ["We pick you up", "Meet your driver-guide and set off on your Bali tour."],
+  ["We confirm your route", "We will help shape your stops into a route for your day."],
+  ["We pick you up", "Get ready for an epic day! Let's Go!"],
 ];
 
 export const TOUR_FAQS = [

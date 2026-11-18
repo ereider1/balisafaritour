@@ -18,7 +18,7 @@ export default function Header({
   tagline = "Classic VW adventures",
   navItems = [
     { label: "Tours", href: "#tours" },
-    { label: "Our Story", href: "#why-us" },
+    // { label: "Our Story", href: "#why-us" },
     { label: "Moments", href: "#gallery" },
     { label: "Guest Stories", href: "#reviews" },
     { label: "Leave a Review", href: "/leave-a-review" },

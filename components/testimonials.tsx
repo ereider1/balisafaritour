@@ -53,7 +53,7 @@ export default function Testimonials() {
               </div>
 
               {/* Quote */}
-              <p className="mb-6 text-gray-600">"{testimonial.text}"</p>
+              <p className="mb-6 text-gray-600">&ldquo;{testimonial.text}&rdquo;</p>
 
               {/* Author */}
               <div className="flex items-center gap-4">
