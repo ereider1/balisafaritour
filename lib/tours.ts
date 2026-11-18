@@ -282,7 +282,7 @@ export const TOURS: Tour[] = [
     name: "Custom Bali Tours",
     location: "Anywhere in Bali",
     pickupArea: DEFAULT_PICKUP_AREA,
-    duration: "Full day · Your own route",
+    duration: "Full day · Your route",
     image: "/tourpics/bali_vw_01.jpg",
     gallery: [
       "/tourpics/bali_vw_01.jpg",
@@ -295,9 +295,9 @@ export const TOURS: Tour[] = [
     summary:
       "Choose your own Bali stops and shape a private Volkswagen tour around your interests.",
     stops: [
-      "Choose your favorite places",
-      "Add a temple, village, hot spring...",
-      "Set a relaxed or full day pace",
+      "Choose Half or Full Day",
+      "Select places of interest",
+      "Visit local spots",
       "Your Day. Your Tour!",
     ],
     highlights: [

@@ -40,6 +40,7 @@ export default async function MainHome() {
             disablePictureInPicture
             aria-hidden="true"
           >
+            <source src="/bobby-vw-hero-trim-compressed-v1.mp4" type="video/mp4" media="(max-width: 767px)" />
             <source src="/bobby-vw-hero.mp4" type="video/mp4" />
           </video>
         </div>

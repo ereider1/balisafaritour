@@ -7,11 +7,11 @@ import { getTourWhatsAppHref } from "@/lib/whatsapp";
 
 export default function FullDayTours() {
   return (
-    <section id="tours" className="scroll-mt-24 bg-[#f4f3ee] py-12 sm:py-24 lg:py-32">
+    <section id="tours" className="scroll-mt-2 bg-[#f4f3ee] py-12 sm:py-24 lg:py-32">
       <div className="container-max px-3 sm:px-8 lg:px-12">
         <div className="mx-auto mb-8 max-w-2xl text-center sm:mb-14">
           <p className="script text-3xl text-[#718b4c] sm:text-4xl">Choose your road</p>
-          <h2 className="mt-1 font-[family-name:var(--font-display)] text-3xl font-black uppercase leading-none tracking-tight sm:text-6xl">
+          <h2 className="mt-1 font-(family-name:--font-display) text-3xl font-black uppercase leading-none tracking-tight sm:text-6xl">
             Full day tours
           </h2>
           <p className="mx-auto mt-3 max-w-xl text-xs leading-5 text-black/55 sm:mt-5 sm:text-sm sm:leading-7">
