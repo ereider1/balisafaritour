@@ -6,7 +6,9 @@ import Link from "next/link";
 import ArrowIcon from "@/components/arrow-icon";
 import Header from "@/components/header";
 import EditorialFooter from "@/components/editorial-footer";
+// import TourCardSlider from "@/components/tour-card-slider";
 import { SITES } from "@/lib/domains";
+// import { formatTourPrice, TOURS } from "@/lib/tours";
 
 import FullDayTours from "@/components/full-day-tours";
 
