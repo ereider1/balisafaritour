@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import TripPlanner from "@/components/trip-planner";
 import DomainHero from "@/components/domain-hero";
 // import ArrowIcon from "@/components/arrow-icon";
-// import DomainBooking from "@/components/domain-booking";
+import DomainBooking from "@/components/domain-booking";
 import EditorialFooter from "@/components/editorial-footer";
 // import TrackedWhatsAppLink from "@/components/tracked-whatsapp-link";
 import { SITES } from "@/lib/domains";
@@ -150,7 +150,7 @@ export default function BaliSafariPage() {
       </section> */}
 
 
-      {/* <DomainBooking script="Ready to make it real?" title="Let a local connect the dots" description="Share your saved places, dates and hotel area. We’ll turn them into a smooth private route and handle the driving while you enjoy the island." image="/tourpics/jatiluwih3.jpg" /> */}
+      <DomainBooking script="Ready to make it real?" title="Let a local connect the dots" description="Share your saved places, dates and hotel area. We’ll turn them into a smooth private route and handle the driving while you enjoy the island." image="/tourpics/jatiluwih3.jpg" />
       
       <EditorialFooter current="balisafari" />
 

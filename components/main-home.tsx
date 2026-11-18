@@ -2,7 +2,7 @@ import Image from "next/image";
 import ArrowIcon from "@/components/arrow-icon";
 import Header from "@/components/header";
 import FullDayTours from "@/components/full-day-tours";
-import GuestShowcase from "@/components/guest-showcase";
+// import GuestShowcase from "@/components/guest-showcase";
 import TestimonialCarousel from "@/components/testimonial-carousel";
 import TrackedWhatsAppLink from "@/components/tracked-whatsapp-link";
 import { HowItWorks, TourFaq } from "@/components/tour-trust-sections";
@@ -55,7 +55,6 @@ export default async function MainHome() {
             <div className="mt-8 flex flex-wrap gap-3">
               <a href="#tours" className="btn-primary bg-[#718b4c]">Popular Tours <ArrowIcon direction="down-right" /></a>
               <div className="flex flex-col items-start gap-3">
-                <a href="#gallery" className="btn-outline">Guest Photos</a>
                 <a href="/map" className="btn-outline">BUILD YOUR ROUTE</a>
               </div>
             </div>
@@ -107,7 +106,7 @@ export default async function MainHome() {
 
 
 
-      <GuestShowcase />
+      {/* <GuestShowcase /> */}
 
 
 
