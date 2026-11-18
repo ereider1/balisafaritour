@@ -22,7 +22,7 @@ export const DEFAULT_PICKUP_AREA = "All Bali pickup and drop-off locations (incl
 export const TOURS: Tour[] = [
   {
     slug: "tabanan-tour",
-    name: "Tabanan & Jatiluwih Tours",
+    name: "Tabanan & Jatiluwih Tour",
     location: "West Bali",
     pickupArea: DEFAULT_PICKUP_AREA,
     duration: "Full day · Scenic",
@@ -68,7 +68,7 @@ export const TOURS: Tour[] = [
   },
   {
     slug: "ubud-tour",
-    name: "Ubud Tours",
+    name: "Ubud Tour",
     location: "Central Bali",
     pickupArea: DEFAULT_PICKUP_AREA,
     duration: "Full day · Culture",
@@ -119,7 +119,7 @@ export const TOURS: Tour[] = [
   },
   {
     slug: "kintamani-volcano-tour",
-    name: "Kintamani Volcano Tours",
+    name: "Kintamani Volcano Tour",
     location: "Bali Highlands",
     pickupArea: DEFAULT_PICKUP_AREA,
     duration: "Full day · Highlands",
@@ -169,7 +169,7 @@ export const TOURS: Tour[] = [
   },
   {
     slug: "uluwatu-sunset-tour",
-    name: "Uluwatu Sunset Tours",
+    name: "Uluwatu Sunset Tour",
     location: "South Bali",
     pickupArea: DEFAULT_PICKUP_AREA,
     duration: "Full day · Sunset",
@@ -220,7 +220,7 @@ export const TOURS: Tour[] = [
   },
   {
     slug: "instagram-tour",
-    name: "Instagram Tours",
+    name: "Instagram Tour",
     location: "Custom Bali",
     pickupArea: DEFAULT_PICKUP_AREA,
     duration: "Full day · Photo route",
