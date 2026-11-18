@@ -22,7 +22,7 @@ export const DEFAULT_PICKUP_AREA = "All Bali pickup and drop-off locations (incl
 export const TOURS: Tour[] = [
   {
     slug: "tabanan-tour",
-    name: "Tabanan & Jatiluwih Tour",
+    name: "Tabanan & Jatiluwih",
     location: "West Bali",
     pickupArea: DEFAULT_PICKUP_AREA,
     duration: "Full day · Scenic",
@@ -38,7 +38,12 @@ export const TOURS: Tour[] = [
       "Pair the dramatic coast at Tanah Lot with the wide-open green of Jatiluwih. This private drive through Tabanan is a relaxed way to see temple, countryside and rice-terrace scenery in one flexible day.",
     summary:
       "Explore Tabanan's coast and countryside, from Tanah Lot Temple to the Jatiluwih rice terraces.",
-    stops: ["Tanah Lot Temple", "Coffee Plantation", "Jatiluwih Rice Terrace"],
+    stops: [
+      "Taman Ayun Temple",
+      "Ulun Danu Beratan Temple",
+      "Jatiluwih Rice Terrace",
+      "Tanah Lot Temple"
+    ],
     highlights: [
       "See the ocean-side setting of Tanah Lot Temple",
       "Take in the UNESCO-listed Jatiluwih rice terraces",
@@ -66,6 +71,8 @@ export const TOURS: Tour[] = [
     currency: "USD",
     priceBasis: DEFAULT_PRICE_BASIS,
   },
+
+
   {
     slug: "ubud-tour",
     name: "Ubud Tour",
@@ -87,8 +94,8 @@ export const TOURS: Tour[] = [
     stops: [
       "Barong Dance",
       "Ubud Art Market",
-      "Silver Jewelry or Painting",
-      "Tegalalang Rice Terrace",
+      "Tegenungan Waterfall/Rice Terraces",
+      "Monkey Forest Sanctuary",
     ],
     highlights: [
       "Experience a traditional Barong dance performance",
@@ -136,9 +143,10 @@ export const TOURS: Tour[] = [
     summary:
       "Follow a highland route through rice terraces and coffee country to Mount Batur views.",
     stops: [
-      "Tegalalang Rice Terrace",
-      "Coffee Plantation",
+      "Tirta Empul Holy Spring Temple",
       "Mount Batur View",
+      "Coffee Plantation",
+      "Tegalalang Rice Terrace",
     ],
     highlights: [
       "See Mount Batur and its volcanic landscape from Kintamani",
@@ -187,9 +195,9 @@ export const TOURS: Tour[] = [
       "Follow the south-coast road to Uluwatu Temple, sunset views and the Kecak fire dance.",
     stops: [
       "Pandawa Beach",
+      "Garuda Wisnu Kencan",
       "Uluwatu Temple",
       "Kecak Fire Dance",
-      "Jimbaran Bay",
     ],
     highlights: [
       "Enjoy a coastal drive through South Bali",
@@ -282,8 +290,9 @@ export const TOURS: Tour[] = [
       "Choose your own Bali stops and shape a private Volkswagen tour around your interests.",
     stops: [
       "Choose your favorite places",
-      "Add a village, garden or hot spring",
+      "Add a temple, village, hot spring...",
       "Set a relaxed or full day pace",
+      "Your Day. Your Tour!",
     ],
     highlights: [
       "Start with your own wish list rather than a fixed itinerary",
@@ -329,7 +338,11 @@ export const TOURS: Tour[] = [
       "Explore Bali's greener side with a route linking the Monkey Forest, Gunung Kawi Sebatu and Ulu Petanu Waterfall. Spend time among the forest paths and temple surroundings, then enjoy a scenic drive between stops.",
     summary:
       "Pair the Monkey Forest with Gunung Kawi Sebatu and Ulu Petanu Waterfall.",
-    stops: ["Monkey Forest", "Gunung Kawi Sebatu", "Ulu Petanu Waterfall"],
+    stops: [
+      "Monkey Forest",
+      "Gunung Kawi Sebatu",
+      "Ulu Petanu Waterfall"
+    ],
     highlights: [
       "Walk among the trees at the Monkey Forest",
       "Visit the temple setting of Gunung Kawi Sebatu",

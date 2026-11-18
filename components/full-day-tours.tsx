@@ -59,9 +59,18 @@ export default function FullDayTours() {
                       {tour.name}
                     </Link>
                   </h3>
-                  <p className="mt-2 text-xs leading-4 text-black/55 sm:mt-4 sm:text-sm sm:leading-6">{tour.description}</p>
+                  <ol className="mt-2 space-y-1.5 border-t border-black/10 pt-3 text-[10px] leading-4 text-black/60 sm:mt-4 sm:space-y-2 sm:pt-5 sm:text-xs sm:leading-5">
+                    {tour.stops.map((stop, stopIndex) => (
+                      <li key={stop} className="flex gap-2 sm:gap-3">
+                        <span className="shrink-0 font-bold text-[#79924f]">
+                          {String(stopIndex + 1).padStart(2, "0")}
+                        </span>
+                        {stop}
+                      </li>
+                    ))}
+                  </ol>
 
-                  <div className="mt-auto flex flex-wrap items-center justify-between gap-2 border-t border-black/10 pt-3 sm:gap-4 sm:pt-6">
+                  <div className="mt-4 flex flex-wrap items-center justify-between gap-2 border-t border-black/10 pt-3 sm:gap-4 sm:pt-6">
 
                     <p className="font-[family-name:var(--font-display)] text-base font-black tracking-tight text-[#425f32] sm:text-xl">
                       {formatTourPrice(tour)}

@@ -63,13 +63,14 @@ export default async function MainHome() {
         <div className="absolute bottom-0 left-0 z-10 flex w-full justify-end px-5 pb-5 text-[10px] uppercase tracking-[.2em] text-white/60 sm:px-12">Private · Flexible · Island-wide</div>
       </div>
 
+
       <FullDayTours />
 
       {/* <WhatsIncluded /> */}
+
       <HowItWorks />
+
       <TourFaq />
-
-
 
 
       {/* <section id="vwadventure" className="relative min-h-[400px] overflow-hidden bg-[#fcfcfc] text-white">
