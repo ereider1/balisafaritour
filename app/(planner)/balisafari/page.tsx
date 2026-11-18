@@ -3,10 +3,10 @@
 import type { Metadata } from "next";
 import TripPlanner from "@/components/trip-planner";
 import DomainHero from "@/components/domain-hero";
-import ArrowIcon from "@/components/arrow-icon";
-import DomainBooking from "@/components/domain-booking";
+// import ArrowIcon from "@/components/arrow-icon";
+// import DomainBooking from "@/components/domain-booking";
 import EditorialFooter from "@/components/editorial-footer";
-import TrackedWhatsAppLink from "@/components/tracked-whatsapp-link";
+// import TrackedWhatsAppLink from "@/components/tracked-whatsapp-link";
 import { SITES } from "@/lib/domains";
 
 const site = SITES.balisafari;
@@ -40,46 +40,46 @@ export const metadata: Metadata = {
   },
 };
 
-const tours = [
-  {
-    name: "Bali Monkey Forest",
-    duration: "Full day · Nature",
-    summary: "Go deeper into Bali's green interior on a circuit of four very different jungle waterfalls.",
-    stops: ["Monkey Forest", "Gunung Kawi Sebatu", "Ulu Petanu Waterfall"],
-  },
-  {
-    name: "Bali Ubud Tour",
-    duration: "Full day · Culture",
-    summary: "Trace Bali's spiritual landscape through mountain sanctuaries and ancient stone shrines.",
-    stops: ["Barong Dance", "Ubud Art Market", "Silver Jewelry / Paintings", "Tegalalang Rice Terrace"],
-  },
-  {
-    name: "Kintamani Volcano Tour",
-    duration: "Full day · Highlands",
-    summary: "Culture, craft villages and rice terraces on the road to Mount Batur and its crater lake.",
-    stops: ["Tegalalang Rice Terrace", "Coffee Plantation", "Mount Batur View"],
-  },
-  {
-    name: "Uluwatu Sunset Tour",
-    duration: "Full day · Sunset",
-    summary: "Clifftop temple views, the rhythmic Kecak fire dance and an easy evening on the coast.",
-    stops: ["Pandawa Beach", "Uluwatu Temple", "Kecak Fire Dance", "Jimbaran Bay"],
-  },
-  {
-    name: "Tabanan Tour",
-    duration: "Full day · Scenic",
-    summary: "Experience incredible views of Bali, local villages, and the Ubud Market.",
-    stops: ["Tanah Lot Temple", "Coffee Plantation", "Jatiluwih Rice Terrace"],
-  },
-  {
-    name: "Instagram Tour",
-    duration: "Full day · Photo route",
-    summary: "A camera-ready loop through Bali's best-known temples, volcano, terrace and swing viewpoints.",
-    stops: ["Custom Route", "Bali Swing", "Waterfalls", "Temples", "Rice Terraces"],
-  },
-];
+// const tours = [
+//   {
+//     name: "Bali Monkey Forest",
+//     duration: "Full day · Nature",
+//     summary: "Go deeper into Bali's green interior on a circuit of four very different jungle waterfalls.",
+//     stops: ["Monkey Forest", "Gunung Kawi Sebatu", "Ulu Petanu Waterfall"],
+//   },
+//   {
+//     name: "Bali Ubud Tour",
+//     duration: "Full day · Culture",
+//     summary: "Trace Bali's spiritual landscape through mountain sanctuaries and ancient stone shrines.",
+//     stops: ["Barong Dance", "Ubud Art Market", "Silver Jewelry / Paintings", "Tegalalang Rice Terrace"],
+//   },
+//   {
+//     name: "Kintamani Volcano Tour",
+//     duration: "Full day · Highlands",
+//     summary: "Culture, craft villages and rice terraces on the road to Mount Batur and its crater lake.",
+//     stops: ["Tegalalang Rice Terrace", "Coffee Plantation", "Mount Batur View"],
+//   },
+//   {
+//     name: "Uluwatu Sunset Tour",
+//     duration: "Full day · Sunset",
+//     summary: "Clifftop temple views, the rhythmic Kecak fire dance and an easy evening on the coast.",
+//     stops: ["Pandawa Beach", "Uluwatu Temple", "Kecak Fire Dance", "Jimbaran Bay"],
+//   },
+//   {
+//     name: "Tabanan Tour",
+//     duration: "Full day · Scenic",
+//     summary: "Experience incredible views of Bali, local villages, and the Ubud Market.",
+//     stops: ["Tanah Lot Temple", "Coffee Plantation", "Jatiluwih Rice Terrace"],
+//   },
+//   {
+//     name: "Instagram Tour",
+//     duration: "Full day · Photo route",
+//     summary: "A camera-ready loop through Bali's best-known temples, volcano, terrace and swing viewpoints.",
+//     stops: ["Custom Route", "Bali Swing", "Waterfalls", "Temples", "Rice Terraces"],
+//   },
+// ];
 
-const whatsappBase = "https://wa.me/6281237812783?text=";
+// const whatsappBase = "https://wa.me/6281237812783?text=";
 
 export default function BaliSafariPage() {
   return (
@@ -94,8 +94,9 @@ export default function BaliSafariPage() {
       />
       <TripPlanner />
 
+
       {/* Popular Tours Grid Section from add-this.png */}
-      <section id="popular-tours" className="scroll-mt-24 bg-[#f4f3ee] py-24 lg:py-32">
+      {/* <section id="popular-tours" className="scroll-mt-24 bg-[#f4f3ee] py-24 lg:py-32">
         <div className="container-max container-padding">
           <div className="mb-14 text-center">
             <p className="script text-4xl text-[#718b4c]">What kind of day fits?</p>
@@ -146,10 +147,10 @@ export default function BaliSafariPage() {
             })}
           </div>
         </div>
-      </section>
+      </section> */}
 
 
-      <DomainBooking script="Ready to make it real?" title="Let a local connect the dots" description="Share your saved places, dates and hotel area. We’ll turn them into a smooth private route and handle the driving while you enjoy the island." image="/tourpics/jatiluwih3.jpg" />
+      {/* <DomainBooking script="Ready to make it real?" title="Let a local connect the dots" description="Share your saved places, dates and hotel area. We’ll turn them into a smooth private route and handle the driving while you enjoy the island." image="/tourpics/jatiluwih3.jpg" /> */}
       
       <EditorialFooter current="balisafari" />
 
