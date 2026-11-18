@@ -10,6 +10,9 @@ import TourCardSlider from "@/components/tour-card-slider";
 import { SITES } from "@/lib/domains";
 import { formatTourPrice, TOURS } from "@/lib/tours";
 
+import FullDayTours from "@/components/full-day-tours";
+
+
 export const metadata: Metadata = {
   title: "Custom VW Safari Bali Tours",
   description:
@@ -51,7 +54,11 @@ export default function ToursPage() {
         </div>
       </section>
 
-      <section id="tour-options" className="scroll-mt-24 py-24 lg:py-32">
+
+      <FullDayTours />
+
+
+      {/* <section id="tour-options" className="scroll-mt-24 py-24 lg:py-32">
         <div className="container-max container-padding">
           <div className="mb-14 text-center">
             <p className="script text-4xl text-[#718b4c]">What kind of day fits?</p>
@@ -113,7 +120,7 @@ export default function ToursPage() {
             })}
           </div>
         </div>
-      </section>
+      </section> */}
 
       <section id="build-your-own" className="scroll-mt-24 bg-[#425f32] py-20 text-white lg:py-24">
         <div className="container-max container-padding grid gap-8 lg:grid-cols-[1.3fr_.7fr] lg:items-end">
