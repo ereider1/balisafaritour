@@ -3,9 +3,9 @@ import GuestShowcase from "@/components/guest-showcase";
 import DomainHero from "@/components/domain-hero";
 import DomainBooking from "@/components/domain-booking";
 import EditorialFooter from "@/components/editorial-footer";
-import FullDayTours from "@/components/full-day-tours";
+// import FullDayTours from "@/components/full-day-tours";
 import { SITES } from "@/lib/domains";
-import BaliVideoStories from "@/components/balivideostories";
+// import BaliVideoStories from "@/components/balivideostories";
 
 const site = SITES.vwbali;
 
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: `${site.url}${site.path}`,
-    siteName: "VW Bali Tours",
+    siteName: "Bali Safari Tour",
     title: site.title,
     description: site.description,
     images: [
@@ -51,9 +51,13 @@ export default function VwBaliPage() {
         ctaLabel="Meet our guests"
         ctaHref="#gallery"
       />
-      <BaliVideoStories />
+
+      {/* <BaliVideoStories /> */}
+
       <GuestShowcase />
-      <FullDayTours />
+
+      {/* <FullDayTours /> */}
+
       <DomainBooking
         script="Make your own memories"
         title="Be part of the next story"
@@ -61,6 +65,7 @@ export default function VwBaliPage() {
         image="/gallerypics/bali_vw_24.jpg"
       />
       <EditorialFooter current="vwbali" />
+
     </main>
   );
 }

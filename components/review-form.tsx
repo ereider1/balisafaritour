@@ -139,7 +139,19 @@ export default function ReviewForm() {
       <div className="mt-8 grid gap-7 sm:grid-cols-2">
         <label className="block"><span className={labelClass}>Your name *</span><input className={inputClass} name="name" required placeholder="The name you'd like us to use" /></label>
         <label className="block"><span className={labelClass}>Country / region</span><select className={inputClass} name="country" defaultValue=""><option value="">Optional — select your country</option>{countryOptions.map((country) => <option key={country}>{country}</option>)}</select></label>
-        <label className="block"><span className={labelClass}>Which tour did you take? *</span><select className={inputClass} name="tour" required defaultValue=""><option value="" disabled>Select a route</option><option>Bali Temples Tour</option><option>Bali Waterfall Tour</option><option>Kintamani Volcano Tour</option><option>Uluwatu Sunset Tour</option><option>Bali Swing and Ubud Tour</option><option>Jatiluwih & Tanah Lot Tour</option><option>Gates of Heaven Tour</option><option>A custom / private route</option></select></label>
+        <label className="block"><span className={labelClass}>Which tour did you take? *</span>
+        
+        <select className={inputClass} name="tour" required defaultValue="">
+          <option value="" disabled>Select a route</option>
+          <option>Tabanan & Jatiluwih</option>
+          <option>Ubud Tour</option>
+          <option>Kintamani Volcano Tour</option>
+          <option>Uluwatu Sunset Tour</option>
+          <option>Instagram Tour</option>
+          <option>Custom Route</option>
+        </select>
+        
+        </label>
         <label className="block"><span className={labelClass}>When did you travel?</span><input className={inputClass} name="date" type="date" /></label>
       </div>
 

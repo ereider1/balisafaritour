@@ -81,9 +81,8 @@ export const TOURS: Tour[] = [
     location: "Central Bali",
     pickupArea: DEFAULT_PICKUP_AREA,
     duration: "Full day · Culture",
-    image: "/tourpics/ubud/ubud-06.jpg",
+    image: "/tourpics/ubud/ubud-01.jpg",
     gallery: [
-      "/tourpics/ubud/ubud-06.jpg",
       "/tourpics/ubud/ubud-01.jpg",
       "/tourpics/ubud-market.jpg",
       "/tourpics/monkey-forest-3.jpg",
