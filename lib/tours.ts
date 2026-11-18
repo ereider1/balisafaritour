@@ -32,6 +32,7 @@ export const TOURS: Tour[] = [
       "/tourpics/tabanan-jatiluwih/tabanan-Jatiluwih-06.jpg",
       "/tourpics/tabanan-jatiluwih/tabanan-Jatiluwih-07.jpg",
       "/tourpics/tabanan-jatiluwih/tabanan-Jatiluwih-03.jpg",
+      "/tourpics/tabanan-jatiluwih/tabanan-white-tree.jpg",
       "/tourpics/jatiluwih3.jpg",
       "/tourpics/Jatiluwih-001.jpg",
       "/tourpics/bali_vw_13.jpg",
@@ -42,7 +43,7 @@ export const TOURS: Tour[] = [
       "Explore Tabanan's coast and countryside, from Tanah Lot Temple to the Jatiluwih rice terraces.",
     stops: [
       "Taman Ayun Temple",
-      "Ulun Danu Beratan Temple",
+      "Kayu Putih (White Tree).",
       "Jatiluwih Rice Terrace",
       "Tanah Lot Temple"
     ],
