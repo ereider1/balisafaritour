@@ -10,6 +10,11 @@ const nextConfig: NextConfig = {
   compress: true,
   poweredByHeader: false,
   reactStrictMode: true,
+  redirects: async () => [
+    { source: "/balisafari", destination: "/map", permanent: true },
+    { source: "/gobali", destination: "/bali-guide", permanent: true },
+    { source: "/vwbali", destination: "/guest-photos", permanent: true },
+  ],
   headers: async () => [
     {
       source: "/images/:path*",

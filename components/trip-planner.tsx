@@ -24,7 +24,7 @@ const stops: MapStop[] = [
     note: "Iconic sea temple - go for sunset.",
     detail: "A wave-washed temple reached along Bali's dramatic west coast.",
     image: "/tourpics/tanah-lot.jpg",
-    learnMoreHref: `${SITES.gobali.url}#tanah-lot`,
+    learnMoreHref: `${SITES.gobali.path}#tanah-lot`,
     category: "landmark",
     position: [-8.6212, 115.0868],
   },
@@ -34,7 +34,7 @@ const stops: MapStop[] = [
     note: "Clifftop temple with Kecak fire dance at dusk.",
     detail: "Pair the ocean views with the evening dance, and secure loose belongings near the monkeys.",
     image: "/tourpics/uluwatu.jpg",
-    learnMoreHref: `${SITES.gobali.url}#uluwatu`,
+    learnMoreHref: `${SITES.gobali.path}#uluwatu`,
     category: "landmark",
     position: [-8.8291, 115.0849],
   },
@@ -44,7 +44,7 @@ const stops: MapStop[] = [
     note: "Ancient temples and resident macaques.",
     detail: "Shaded paths wind through a living sanctuary of banyan trees, shrines, and more than 1,000 macaques.",
     image: "/tourpics/monkey-forest-3.jpg",
-    learnMoreHref: `${SITES.gobali.url}#monkey-forest`,
+    learnMoreHref: `${SITES.gobali.path}#monkey-forest`,
     category: "nature",
     position: [-8.5188, 115.2589],
   },
@@ -54,7 +54,7 @@ const stops: MapStop[] = [
     note: "Handwoven textiles, carvings, and souvenirs.",
     detail: "Visit early for cooler lanes, lighter crowds, and a relaxed browse through Ubud's cultural center.",
     image: "/tourpics/ubud-market.jpg",
-    learnMoreHref: `${SITES.gobali.url}#ubud-market`,
+    learnMoreHref: `${SITES.gobali.path}#ubud-market`,
     category: "adventure",
     position: [-8.5069, 115.2624],
   },
@@ -64,7 +64,7 @@ const stops: MapStop[] = [
     note: "11th-century shrines carved into a river valley.",
     detail: "The atmospheric complex sits below roughly 300 steps, surrounded by river and rice-field scenery.",
     image: "/tourpics/gunung-kawi-01.jpg",
-    learnMoreHref: `${SITES.gobali.url}#gunung-kawi`,
+    learnMoreHref: `${SITES.gobali.path}#gunung-kawi`,
     category: "landmark",
     position: [-8.4144, 115.3139],
   },
@@ -74,7 +74,7 @@ const stops: MapStop[] = [
     note: "UNESCO-listed terraces on Mount Batukaru's slopes.",
     detail: "Walk the quiet subak irrigation trails for wide green views well beyond the roadside lookout.",
     image: "/tourpics/jatiluwih3.jpg",
-    learnMoreHref: `${SITES.gobali.url}#jatiluwih`,
+    learnMoreHref: `${SITES.gobali.path}#jatiluwih`,
     category: "nature",
     position: [-8.3714, 115.1281],
   },
@@ -84,7 +84,7 @@ const stops: MapStop[] = [
     note: "Quiet villages and rolling rice paddies.",
     detail: "A slower stretch of rural Bali, with village temples, farm roads, and roadside coffee stops.",
     image: "/tourpics/tabanan-02.jpg",
-    learnMoreHref: `${SITES.gobali.url}#tabanan`,
+    learnMoreHref: `${SITES.gobali.path}#tabanan`,
     category: "nature",
     position: [-8.5382, 115.1249],
   },
@@ -94,7 +94,7 @@ const stops: MapStop[] = [
     note: "Caldera views over an active volcano and lake.",
     detail: "Cool highland air and sweeping crater views make this a scenic alternative to the pre-dawn summit trek.",
     image: "/tourpics/volcano.jpg",
-    learnMoreHref: `${SITES.gobali.url}#volcano`,
+    learnMoreHref: `${SITES.gobali.path}#volcano`,
     category: "adventure",
     position: [-8.2422, 115.3752],
   },
@@ -254,14 +254,13 @@ export default function TripPlanner() {
         <div className="mt-20 border-t border-black/10 pt-8 text-center">
           <p className="text-xs leading-6 text-black/45">
             Want more detail on each stop? Read{" "}
-            <a href={SITES.gobali.url} className="font-bold text-[#425f32] hover:underline">
+            <a href={SITES.gobali.path} className="font-bold text-[#425f32] hover:underline">
               our full attraction guides
-            </a>{" "}
-            at {SITES.gobali.url.replace("https://", "")}, or see{" "}
-            <a href={SITES.vwbali.url} className="font-bold text-[#425f32] hover:underline">
+            </a>
+            , or see{" "}
+            <a href={SITES.vwbali.path} className="font-bold text-[#425f32] hover:underline">
               what past guests experienced
-            </a>{" "}
-            at {SITES.vwbali.url.replace("https://", "")}.
+            </a>.
           </p>
         </div>
       </div>

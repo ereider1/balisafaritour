@@ -134,14 +134,13 @@ export default function Tours() {
         <div className="mt-8 text-center text-sm text-gray-500">
           <p>
             Not sure which stops to pick? See{" "}
-            <a href={SITES.gobali.url} className="text-primary-600 hover:underline">
+            <a href={SITES.gobali.path} className="text-primary-600 hover:underline">
               our full guide to Bali&apos;s top attractions
-            </a>{" "}
-            at {SITES.gobali.url.replace("https://", "")}, or map out a route with{" "}
-            <a href={SITES.balisafari.url} className="text-primary-600 hover:underline">
+            </a>
+            , or map out a route with{" "}
+            <a href={SITES.balisafari.path} className="text-primary-600 hover:underline">
               our interactive trip planner
-            </a>{" "}
-            at {SITES.balisafari.url.replace("https://", "")}.
+            </a>.
           </p>
         </div>
       </div>

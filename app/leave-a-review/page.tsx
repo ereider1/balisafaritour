@@ -21,14 +21,7 @@ export default function LeaveAReviewPage() {
   return (
     <main className="min-h-screen overflow-hidden bg-[#fbfaf6] text-[#20241f]">
       <section className="relative min-h-[58vh] overflow-hidden bg-[#263b27] text-white">
-        <Header
-          overlay
-          navItems={[
-            { label: "Why review?", href: "#why-review" },
-            { label: "Your experience", href: "#review-form" },
-            { label: "Back home", href: "/" },
-          ]}
-        />
+        <Header overlay />
         <Image
           src="/gallerypics/bali_vw_18.jpg"
           alt="Guests enjoying a classic Volkswagen tour in Bali"

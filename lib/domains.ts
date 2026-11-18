@@ -2,6 +2,7 @@ export type SiteKey = "main" | "vwbali" | "gobali" | "balisafari";
 
 export interface SiteConfig {
   key: SiteKey;
+  label: string;
   url: string;
   path: string;
   title: string;
@@ -11,6 +12,7 @@ export interface SiteConfig {
 export const SITES: Record<SiteKey, SiteConfig> = {
   main: {
     key: "main",
+    label: "Home",
     url: "https://balisafaritour.com",
     path: "/",
     title: "Custom VW Safari Bali Tours | Private Volkswagen Adventures",
@@ -19,24 +21,27 @@ export const SITES: Record<SiteKey, SiteConfig> = {
   },
   vwbali: {
     key: "vwbali",
-    url: "https://balivw.tours",
-    path: "/vwbali",
+    label: "Guest Photos",
+    url: "https://balisafaritour.com",
+    path: "/guest-photos",
     title: "Guest Experiences | VW Bali Tours",
     description:
       "See real guest photos and videos from classic Volkswagen safari tours across Bali - genuine moments from real trips, shared by the travelers who took them.",
   },
   gobali: {
     key: "gobali",
-    url: "https://gobali.tours",
-    path: "/gobali",
+    label: "Bali Guide",
+    url: "https://balisafaritour.com",
+    path: "/bali-guide",
     title: "Bali Attractions Guide | Go Bali Tours",
     description:
       "A comprehensive guide to Bali's must-see tourist attractions - temples, rice terraces, markets, and viewpoints - with tips for visiting each one on a guided VW safari tour.",
   },
   balisafari: {
     key: "balisafari",
-    url: "https://balisafari.tours",
-    path: "/balisafari",
+    label: "Map",
+    url: "https://balisafaritour.com",
+    path: "/map",
     title: "Interactive Map & Trip Planner | Bali Safari Tours",
     description:
       "Plan your Bali VW safari route with an interactive map and day-by-day itinerary guide covering the island's top attractions.",

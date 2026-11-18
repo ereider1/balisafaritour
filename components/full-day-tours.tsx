@@ -18,7 +18,7 @@ export default function FullDayTours() {
             Choose one of our popular tours, or create your own! Group rates available.
           </p>
           <Link
-            href="https://balisafari.tours"
+            href="/map"
             className="mt-4 inline-flex items-center gap-2 text-[9px] font-bold uppercase tracking-[.18em] text-[#425f32] sm:mt-6 sm:gap-3 sm:text-[10px]"
           >
             <span className="grid h-6 w-6 place-items-center rounded-full bg-[#79924f] text-white sm:h-7 sm:w-7" aria-hidden>

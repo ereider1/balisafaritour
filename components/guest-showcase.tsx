@@ -209,14 +209,13 @@ export default function GuestShowcase() {
               View more photos on INSTAGRAM
             </a>
             <br />
-            <a href={SITES.gobali.url} className="font-bold text-[#425f32] hover:underline">
-             View our full guide to Bali&apos;s attractions
-            </a>{" "}
-            at {SITES.gobali.url.replace("https://", "")}, or plan your own route with{" "}
-            <a href={SITES.balisafari.url} className="font-bold text-[#425f32] hover:underline">
+            <a href={SITES.gobali.path} className="font-bold text-[#425f32] hover:underline">
+              View our full guide to Bali&apos;s attractions
+            </a>
+            , or plan your own route with{" "}
+            <a href={SITES.balisafari.path} className="font-bold text-[#425f32] hover:underline">
               our trip planner
-            </a>{" "}
-            at {SITES.balisafari.url.replace("https://", "")}.
+            </a>.
           </p>
         </div>
       </div>

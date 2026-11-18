@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { headers } from "next/headers";
-import { siteForHost } from "@/lib/domains";
+import { SITES, siteForHost } from "@/lib/domains";
 import { TOURS } from "@/lib/tours";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -17,6 +17,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   ];
 
   if (site.key === "main") {
+    entries.push(
+      ...[SITES.balisafari, SITES.gobali, SITES.vwbali].map((page) => ({
+        url: `${site.url}${page.path}`,
+        lastModified: new Date(),
+        changeFrequency: "monthly" as const,
+        priority: 0.7,
+      })),
+    );
+
     entries.push({
       url: `${site.url}/tours`,
       lastModified: new Date(),

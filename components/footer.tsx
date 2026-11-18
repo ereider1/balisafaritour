@@ -12,7 +12,7 @@ export default async function Footer() {
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           <div>
-            <h3 className="text-lg font-bold mb-4">VW Tours Bali</h3>
+            <h3 className="text-lg font-bold mb-4">Bali Safari Tour</h3>
             <p className="text-gray-400">
               Premium Volkswagen tour experiences in beautiful Bali.
             </p>
@@ -35,13 +35,13 @@ export default async function Footer() {
           </div>
         </div>
         <div className="border-t border-gray-700 pt-8 text-center text-gray-400">
-          <p>&copy; 2026 VW Tours Bali. All rights reserved.</p>
+          <p>&copy; 2026 Bali Safari Tour. All rights reserved.</p>
           <p className="mt-2 text-sm">
-            Part of VW Tour Bali —{" "}
+            Explore more —{" "}
             {otherSites.map((s, i) => (
               <span key={s.key}>
-                <a href={s.url} className="hover:text-white">
-                  {s.url.replace("https://", "")}
+                <a href={s.path} className="hover:text-white">
+                  {s.label}
                 </a>
                 {i < otherSites.length - 1 ? " · " : ""}
               </span>

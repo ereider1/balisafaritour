@@ -2,29 +2,25 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { FaBars, FaTimes } from "react-icons/fa";
 import TrackedWhatsAppLink from "@/components/tracked-whatsapp-link";
 
 interface HeaderProps {
   overlay?: boolean;
-  brand?: string;
-  tagline?: string;
-  navItems?: { label: string; href: string }[];
 }
 
 export default function Header({
   overlay = false,
-  brand = "Bali Safari Tour",
-  tagline = "Classic VW adventures",
-  navItems = [
-    { label: "Tours", href: "#tours" },
-    // { label: "Our Story", href: "#why-us" },
-    { label: "Moments", href: "#gallery" },
-    { label: "Guest Stories", href: "#reviews" },
-    { label: "Leave a Review", href: "/leave-a-review" },
-  ],
 }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const navigationItems = [
+    { label: "Tours", href: "/tours" },
+    { label: "Map", href: "/map" },
+    { label: "Bali Guide", href: "/bali-guide" },
+    { label: "Guest Photos", href: "/guest-photos" },
+    { label: "Leave a Review", href: "/leave-a-review" },
+  ];
 
   return (
     <header className={`${overlay ? "absolute text-white" : "sticky bg-[#fbfaf6] text-[#20241f] shadow-sm"} top-0 z-50 w-full`}>
@@ -34,7 +30,7 @@ export default function Header({
       <nav className="container-max container-padding py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <a href="https://balisafaritour.com" className="flex items-center gap-2">
+          <Link href="/" className="flex items-center gap-2">
             <div className="flex h-11 w-11 items-center justify-center rounded-full border border-white/30 bg-white/90 p-2">
               <Image
                 src="/vw-logo-black.svg"
@@ -45,14 +41,14 @@ export default function Header({
               />
             </div>
             <span className="hidden sm:block">
-              <b className="block font-[family-name:var(--font-display)] text-lg uppercase leading-none tracking-tight">{brand}</b>
-              <small className="text-[9px] uppercase tracking-[.26em] opacity-70">{tagline}</small>
+              <b className="block font-[family-name:var(--font-display)] text-lg uppercase leading-none tracking-tight">Bali Safari Tour</b>
+              <small className="text-[9px] uppercase tracking-[.26em] opacity-70">Classic VW adventures</small>
             </span>
-          </a>
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden items-center gap-8 md:flex">
-            {navItems.map((item) => (
+            {navigationItems.map((item) => (
               <a
                 key={item.label}
                 href={item.href}
@@ -83,7 +79,7 @@ export default function Header({
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
           <div className={`${overlay ? "border-white/30 bg-[#263b27]/95 text-white" : "border-black/10 bg-[#fbfaf6] text-[#20241f]"} mt-4 space-y-2 border-t p-4 md:hidden`}>
-            {navItems.map((item) => (
+            {navigationItems.map((item) => (
               <a
                 key={item.label}
                 href={item.href}
@@ -93,9 +89,9 @@ export default function Header({
                 {item.label}
               </a>
             ))}
-            <a href="#contact" className="btn-primary mt-4 block w-full text-center">
+            <Link href="/map" className="btn-primary mt-4 block w-full text-center">
               Plan my tour
-            </a>
+            </Link>
           </div>
         )}
       </nav>

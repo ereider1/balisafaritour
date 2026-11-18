@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import ArrowIcon from "@/components/arrow-icon";
+import Header from "@/components/header";
 import TestimonialCarousel from "@/components/testimonial-carousel";
 import TrackedWhatsAppLink from "@/components/tracked-whatsapp-link";
 import { HowItWorks, TourFaq, WhatsIncluded } from "@/components/tour-trust-sections";
@@ -50,6 +51,7 @@ export default async function BaliVwTourLandingPage() {
   return (
     <main className="min-h-screen bg-[#fbfaf6] text-[#20241f]">
       <section className="relative min-h-[78vh] overflow-hidden bg-[#263b27] text-white">
+        <Header overlay />
         <Image
           src="/hero-1.jpg"
           alt="Classic Volkswagen tour in Bali"
@@ -59,7 +61,7 @@ export default async function BaliVwTourLandingPage() {
           className="object-cover"
         />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(21,37,25,.92),rgba(21,37,25,.48)_70%,rgba(21,37,25,.25))]" />
-        <div className="container-max container-padding relative z-10 flex min-h-[78vh] items-end pb-16 pt-16 sm:items-center sm:pb-0">
+        <div className="container-max container-padding relative z-10 flex min-h-[78vh] items-end pb-16 pt-44 sm:items-center sm:pb-0">
           <div className="max-w-3xl">
             <p className="text-[10px] font-bold uppercase tracking-[.28em] text-white/70">Bali, Indonesia · Private tours</p>
             <h1 className="mt-5 font-[family-name:var(--font-display)] text-[clamp(3.2rem,8vw,6.8rem)] font-black uppercase leading-[.84] tracking-[-.05em]">

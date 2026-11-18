@@ -15,11 +15,11 @@ export const metadata: Metadata = {
   title: site.title,
   description: site.description,
   alternates: {
-    canonical: site.url,
+    canonical: `${site.url}${site.path}`,
   },
   openGraph: {
     type: "website",
-    url: site.url,
+    url: `${site.url}${site.path}`,
     siteName: "Bali Safari Tours",
     title: site.title,
     description: site.description,
@@ -85,19 +85,12 @@ export default function BaliSafariPage() {
   return (
     <main className="min-h-screen bg-[#fbfaf6]">
       <DomainHero
-        brand="Bali Safari Tours"
-        tagline="Build your island route"
         eyebrow="Interactive island planner"
         title="Your Bali"
         script="your route"
         description="Pin the temples, coastlines and highland roads that call to you. Then shape them into a trip that makes sense—with enough space to enjoy the way there."
         image="/tourpics/volcano.jpg"
         ctaLabel="Start planning"
-        navItems={[
-          { label: "Interactive map", href: "#content" },
-          { label: "Popular tours", href: "#popular-tours" },
-          { label: "Book the route", href: "#contact" },
-        ]}
       />
       <TripPlanner />
 

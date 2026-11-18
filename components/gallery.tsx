@@ -92,8 +92,8 @@ export default function Gallery() {
           </TrackedWhatsAppLink>
           <p className="mt-6 text-sm text-gray-500">
             See hundreds more real guest photos and videos at{" "}
-            <a href={SITES.vwbali.url} className="text-primary-600 hover:underline">
-              {SITES.vwbali.url.replace("https://", "")}
+            <a href={SITES.vwbali.path} className="text-primary-600 hover:underline">
+              our guest photo gallery
             </a>
             .
           </p>

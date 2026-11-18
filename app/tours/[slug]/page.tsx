@@ -65,14 +65,7 @@ export default async function TourDetailPage({ params }: TourPageProps) {
 
   return (
     <main className="min-h-screen bg-[#f4f3ee] text-[#20241f]">
-      <Header
-        navItems={[
-          { label: "All tours", href: "/tours" },
-          { label: "Highlights", href: "#highlights" },
-          { label: "Plan your day", href: "#tour-info" },
-          { label: "Contact", href: "#contact" },
-        ]}
-      />
+      <Header />
 
       <section className="container-max container-padding pb-10 pt-10 sm:pb-16 sm:pt-14">
         <Link
@@ -251,7 +244,7 @@ export default async function TourDetailPage({ params }: TourPageProps) {
                 Combine favorite stops or ask simply ask for a driver for half day or full day. Our drivers will take you anywhere! It is more fun in a convertible VW!
               </p>
               <Link
-                href={SITES.balisafari.url}
+                href={SITES.balisafari.path}
                 className="mt-4 inline-flex text-[10px] font-bold uppercase tracking-[.16em] text-[#425f32]"
               >
                 Build your own tour <ArrowIcon className="ml-2 size-3.5 shrink-0" />

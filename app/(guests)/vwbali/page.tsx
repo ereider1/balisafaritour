@@ -13,11 +13,11 @@ export const metadata: Metadata = {
   title: site.title,
   description: site.description,
   alternates: {
-    canonical: site.url,
+    canonical: `${site.url}${site.path}`,
   },
   openGraph: {
     type: "website",
-    url: site.url,
+    url: `${site.url}${site.path}`,
     siteName: "VW Bali Tours",
     title: site.title,
     description: site.description,
@@ -42,8 +42,6 @@ export default function VwBaliPage() {
   return (
     <main className="min-h-screen bg-[#fbfaf6]">
       <DomainHero
-        brand="Bali VW Tours"
-        tagline="Stories from the road"
         eyebrow="Guest journals · Bali, Indonesia"
         title="Bali through"
         script="their eyes"
@@ -52,10 +50,6 @@ export default function VwBaliPage() {
         video="/bobby-vw-hero.mp4"
         ctaLabel="Meet our guests"
         ctaHref="#gallery"
-        navItems={[
-          { label: "Guest stories", href: "#gallery" },
-          { label: "Plan your day", href: "#contact" },
-        ]}
       />
       <BaliVideoStories />
       <GuestShowcase />

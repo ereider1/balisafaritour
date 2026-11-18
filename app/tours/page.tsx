@@ -28,14 +28,7 @@ export default function ToursPage() {
   return (
     <main className="min-h-screen bg-[#f4f3ee] text-[#20241f]">
       <section className="relative min-h-[54vh] overflow-hidden bg-[#263b27] text-white">
-        <Header
-          overlay
-          navItems={[
-            { label: "Tour options", href: "#tour-options" },
-            { label: "Build your own", href: SITES.balisafari.url },
-            { label: "Back home", href: "/" },
-          ]}
-        />
+        <Header overlay />
         <Image
           src="/gallerypics/bali_vw_01.jpg"
           alt="Classic Volkswagen on a private Bali tour"
@@ -84,11 +77,11 @@ export default function ToursPage() {
                       image={tour.image}
                       gallery={tour.gallery}
                       alt={`${tour.name} in Bali`}
-                      href={tour.slug === "build-your-own" ? SITES.balisafari.url : `/tours/${tour.slug}`}
+                      href={tour.slug === "build-your-own" ? SITES.balisafari.path : `/tours/${tour.slug}`}
                     />
                   </div>
                   <Link
-                    href={tour.slug === "build-your-own" ? SITES.balisafari.url : `/tours/${tour.slug}`}
+                    href={tour.slug === "build-your-own" ? SITES.balisafari.path : `/tours/${tour.slug}`}
                     className="flex flex-1 flex-col p-7 sm:p-9"
                   >
                     <p className="text-[10px] font-bold uppercase tracking-[.2em] text-[#8ea65d]">
@@ -130,7 +123,7 @@ export default function ToursPage() {
             <p className="mt-6 max-w-xl text-sm leading-7 text-white/65">Tell us what you want to see, where you are staying and how active you want the day to feel. We&apos;ll connect the stops into a realistic private route.</p>
           </div>
           <div className="lg:text-right">
-            <Link href={SITES.balisafari.url} className="btn-primary bg-[#79924f] px-8 py-4">Build my route <ArrowIcon /></Link>
+            <Link href={SITES.balisafari.path} className="btn-primary bg-[#79924f] px-8 py-4">Build my route <ArrowIcon /></Link>
           </div>
         </div>
       </section>

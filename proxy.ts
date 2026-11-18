@@ -1,16 +1,20 @@
 import { NextRequest, NextResponse } from "next/server";
 import { clerkMiddleware } from "@clerk/nextjs/server";
-import { siteForHost } from "@/lib/domains";
+import { SITES, siteForHost } from "@/lib/domains";
 
 const proxyHandler = clerkMiddleware((_auth, request: NextRequest) => {
-  if (request.nextUrl.pathname !== "/") return NextResponse.next();
-
   const site = siteForHost(request.headers.get("host"));
-  if (site.key === "main") return NextResponse.next();
+  const isLegacyHost = site.key !== "main";
+  const isWwwMainHost = request.nextUrl.hostname === "www.balisafaritour.com";
+  if (!isLegacyHost && !isWwwMainHost) return NextResponse.next();
 
-  const url = request.nextUrl.clone();
-  url.pathname = site.path;
-  return NextResponse.rewrite(url);
+  const pathname =
+    isLegacyHost && request.nextUrl.pathname === "/"
+      ? site.path
+      : request.nextUrl.pathname;
+  const url = new URL(pathname, SITES.main.url);
+  url.search = request.nextUrl.search;
+  return NextResponse.redirect(url, 308);
 });
 
 export { proxyHandler as proxy };
