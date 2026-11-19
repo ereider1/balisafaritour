@@ -86,14 +86,14 @@ export default function InteractiveMap({
     });
     mapRef.current = map;
     
-    // Use CARTO's light Positron-style base with labels removed so the route
-    // pins stay prominent and the map remains visually quiet.
+    // Use Esri's keyless light canvas base so the route pins stay prominent
+    // and the map remains visually quiet without a third-party API key.
     L.tileLayer(
-      "https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png",
+      "https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}",
       {
         attribution:
-          '&copy; <a href="https://carto.com/attributions">CARTO</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-        maxZoom: 19,
+          'Tiles &copy; <a href="https://www.esri.com/">Esri</a> — Esri, DeLorme, NAVTEQ',
+        maxZoom: 16,
       },
     ).addTo(map);
 
