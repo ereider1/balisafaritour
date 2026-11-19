@@ -5,7 +5,7 @@ import FullDayTours from "@/components/full-day-tours";
 // import GuestShowcase from "@/components/guest-showcase";
 import TestimonialCarousel from "@/components/testimonial-carousel";
 import TrackedWhatsAppLink from "@/components/tracked-whatsapp-link";
-import { HowItWorks, TourFaq } from "@/components/tour-trust-sections";
+// import { HowItWorks, TourFaq } from "@/components/tour-trust-sections";
 import { featuredReviews } from "@/lib/featured-reviews";
 import { listPublishedReviews } from "@/lib/reviews";
 import { GOOGLE_REVIEW_URL } from "@/lib/tour-trust-content";
@@ -68,9 +68,8 @@ export default async function MainHome() {
 
       {/* <WhatsIncluded /> */}
 
-      <HowItWorks />
-
-      <TourFaq />
+      {/* <HowItWorks />
+      <TourFaq /> */}
 
 
       {/* <section id="vwadventure" className="relative min-h-[400px] overflow-hidden bg-[#fcfcfc] text-white">

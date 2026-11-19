@@ -11,6 +11,7 @@ import { SITES } from "@/lib/domains";
 // import { formatTourPrice, TOURS } from "@/lib/tours";
 
 import FullDayTours from "@/components/full-day-tours";
+import { HowItWorks, TourFaq } from "@/components/tour-trust-sections";
 
 
 export const metadata: Metadata = {
@@ -121,6 +122,11 @@ export default function ToursPage() {
           </div>
         </div>
       </section> */}
+
+      <HowItWorks />
+
+      <TourFaq />
+
 
       <section id="build-your-own" className="scroll-mt-24 bg-[#425f32] py-20 text-white lg:py-24">
         <div className="container-max container-padding grid gap-8 lg:grid-cols-[1.3fr_.7fr] lg:items-end">
