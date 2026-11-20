@@ -116,7 +116,9 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const site = await getSite();
+  const ga4Id = process.env.NEXT_PUBLIC_GA4_ID;
   const gadsId = process.env.NEXT_PUBLIC_GADS_ID;
+  const googleTagId = ga4Id || gadsId;
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -153,16 +155,17 @@ export default async function RootLayout({
         />
       </head>
       <body className="antialiased">
-        {gadsId ? (
+        {googleTagId ? (
           <>
             <Script id="google-tag" strategy="afterInteractive">
               {`window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
-                gtag('config', ${JSON.stringify(gadsId)});`}
+                ${ga4Id ? `gtag('config', ${JSON.stringify(ga4Id)});` : ""}
+                ${gadsId ? `gtag('config', ${JSON.stringify(gadsId)});` : ""}`}
             </Script>
             <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(gadsId)}`}
+              src={`https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(googleTagId)}`}
               strategy="afterInteractive"
             />
           </>
