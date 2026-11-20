@@ -17,7 +17,7 @@ export default function FullDayTours() {
           <p className="mx-auto mt-3 max-w-xl text-xs leading-5 text-black/55 sm:mt-5 sm:text-sm sm:leading-7">
             Choose one of our popular tours, or create your own! Group rates available.
           </p>
-          <Link
+          {/* <Link
             href="/map"
             className="mt-4 inline-flex items-center gap-2 text-[9px] font-bold uppercase tracking-[.18em] text-[#425f32] sm:mt-6 sm:gap-3 sm:text-[10px]"
           >
@@ -25,7 +25,7 @@ export default function FullDayTours() {
               <ArrowIcon direction="right" className="size-3.5 shrink-0" />
             </span>
             Build a custom tour
-          </Link>
+          </Link> */}
         </div>
 
         <div className="grid grid-cols-2 gap-3 sm:gap-6 lg:grid-cols-3">

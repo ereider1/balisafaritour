@@ -131,6 +131,23 @@ button, input, select, textarea { font: inherit; }
   filter: saturate(.72) contrast(.9) brightness(1.03);
 }
 
+.map-pin-icon {
+  transition: opacity .2s ease, filter .2s ease, transform .2s ease;
+}
+
+@media (max-width: 767px) {
+  .map-pin-icon.is-dimmed {
+    opacity: .34;
+  }
+
+  .map-pin-icon.is-active {
+    filter: drop-shadow(0 0 7px rgb(255 255 255 / .95));
+    transform: scale(1.14);
+    transform-origin: 17px 34px;
+    z-index: 2 !important;
+  }
+}
+
 .map-stop-tooltip.leaflet-tooltip {
   width: min(330px, calc(100vw - 48px));
   padding: 0;

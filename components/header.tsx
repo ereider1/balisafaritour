@@ -16,6 +16,7 @@ export default function Header({
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const navigationItems = [
     { label: "Tours", href: "/tours" },
+    { label: "Why Us?", href: "#why-us" },
     // { label: "Map", href: "/map" },
     // { label: "Bali Guide", href: "/bali-guide" },
     { label: "Guest Photos", href: "/guest-photos" },

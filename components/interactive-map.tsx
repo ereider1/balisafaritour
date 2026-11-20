@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useEffect, useRef } from "react";
 import L, {
   type Map as LeafletMap,
+  type Marker as LeafletMarker,
   type Tooltip as LeafletTooltip,
 } from "leaflet";
 
@@ -57,6 +58,7 @@ export default function InteractiveMap({
   const containerRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<LeafletMap | null>(null);
   const tooltipRefs = useRef<Record<string, LeafletTooltip>>({});
+  const markerRefs = useRef<Record<string, LeafletMarker>>({});
   const favoriteButtonRefs = useRef<Record<string, HTMLButtonElement>>({});
   const activeStop = stops.find((stop) => stop.name === hoveredStop);
 
@@ -73,7 +75,7 @@ export default function InteractiveMap({
     const map = L.map(container, {
       center: [-8.45, 115.15],
       zoom: isMobile ? 9 : 10,
-      zoomControl: !isMobile,
+      zoomControl: true,
       dragging: !isMobile,
       scrollWheelZoom: false,
       doubleClickZoom: false,
@@ -175,6 +177,7 @@ export default function InteractiveMap({
         });
       if (!isMobile) marker.on("mouseout blur", closeTooltip);
       marker.addTo(map);
+      markerRefs.current[stop.name] = marker;
       tooltipRefs.current[stop.name] = mapTooltip;
     });
 
@@ -185,6 +188,7 @@ export default function InteractiveMap({
     return () => {
       cancelTooltipClosures.forEach((cancelClose) => cancelClose());
       tooltipRefs.current = {};
+      markerRefs.current = {};
       favoriteButtonRefs.current = {};
       mapRef.current = null;
       map.remove();
@@ -203,6 +207,12 @@ export default function InteractiveMap({
 
   useEffect(() => {
     const map = mapRef.current;
+    Object.entries(markerRefs.current).forEach(([name, marker]) => {
+      const element = marker.getElement();
+      if (!element) return;
+      element.classList.toggle("is-active", name === hoveredStop);
+      element.classList.toggle("is-dimmed", Boolean(hoveredStop) && name !== hoveredStop);
+    });
     Object.entries(tooltipRefs.current).forEach(([name, tooltip]) => {
       if (map && name === hoveredStop) tooltip.addTo(map);
       else tooltip.remove();

@@ -54,9 +54,9 @@ export default async function MainHome() {
             <p className="mt-8 max-w-xl text-base leading-7 text-white/80 sm:text-md">Leave the tour-bus route behind. Ride through rice fields, temple villages and mountain roads in an original open-top Volkswagen with a local driver-guide.</p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a href="#tours" className="btn-primary bg-[#718b4c]">Popular Tours <ArrowIcon direction="down-right" /></a>
-              <div className="flex flex-col items-start gap-3">
+              {/* <div className="flex flex-col items-start gap-3">
                 <a href="/map" className="btn-outline">BUILD YOUR ROUTE</a>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
@@ -89,7 +89,7 @@ export default async function MainHome() {
 
 
       <section id="why-us" className="paper-edge relative min-h-[660px] overflow-hidden bg-[#425f32] text-white">
-        <Image src="/gallerypics/bali_vw_16.jpg" alt="Bali countryside seen from a classic VW" fill className="object-cover object-center opacity-45" />
+        <Image src="/gallerypics/bali_vw_09-landscape.jpg" alt="Bali Classic VW Cars ready for tours" fill className="object-cover object-center opacity-45" />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(37,59,39,.95),rgba(37,59,39,.62)_60%,rgba(37,59,39,.18))]" />
         <div className="container-max container-padding relative z-10 flex min-h-[660px] items-center py-28">
           <div className="max-w-3xl">
